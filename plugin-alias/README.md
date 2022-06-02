@@ -10,35 +10,50 @@ Access, store and use your favorite Twilio aliases with this plugin
 
 <!-- tocstop -->
 
-## Setup
+# Setup
 
-Head over to the [plugin-alias](https://github.com/Kavya-24/cli-plugin).
 Link plugin to the CLI
-Run
-$ [`twilio alias:Add`]
+
+Run `twilio alias:Setup`
 
 # Usage
 
 ```sh-session
-
 $ twilio --help alias
-
-USAGE
-
 $ twilio alias
-
-...
-
 ```
 
 # Commands
 
 <!-- commands -->
 
+- [`twilio alias:Setup`](#twilio-aliasSetup)
+
 - [`twilio alias:Add`](#twilio-aliasAdd)
+
 - [`twilio alias:Delete`](#twilio-aliasDelete)
+
 - [`twilio alias:Use`](#twilio-aliasUse)
+
 - [`twilio alias:List`](#twilio-aliasList)
+
+  <br>
+<!-- Setup Command -->
+
+## `twilio alias:Setup`
+
+Setup aliases plugin
+
+```
+USAGE
+	$ twilio alias:Setup
+
+DESCRIPTION
+	This command is used to run Setup
+```
+
+_See code: [src/commands/alias/Setup.js](https://github.com/Kavya-24/cli-plugin/tree/main/plugin-alias/src/commands/alias/Setup.js)_
+<br>
 
 <!-- Add Command -->
 
@@ -47,24 +62,26 @@ $ twilio alias
 Add aliases
 
 ```
-
 USAGE
 	$ twilio alias:Add
 
 
 ARGUMENTS
-	name       : Name of the alias shorthand
-	command    : Command we want to shorthand
+	name : Name of the alias shorthand
+	command : Command we want to shorthand
+
 
 FLAGS
-  -f         : Flag for overwriting
+	-f : Flag for overwriting
+
 
 DESCRIPTION
 	This command is used to add favorite aliases
-
 ```
 
 _See code: [src/commands/alias/Add.js](https://github.com/Kavya-24/cli-plugin/tree/main/plugin-alias/src/commands/alias/Add.js)_
+
+  <br>
 
 <!-- Delete Command -->
 
@@ -73,7 +90,6 @@ _See code: [src/commands/alias/Add.js](https://github.com/Kavya-24/cli-plugin/tr
 Delete aliases
 
 ```
-
 USAGE
 	$ twilio alias:Delete
 
@@ -84,19 +100,17 @@ ARGUMENTS
 
 DESCRIPTION
 	This command is used to delete favorite aliases
-
 ```
 
-_See code: [src/commands/alias/Delete.js](https://github.com/Kavya-24/cli-plugin/tree/main/plugin-alias/src/commands/alias/Delete.js)_
+_See code: [src/commands/alias/Delete.js](https://gitshub.com/Kavya-24/cli-plugin/tree/main/plugin-alias/src/commands/alias/Delete.js)_
 
+  <br>
+  
 <!-- Use Command -->
-
 ## `twilio alias:Use`
-
 Use aliases
 
 ```
-
 USAGE
 	$ twilio alias:Use
 
@@ -104,13 +118,13 @@ USAGE
 ARGUMENTS
 	name : Name of the alias shorthand to use
 
-
 DESCRIPTION
 	This command is used to use an alias shorthand
-
 ```
 
 _See code: [src/commands/alias/Use.js](https://github.com/Kavya-24/cli-plugin/tree/main/plugin-alias/src/commands/alias/Use.js)_
+
+<br>
 
 <!-- List Command -->
 
@@ -119,15 +133,12 @@ _See code: [src/commands/alias/Use.js](https://github.com/Kavya-24/cli-plugin/tr
 List aliases
 
 ```
-
 USAGE
 	$ twilio alias:List
 
 
-
 DESCRIPTION
 	This command is used to list all the aliases
-
 ```
 
 _See code: [src/commands/alias/List.js](https://github.com/Kavya-24/cli-plugin/tree/main/plugin-alias/src/commands/alias/List.js)_
