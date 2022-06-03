@@ -1,9 +1,9 @@
 const os = require('os');
-const { BaseCommand, TwilioClientCommand } = require('@twilio/cli-core').baseCommands;
+const  AliasBaseCommand  = require('../../utilities/AliasBaseCommand');
+const AliasObject = require('../../utilities/AliasObject')
 const fs = require('fs');
 
-class Import extends BaseCommand {
-
+class Import extends AliasBaseCommand {
 
   constructor(argv, config) {
     super(argv, config);
@@ -12,11 +12,12 @@ class Import extends BaseCommand {
   async run() {
     await super.run();
 
-
     const {args} = this.parse(Import)
     
     if(this.validateArguments(args)){
-        const aliasFilePath = this.getAliasFilePath();
+      const aliasFilePath = this.getAliasFilePath()["aliasFilePath"];
+
+      if(fs.existsSync(aliasFilePath)){     
         const destFile  = args["dest"];
 
 
@@ -29,13 +30,16 @@ class Import extends BaseCommand {
                 console.log('import completed');
             }
         });
+      }
+
+      else {
+        console.log('please run alias: setup command first to initiate the plugin setup')
+      }
 
     }
 
-    
-    
-
   }
+
   validateArguments(args){
 
     var isValid = true;
@@ -62,20 +66,18 @@ class Import extends BaseCommand {
         }
     });
 
-
     return isValid;
-
   }
 
-  getAliasFilePath(){
+  // getAliasFilePath(){
 
-    const dataDirectory = this.config.dataDir;
-    const aliasFolderName = 'alias';
-    const aliasFolderPath =  dataDirectory + '/' + aliasFolderName;
-    const aliasFileName = 'data.json';
-    return aliasFolderPath + '/' + aliasFileName;
+  //   const dataDirectory = this.config.dataDir;
+  //   const aliasFolderName = 'alias';
+  //   const aliasFolderPath =  dataDirectory + '/' + aliasFolderName;
+  //   const aliasFileName = 'data.json';
+  //   return aliasFolderPath + '/' + aliasFileName;
 
-  }
+  // }
 
   
 

@@ -1,11 +1,13 @@
 const os = require('os');
 const { args,flags } = require('@oclif/command');
-const { BaseCommand, TwilioClientCommand } = require('@twilio/cli-core').baseCommands;
+const  AliasBaseCommand  = require('../../utilities/AliasBaseCommand');
+const findAlias = require('../../utilities/findAlias')
+const insertInFile = require('../../utilities/insertInFile')
+const AliasObject = require('../../utilities/AliasObject')
 const fs = require('fs');
 
 
-
-class Delete extends BaseCommand {
+class Delete extends AliasBaseCommand {
 
   constructor(argv, config) {
     super(argv, config);
@@ -19,27 +21,17 @@ class Delete extends BaseCommand {
     if(this.validateArguments(args)){
 
         const userAlias = args["name"];
-        const aliasFilePath = this.getAliasFilePath();
+        const aliasFilePath = this.getAliasFilePath()["aliasFilePath"];
 
         if(fs.existsSync(aliasFilePath)){     
-
           this.removeAlias(userAlias, aliasFilePath);
-
         }
 
-        else{
-
+        else {
           console.log('please run alias: setup command first to initiate the plugin setup')
-
         }
-
-
     }
     
-    
-
-    
-
   }
 
   removeAlias(userAlias, aliasFilePath){
@@ -50,72 +42,58 @@ class Delete extends BaseCommand {
       try{
       
         const json_data = JSON.parse(file_data);
-        const exist_util = this.findAlias(userAlias, json_data);
+        const exist_util = findAlias(userAlias, json_data);
         const alias_exists = exist_util["exist"];
         const alias_at = exist_util["index"]; 
         
         
-        if(!alias_exists){
-
+        if(!alias_exists) {
           console.log('alias does not exist');
         }
         
-        else{
+        else {
+          // at index = alias_At, remove 1 entry
             json_data["aliases"].splice(alias_at, 1);
-            
         }
 
-    
-      
-        this.insertInFile(aliasFilePath, json_data);
+        insertInFile(aliasFilePath, json_data);
       
       } catch(err){
         console.log(err);
         console.log('unable to parse');
       }
-      
-      
-
-      
-      
-
   }
 
-  insertInFile(aliasFilePath, json_data){
+  // insertInFile(aliasFilePath, json_data) {
 
-      
-      fs.appendFileSync(aliasFilePath,
-                        JSON.stringify(json_data),
-                        { encoding: "utf8", flag: "w" }
-                      );
-
-
-        return;
-  }
+  //   fs.appendFileSync(aliasFilePath,
+  //                       JSON.stringify(json_data),
+  //                       { encoding: "utf8", flag: "w" }
+  //                     );
+  // }
 
 
-  findAlias(userAlias, json_data){
+  // findAlias(userAlias, json_data){
 
-
-      for (let i = 0; i < json_data["aliases"].length; i++) {
+  //     for (let i = 0; i < json_data["aliases"].length; i++) {
         
-        if(json_data["aliases"][i]["name"] == userAlias){
-          return {"exist": true, "index": i};;
-        }
-      }
+  //       if(json_data["aliases"][i]["name"] == userAlias){
+  //         return {"exist": true, "index": i};;
+  //       }
+  //     }
 
-      return {"exist": false, "index": -1};
-  }
+  //     return {"exist": false, "index": -1};
+  // }
 
-  getAliasFilePath(){
+  // getAliasFilePath(){
 
-    const dataDirectory = this.config.dataDir;
-    const aliasFolderName = 'alias';
-    const aliasFolderPath =  dataDirectory + '/' + aliasFolderName;
-    const aliasFileName = 'data.json';
-    return aliasFolderPath + '/' + aliasFileName;
+  //   const dataDirectory = this.config.dataDir;
+  //   const aliasFolderName = 'alias';
+  //   const aliasFolderPath =  dataDirectory + '/' + aliasFolderName;
+  //   const aliasFileName = 'data.json';
+  //   return aliasFolderPath + '/' + aliasFileName;
 
-  }
+  // }
 
   validateArguments(args){
 
@@ -129,7 +107,6 @@ class Delete extends BaseCommand {
         
     }
 
-
     if(userAlias == undefined){
       console.log('Please insert an alias argument to delete');
       isValid = false;
@@ -138,8 +115,6 @@ class Delete extends BaseCommand {
     return isValid;
 
   }
-
-
 
 }
 
@@ -155,12 +130,12 @@ Delete.args = [
 module.exports = Delete;
 
 
-class AliasObject{
+// class AliasObject{
   
-  constructor(userAlias, userCommand){
-    this.name = userAlias;
-    this.command = userCommand;
-  }
+//   constructor(userAlias, userCommand){
+//     this.name = userAlias;
+//     this.command = userCommand;
+//   }
 
-}
+// }
 
