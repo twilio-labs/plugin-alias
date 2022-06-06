@@ -1,5 +1,5 @@
 const os = require('os');
-const  AliasBaseCommand  = require('../../utilities/AliasBaseCommand');
+const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const AliasObject = require('../../utilities/AliasObject')
 const fs = require('fs');
 
@@ -15,26 +15,22 @@ class Export extends AliasBaseCommand {
     const aliasFilePath = this.getAliasFilePath()["aliasFilePath"];
     const destFilePath = process.cwd() + '/' + 'dataexport.json';
 
-    try {
+    if (fs.existsSync(aliasFilePath)) {
+
+      try {
         fs.copyFileSync(aliasFilePath, destFilePath);
         console.log(destFilePath);
       } catch (err) {
         console.log(err);
       }
 
+    }
+
+    else {
+      console.log('please run alias:Setup command first to initiate the plugin setup')
+    }
+
   }
-
-  // getAliasFilePath(){
-
-  //   const dataDirectory = this.config.dataDir;
-  //   const aliasFolderName = 'alias';
-  //   const aliasFolderPath =  dataDirectory + '/' + aliasFolderName;
-  //   const aliasFileName = 'data.json';
-  //   return aliasFolderPath + '/' + aliasFileName;
-
-  // }
-
-  
 
 }
 
@@ -48,7 +44,7 @@ class Export extends AliasBaseCommand {
 //         default: 'json'             
 //       })
 // };
-  
+
 
 Export.description = 'export aliases';
 module.exports = Export;
