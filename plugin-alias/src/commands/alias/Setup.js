@@ -1,5 +1,5 @@
 const os = require('os');
-const  AliasBaseCommand  = require('../../utilities/AliasBaseCommand');
+const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const fs = require('fs');
 
 class Setup extends AliasBaseCommand {
@@ -14,12 +14,6 @@ class Setup extends AliasBaseCommand {
       Whenever setup of Plugin is initiated, find the main directory where CLI is installed and create a data.json file
       This data.json file has a semi-structured format of key-value pairs 
     */
-    
-    // const dataDirectory = this.config.dataDir
-    // const aliasFolderName = 'alias'
-    // const aliasFolderPath =  dataDirectory + '/' + aliasFolderName
-    // const aliasFileName = 'data.json'
-    // const aliasFilePath = aliasFolderPath + '/' + aliasFileName
 
     const aliasFolderPath = this.getAliasFilePath()["aliasFolderPath"]
     const aliasFilePath = this.getAliasFilePath()["aliasFilePath"]
@@ -36,22 +30,22 @@ class Setup extends AliasBaseCommand {
     }
 
     /** Create a file in the alias folder */
-    try{
-      
-      if(!fs.existsSync(aliasFilePath)){
-          fs.appendFileSync(aliasFilePath,
-                            '{\"aliases\":[]}',
+    try {
+
+      if (!fs.existsSync(aliasFilePath)) {
+        fs.appendFileSync(aliasFilePath,
+          '{\"aliases\":[]}',
           { encoding: "utf8", flag: "w" }
-          );
-        
+        );
+
       }
 
-      else{
+      else {
         console.log('data file already exists');
       }
-      
-    } catch(err){
-        console.error(err);
+
+    } catch (err) {
+      console.error(err);
     }
   }
 
