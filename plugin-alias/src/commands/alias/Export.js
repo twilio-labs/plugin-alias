@@ -45,6 +45,6 @@ class Export extends AliasBaseCommand {
 //       })
 // };
 
-
+Export.id = 'alias:Export'
 Export.description = 'export aliases';
 module.exports = Export;

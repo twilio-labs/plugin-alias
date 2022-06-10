@@ -30,9 +30,9 @@ class List extends AliasBaseCommand {
 
     try {
       const json_data = JSON.parse(file_data);
-      console.log("Alias\t\tCommands");
+      console.log("Alias\tCommands");
       for (let i = 0; i < json_data["aliases"].length; i++) {
-        console.log(json_data["aliases"][i]["name"] + "\t\t" + json_data["aliases"][i]["command"]);
+        console.log(json_data["aliases"][i]["name"] + "\t" + json_data["aliases"][i]["command"]);
       }
 
     }
@@ -47,6 +47,6 @@ class List extends AliasBaseCommand {
 }
 
 List.description = 'view twilio aliases';
-
+List.id = "alias:List";
 module.exports = List;
 
