@@ -1,10 +1,9 @@
 const os = require('os');
-const { BaseCommand, TwilioClientCommand } = require('@twilio/cli-core').baseCommands;
+const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
+const AliasObject = require('../../utilities/AliasObject')
 const fs = require('fs');
 
-class Export extends BaseCommand {
-
-
+class Export extends AliasBaseCommand {
   constructor(argv, config) {
     super(argv, config);
   }
@@ -12,31 +11,26 @@ class Export extends BaseCommand {
   async run() {
     await super.run();
 
-    
     //Store the aliases file in the current directory
-    const aliasFilePath = this.getAliasFilePath();
+    const aliasFilePath = this.getAliasFilePath()["aliasFilePath"];
     const destFilePath = process.cwd() + '/' + 'dataexport.json';
 
-    try {
+    if (fs.existsSync(aliasFilePath)) {
+
+      try {
         fs.copyFileSync(aliasFilePath, destFilePath);
         console.log(destFilePath);
       } catch (err) {
         console.log(err);
       }
 
-  }
+    }
 
-  getAliasFilePath(){
-
-    const dataDirectory = this.config.dataDir;
-    const aliasFolderName = 'alias';
-    const aliasFolderPath =  dataDirectory + '/' + aliasFolderName;
-    const aliasFileName = 'data.json';
-    return aliasFolderPath + '/' + aliasFileName;
+    else {
+      console.log('please run alias:Setup command first to initiate the plugin setup')
+    }
 
   }
-
-  
 
 }
 
@@ -50,7 +44,7 @@ class Export extends BaseCommand {
 //         default: 'json'             
 //       })
 // };
-  
+
 
 Export.description = 'export aliases';
 module.exports = Export;
