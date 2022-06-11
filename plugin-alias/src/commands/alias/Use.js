@@ -19,6 +19,7 @@ class Use extends AliasBaseCommand {
 
     const { args, flags } = this.parse(Use);
 
+
     //Parse the aruguments and pass validations
     if (this.validateArguments(args)) {
 
@@ -80,17 +81,19 @@ class Use extends AliasBaseCommand {
 
   runChildProcess(userCommand) {
 
+
     //Create a child process that takes the commands
     //We use spawn to execute command in a new child process and add listeners to it as well
 
-    var sourceData = exec(userCommand,
-      (error, stdout, stderr) => {
-        console.log(stdout);
-        console.log(stderr);
-        if (error !== null) {
-          console.log(`exec error: ${error}`);
-        }
-      });
+
+    // var sourceData = exec(userCommand,
+    //   (error, stdout, stderr) => {
+    //     console.log(stdout);
+    //     console.log(stderr);
+    //     if (error !== null) {
+    //       console.log(`exec error: ${error}`);
+    //     }
+    //   });
 
   }
 

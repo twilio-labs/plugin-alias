@@ -145,5 +145,6 @@ Add.args = [
   },
 ];
 
+Add.aliases = ['add'];
 module.exports = Add;
 
