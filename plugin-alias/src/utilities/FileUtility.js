@@ -52,7 +52,7 @@ class FileUtilty {
 
         for (let i = 0; i < json_data["aliases"].length; i++) {
             if (json_data["aliases"][i]["name"] == userAlias) {
-                return { "command": json_data["aliases"][i]["command"], "index": i };;
+                return { "command": json_data["aliases"][i]["command"], "index": i };
             }
         }
 
