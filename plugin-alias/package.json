@@ -7,13 +7,16 @@
   "dependencies": {
     "@oclif/command": "^1.5.20",
     "@oclif/config": "^1.15.1",
+    "@oclif/core": "1.9.0",
     "@twilio/cli-core": "^5.0.0",
-    "@oclif/core":"1.9.0"
+    "inquirer": "8.2.4",
+    "omelette": "0.4.17"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.2",
     "@oclif/test": "^1.2.5",
     "@twilio/cli-test": "^2.1.0",
+    "@types/node": "17.0.41",
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-oclif": "^3.1.0",
@@ -34,6 +37,7 @@
   ],
   "license": "MIT",
   "oclif": {
+    "flexibleTaxonomy": true,
     "name": "alias",
     "commands": "./src/commands",
     "bin": "twilio",
@@ -51,7 +55,6 @@
     "type": "git",
     "url": "https://github.com/twilio/plugin-debugger.git"
   },
-
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint --ignore-path .gitignore . && npm audit",
