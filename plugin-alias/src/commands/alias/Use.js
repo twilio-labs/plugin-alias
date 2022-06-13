@@ -16,7 +16,7 @@ class Use extends AliasBaseCommand {
       return;
     }
 
-    const supposedAlias = this.argv[0];
+    const supposedAlias = this.argv.shift();
 
     const exist_util = new FileUtil(this).extractAlias(supposedAlias);
     var commandToRun = supposedAlias;
@@ -31,7 +31,8 @@ class Use extends AliasBaseCommand {
       //console.log(process.argv)
 
       //process.argv[3] = exist_util["command"];
-      this.argv = exist_util["command"];
+      
+      //this.argv = exist_util["command"];
       //console.log(exist_util["command"])
       //console.log(this.argv)
       commandToRun = exist_util["command"] //+ this.argv
