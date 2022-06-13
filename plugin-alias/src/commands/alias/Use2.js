@@ -30,17 +30,11 @@ class Use2 extends AliasBaseCommand {
 
       process.argv[3] = exist_util["command"];
       this.argv = exist_util["command"];
-
+      this.config.runCommand(exist_util["command"], this.argv);
+      this.exit();
 
     }
-
-
-    this.config.runCommand(exist_util["command"], this.argv);
-    this.exit();
-
   }
-
-
 
 }
 

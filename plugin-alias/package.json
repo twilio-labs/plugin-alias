@@ -49,12 +49,6 @@
       "alias": {
         "description": "Plugin to manage alias for Twilio CLI"
       }
-    },
-    "hooks": {
-      "init": "./src/hooks/init/inithook.ts",
-      "prerun": "./src/hooks/prerun/prehook.ts",
-      "command_not_found": "./src/hooks/command_not_found/command_not_found.ts",
-      "postrun": "./src/hooks/postrun/posthook.ts"
     }
   },
   "repository": {

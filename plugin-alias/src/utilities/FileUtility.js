@@ -1,5 +1,5 @@
 const fs = require('fs');
-class FileUtilty {
+class FileUtility {
 
     constructor(context) {
         this.ctx = context
@@ -52,7 +52,7 @@ class FileUtilty {
 
         for (let i = 0; i < json_data["aliases"].length; i++) {
             if (json_data["aliases"][i]["name"] == userAlias) {
-                return { "command": json_data["aliases"][i]["command"], "index": i };;
+                return { "command": json_data["aliases"][i]["command"], "index": i };
             }
         }
 
@@ -73,4 +73,4 @@ class FileUtilty {
 
 }
 
-module.exports = FileUtilty;
+module.exports = FileUtility;
