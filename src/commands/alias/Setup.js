@@ -18,7 +18,9 @@ class Setup extends AliasBaseCommand {
     const aliasFolderPath = this.getAliasFilePath()["aliasFolderPath"]
     const aliasFilePath = this.getAliasFilePath()["aliasFilePath"]
 
-    /* Create a new folder in .twilio_cli forlder so as to mainatin the aliases plugin */
+    //console.log(aliasFolderPath)
+
+    /* Create a new folder in datadirectory folder so as to mainatin the aliases plugin */
 
     try {
       if (!fs.existsSync(aliasFolderPath)) {
@@ -51,5 +53,5 @@ class Setup extends AliasBaseCommand {
 
 }
 
-Setup.description = 'set up aliases for your favorite Twilio commands';
+Setup.description = 'set up aliases for your favorite commands';
 module.exports = Setup;

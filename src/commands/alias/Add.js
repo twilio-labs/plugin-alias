@@ -128,7 +128,7 @@ class Add extends AliasBaseCommand {
 
 }
 
-Add.description = 'create a new alias to access Twilio CLI commands';
+Add.description = 'create a new alias in oclif';
 
 Add.flags = {
   force: flags.boolean({ char: 'f', description: 'Force overwrite the alias if it already exists' })
