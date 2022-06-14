@@ -113,7 +113,7 @@ class FileUtility {
 
     setupIncompleteWarning() {
       const AUTOCOMLETE_ALERT = `If you are running alias command for the first time, please run the following setup command to initiate the plugin setup: \n 
-      '${chalk.bold('oclif-example alias:Setup bash')}'`;
+      '${chalk.bold('oclif-example alias:Setup')}'`;
       console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
     }
 
