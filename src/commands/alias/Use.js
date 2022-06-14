@@ -25,7 +25,7 @@ class Use extends AliasBaseCommand {
 
     if (exist_util["index"] == -2) {
       //Setup incomplete
-      console.log('please run alias:Setup command first to initiate the plugin setup')
+      new FileUtil(this).setupIncompleteWarning();
       return;
     }
     

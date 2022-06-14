@@ -1,8 +1,7 @@
 const fs = require('fs');
 const AliasObject = require('./AliasObject')
 const FilesystemStorage = require('./FileSnapshot/FilesystemStorage');
-
-
+const chalk = require('chalk');
 
 class FileUtility {
 
@@ -52,7 +51,6 @@ class FileUtility {
 
         
         try {
-
             const aliasFilePath =  this.getAliasFilePath();
             const db = await FileUtility.storage.load(aliasFilePath);
             const exist_util = this.extractAlias(userAlias, aliasFilePath,db);
@@ -61,7 +59,7 @@ class FileUtility {
 
             //This will never run for snapshot based memory reference
             if(aliasIndex == -2){
-                console.log('please run alias:Setup command first to initiate the plugin setup');
+                this.setupIncompleteWarning();
             }
 
             
@@ -78,7 +76,7 @@ class FileUtility {
                     console.log('alias does not exist');
                 }
 
-              }else {
+             }else {
                 
                 
                 if(operation == 'alias:Add'){
@@ -102,6 +100,7 @@ class FileUtility {
           
               await FileUtility.storage.save(db, aliasFilePath);
               
+                
               
       
           } catch (err) {
@@ -112,8 +111,11 @@ class FileUtility {
 
     }
 
-
-
+    setupIncompleteWarning() {
+      const AUTOCOMLETE_ALERT = `If you are running alias command for the first time, please run the following setup command to initiate the plugin setup: \n 
+      '${chalk.bold('oclif-example alias:Setup bash')}'`;
+      console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
+    }
 
 }
 
