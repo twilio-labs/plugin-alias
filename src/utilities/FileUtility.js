@@ -1,5 +1,8 @@
 const fs = require('fs');
 const AliasObject = require('./AliasObject')
+const FilesystemStorage = require('./FileSnapshot/FilesystemStorage');
+
+
 
 class FileUtility {
 
@@ -7,12 +10,11 @@ class FileUtility {
         this.ctx = context
     }
 
-    extractAlias(userAlias) {
-        const aliasFilePath = this.getAliasFilePath();
-
-
+    extractAlias(userAlias, aliasFilePath,db) {
+        
         if (fs.existsSync(aliasFilePath)) {
-            return this.parseData(userAlias, aliasFilePath);
+    
+            return this.parseData(userAlias, aliasFilePath,db);
 
         }
 
@@ -34,115 +36,80 @@ class FileUtility {
     }
 
 
-    parseData(userAlias, aliasFilePath) {
+    parseData(userAlias, aliasFilePath,db) {
 
-        const file_data = fs.readFileSync(aliasFilePath, 'utf-8');
-
-        try {
-            const json_data = JSON.parse(file_data);
-            return this.findAlias(userAlias, json_data)
-        } catch (err) {
-            console.log(err);
-            console.log('unable to parse');
+        if(db[userAlias]){
+            return { "command": db[userAlias], "index": 0 };
+        }
+        else{
+            return { "command": 'no-alias', "index": -1 };
         }
 
     }
 
-    readData(aliasFilePath){
-        const file_data = fs.readFileSync(aliasFilePath, 'utf-8');
 
-        try {
-            const json_data = JSON.parse(file_data);
-            return json_data;
-        } catch (err) {
-            console.log(err);
-            console.log('unable to parse');
-        }
+    async updateData(userAlias, userCommand, hasFlag, operation){
+
         
-    }
-
-    findAlias(userAlias, json_data) {
-
-
-        for (let i = 0; i < json_data["aliases"].length; i++) {
-            if (json_data["aliases"][i]["name"] == userAlias) {
-                return { "command": json_data["aliases"][i]["command"], "index": i };
-            }
-        }
-
-        return { "command": 'no-alias', "index": -1 };
-    }
-
-    updateData(userAlias, userCommand, hasFlag, operation){
-
-
         try {
-
-            const exist_util = this.extractAlias(userAlias);
-            
-            if(exist_util["index"] == -2){
-                return 'please run alias:Setup command first to initiate the plugin setup';
-            }
 
             const aliasFilePath =  this.getAliasFilePath();
-            const json_data = this.readData(aliasFilePath);
-            const aliasObj = new AliasObject(userAlias, userCommand);
+            const db = await FileUtility.storage.load(aliasFilePath);
+            const exist_util = this.extractAlias(userAlias, aliasFilePath,db);
             const aliasIndex = exist_util["index"];
+            
 
-            if (aliasIndex == -2) {
-                //Setup incomplete
-                return 'please run alias:Setup command first to initiate the plugin setup';
-            } else if (aliasIndex == -1) {
+            //This will never run for snapshot based memory reference
+            if(aliasIndex == -2){
+                console.log('please run alias:Setup command first to initiate the plugin setup');
+            }
+
+            
+            
+            else if (aliasIndex == -1) {
           
                 //no alias exists. Add is operation is Add, else show error for delete
                 if(operation == 'alias:Add'){
-                    json_data["aliases"].push(aliasObj);
+                    
+                    db[userAlias] = userCommand;
+                    
                 }
                 else if(operation == 'alias:Delete'){
-                    return 'alias does not exist';
+                    console.log('alias does not exist');
                 }
 
               }else {
                 
                 
                 if(operation == 'alias:Add'){
+
                     
-                        if (hasFlag) {
-                            json_data["aliases"][aliasIndex]["command"] = userCommand;
-                            
-                        }
-                        else {
-                           return 'alias already exists. Consider adding -f for overwriting';
-                        }
+                    if(db[userAlias] === 'null' || hasFlag){
+                        db[userAlias] = userCommand;
+                    }
+                    else {
+                        console.log('alias already exists. Consider adding -f for overwriting');
+                    }
+                        
+                        
                 }
                 else if(operation == 'alias:Delete'){
 
-                        json_data["aliases"].splice(aliasIndex, 1);   
-
+                        db[userAlias] = 'null';
                 }
                 
               }
           
-            
-            return this.insertInFile(aliasFilePath, json_data);
+              await FileUtility.storage.save(db, aliasFilePath);
+              
+              
       
           } catch (err) {
             
-            return 'unable to load file';
+            console.log('unable to load file');
 
           }
 
-    }
-
-    insertInFile(aliasFilePath, json_data) {
-
-        fs.appendFileSync(aliasFilePath,
-            JSON.stringify(json_data),
-            { encoding: "utf8", flag: "w" }
-        );
-
-        
-        return 'data file updated';
     }
 
 
@@ -150,4 +117,5 @@ class FileUtility {
 
 }
 
+FileUtility.storage = new FilesystemStorage();
 module.exports = FileUtility;
