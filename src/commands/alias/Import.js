@@ -1,7 +1,6 @@
-const os = require('os');
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
-const AliasObject = require('../../utilities/AliasObject')
 const fs = require('fs');
+const FileUtil = require('../../utilities/FileUtility.js');
 
 class Import extends AliasBaseCommand {
 
@@ -15,10 +14,11 @@ class Import extends AliasBaseCommand {
     const { args } = this.parse(Import)
 
     if (this.validateArguments(args)) {
-      const aliasFilePath = this.getAliasFilePath()["aliasFilePath"];
-
+      
+      const aliasFilePath = new FileUtil(this).getAliasFilePath();
       if (fs.existsSync(aliasFilePath)) {
         const destFile = args["dest"];
+        
 
 
         //Copy file from destFile to aliasFilePath
@@ -56,7 +56,6 @@ class Import extends AliasBaseCommand {
     if (userPath == undefined) {
       console.log('please add the path of the alias.json file');
       isValid = false;
-      return isValid;
     }
 
     fs.access(userPath, fs.R_OK, (err) => {
@@ -71,6 +70,9 @@ class Import extends AliasBaseCommand {
 
 
 }
+
+Import.id = 'alias:Import'
+
 
 Import.args = [
   {

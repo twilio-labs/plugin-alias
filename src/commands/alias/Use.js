@@ -1,5 +1,6 @@
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const FileUtil = require('../../utilities/FileUtility.js');
+const CommandUtil = require('../../utilities/CommandUtility.js');
 
 
 //Extenable with params (Use explicit flags for it)
@@ -28,18 +29,15 @@ class Use extends AliasBaseCommand {
 
     }
     else {
-      //console.log(process.argv)
 
-      //process.argv[3] = exist_util["command"];
-      
-      //this.argv = exist_util["command"];
-      //console.log(exist_util["command"])
-      //console.log(this.argv)
       commandToRun = exist_util["command"] //+ this.argv
     }
 
-    this.config.runCommand(commandToRun, this.argv);
+    new CommandUtil(this).runCommand(commandToRun, this.argv);
+    
   }
+
+
 
 }
 

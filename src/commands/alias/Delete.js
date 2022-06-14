@@ -1,10 +1,6 @@
-const os = require('os');
 const { args, flags } = require('@oclif/command');
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
-const findAlias = require('../../utilities/findAlias')
-const insertInFile = require('../../utilities/insertInFile')
-const AliasObject = require('../../utilities/AliasObject')
-const fs = require('fs');
+const FileUtil = require('../../utilities/FileUtility.js');
 
 
 class Delete extends AliasBaseCommand {
@@ -20,48 +16,14 @@ class Delete extends AliasBaseCommand {
 
     if (this.validateArguments(args)) {
 
-      const userAlias = args["name"];
-      const aliasFilePath = this.getAliasFilePath()["aliasFilePath"];
-
-      if (fs.existsSync(aliasFilePath)) {
-        this.removeAlias(userAlias, aliasFilePath);
-      }
-
-      else {
-        console.log('please run alias: setup command first to initiate the plugin setup')
-      }
+      this.removeAlias(args["name"], '', false);
     }
 
   }
 
-  removeAlias(userAlias, aliasFilePath) {
-
-    //We have valid arguments and the aliasFilePath exists
-    const file_data = fs.readFileSync(aliasFilePath, 'utf-8');
-
-    try {
-
-      const json_data = JSON.parse(file_data);
-      const exist_util = findAlias(userAlias, json_data);
-      const alias_exists = exist_util["exist"];
-      const alias_at = exist_util["index"];
-
-
-      if (!alias_exists) {
-        console.log('alias does not exist');
-      }
-
-      else {
-        // at index = alias_At, remove 1 entry
-        json_data["aliases"].splice(alias_at, 1);
-      }
-
-      insertInFile(aliasFilePath, json_data);
-
-    } catch (err) {
-      console.log(err);
-      console.log('unable to parse');
-    }
+  removeAlias(userAlias, userCommand, hasFlag){
+    const updateFile= new FileUtil(this).updateData(userAlias, userCommand, hasFlag, this.id);
+    console.log(updateFile);
   }
 
 
@@ -89,8 +51,10 @@ class Delete extends AliasBaseCommand {
 }
 
 Delete.description = 'delete a twilio alias';
+Delete.id = 'alias:Delete';
 
 Delete.args = [
+
   {
     name: 'name',
     description: 'alias name to delete',
