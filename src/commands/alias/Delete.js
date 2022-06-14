@@ -53,6 +53,7 @@ class Delete extends AliasBaseCommand {
 Delete.description = 'delete a twilio alias';
 Delete.id = 'alias:Delete';
 
+
 Delete.args = [
 
   {

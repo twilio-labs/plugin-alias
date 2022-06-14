@@ -1,7 +1,7 @@
-const { BaseCommand, TwilioClientCommand } = require('@twilio/cli-core').baseCommands;
+const { Command } = require('@oclif/command');
 const fs = require('fs');
 
-class AliasBaseCommand extends BaseCommand {
+class AliasBaseCommand extends Command {
     constructor(argv, config) {
         super(argv, config);
       }
@@ -12,6 +12,7 @@ class AliasBaseCommand extends BaseCommand {
 
       getAliasFilePath() {
         const dataDirectory = this.config.dataDir;
+        //console.log(dataDirectory)
         const aliasFolderName = 'alias';
         const aliasFolderPath =  dataDirectory + '/' + aliasFolderName;
         const aliasFileName = 'data.json';

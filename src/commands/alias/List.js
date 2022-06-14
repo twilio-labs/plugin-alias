@@ -48,9 +48,8 @@ class List extends AliasBaseCommand {
 
 }
 
-
-
 List.description = 'view twilio aliases';
 List.id = 'alias:List';
+
 module.exports = List;
 
