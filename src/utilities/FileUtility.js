@@ -59,7 +59,7 @@ class FileUtility {
 
             //This will never run for snapshot based memory reference
             if(aliasIndex == -2){
-                this.setupIncompleteWarning();
+               return this.setupIncompleteWarning();
             }
 
             
@@ -114,7 +114,7 @@ class FileUtility {
     setupIncompleteWarning() {
       const AUTOCOMLETE_ALERT = `If you are running alias command for the first time, please run the following setup command to initiate the plugin setup: \n 
       '${chalk.bold('oclif-example alias:Setup')}'`;
-      console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
+      return console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
     }
 
 }
