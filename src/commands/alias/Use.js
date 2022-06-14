@@ -1,7 +1,7 @@
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const FileUtil = require('../../utilities/FileUtility.js');
 const CommandUtil = require('../../utilities/CommandUtility.js');
-
+const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
 
 class Use extends AliasBaseCommand {
 
@@ -17,8 +17,10 @@ class Use extends AliasBaseCommand {
     }
 
     const supposedAlias = this.argv.shift();
-
-    const exist_util = new FileUtil(this).extractAlias(supposedAlias);
+    const aliasFilePath = new FileUtil(this).getAliasFilePath();
+    const db = await Use.storage.load(aliasFilePath);
+    const exist_util = new FileUtil(this).extractAlias(supposedAlias, aliasFilePath, db);
+    
     var commandToRun = supposedAlias;
 
     if (exist_util["index"] == -2) {
@@ -40,7 +42,7 @@ class Use extends AliasBaseCommand {
 }
 
 Use.description = 'use an alias in working';
-
+Use.storage = new FilesystemStorage();
 Use.aliases = ['use'];
 
 module.exports = Use;

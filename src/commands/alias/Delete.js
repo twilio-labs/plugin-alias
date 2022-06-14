@@ -23,7 +23,7 @@ class Delete extends AliasBaseCommand {
 
   removeAlias(userAlias, userCommand, hasFlag){
     const updateFile= new FileUtil(this).updateData(userAlias, userCommand, hasFlag, this.id);
-    console.log(updateFile);
+   
   }
 
 
