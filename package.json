@@ -1,21 +1,19 @@
 {
-  "name": "@twilio/plugin-alias",
-  "description": "Plugin to manage alias for Twilio CLI",
+  "name": "@oclif/plugin-alias",
+  "description": "Plugin to manage alias for oclif",
   "version": "1.0.0",
-  "author": "Twilio @twilio",
-  "bugs": "https://github.com/twilio/twilio-cli/issues",
+  "author": "Twilio",
+  "bugs": "https://github.com/kavya-24/cli-plugin/issues",
   "dependencies": {
     "@oclif/command": "^1.5.20",
     "@oclif/config": "^1.15.1",
     "@oclif/core": "1.9.0",
-    "@twilio/cli-core": "^5.0.0",
     "inquirer": "8.2.4",
     "omelette": "0.4.17"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.2",
     "@oclif/test": "^1.2.5",
-    "@twilio/cli-test": "^2.1.0",
     "@types/node": "17.0.41",
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
@@ -31,29 +29,28 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://github.com/kavya-24/plugin-debugger",
+  "homepage": "https://github.com/kavya-24/cli-plugin",
   "keywords": [
     "oclif-plugin"
   ],
   "license": "MIT",
   "oclif": {
-    "flexibleTaxonomy": true,
     "name": "alias",
     "commands": "./src/commands",
-    "bin": "twilio",
+    "bin": "oclif-example",
     "repositoryPrefix": "<%- repo %>/blob/<%- version %>/<%- commandPath %>",
     "devPlugins": [
       "@oclif/plugin-help"
     ],
     "topics": {
       "alias": {
-        "description": "Plugin to manage alias for Twilio CLI"
+        "description": "Plugin to manage alias for oclif"
       }
     }
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/twilio/plugin-debugger.git"
+    "url": "https://github.com/kavya-24/cli-plugin"
   },
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",

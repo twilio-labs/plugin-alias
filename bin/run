@@ -2,7 +2,6 @@
 // Load up the command module *first* so that we're the parent rather than
 // some other dependency.
 const command = require('@oclif/command');
-require('@twilio/cli-core').configureEnv();
 
 command.run()
   .then(require('@oclif/command/flush'))
