@@ -27,7 +27,7 @@ class Export extends AliasBaseCommand {
     }
 
     else {
-      console.log('please run alias:Setup command first to initiate the plugin setup')
+      new FileUtil(this).setupIncompleteWarning();
     }
 
   }
