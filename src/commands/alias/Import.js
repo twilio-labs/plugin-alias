@@ -33,7 +33,7 @@ class Import extends AliasBaseCommand {
       }
 
       else {
-        console.log('please run alias: setup command first to initiate the plugin setup')
+        new FileUtil(this).setupIncompleteWarning();
       }
 
     }

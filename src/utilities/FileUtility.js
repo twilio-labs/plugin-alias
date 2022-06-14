@@ -1,5 +1,6 @@
 const fs = require('fs');
 const AliasObject = require('./AliasObject')
+const chalk = require('chalk');
 
 class FileUtility {
 
@@ -81,7 +82,7 @@ class FileUtility {
             const exist_util = this.extractAlias(userAlias);
             
             if(exist_util["index"] == -2){
-                return 'please run alias:Setup command first to initiate the plugin setup';
+                this.setupIncompleteWarning();
             }
 
             const aliasFilePath =  this.getAliasFilePath();
@@ -91,7 +92,7 @@ class FileUtility {
 
             if (aliasIndex == -2) {
                 //Setup incomplete
-                return 'please run alias:Setup command first to initiate the plugin setup';
+                this.setupIncompleteWarning();
             } else if (aliasIndex == -1) {
           
                 //no alias exists. Add is operation is Add, else show error for delete
@@ -145,8 +146,11 @@ class FileUtility {
         return 'data file updated';
     }
 
-
-
+    setupIncompleteWarning() {
+      const AUTOCOMLETE_ALERT = `If you are running alias command for the first time, please run the following setup command to initiate the plugin setup: \n 
+      '${chalk.bold('oclif-example alias:Setup bash')}'`;
+      console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
+    }
 
 }
 
