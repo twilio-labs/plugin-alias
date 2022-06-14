@@ -1,7 +1,7 @@
-const os = require('os');
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
-const AliasObject = require('../../utilities/AliasObject')
 const fs = require('fs');
+const FileUtil = require('../../utilities/FileUtility.js');
+
 
 class Export extends AliasBaseCommand {
   constructor(argv, config) {
@@ -12,7 +12,7 @@ class Export extends AliasBaseCommand {
     await super.run();
 
     //Store the aliases file in the current directory
-    const aliasFilePath = this.getAliasFilePath()["aliasFilePath"];
+    const aliasFilePath = new FileUtil(this).getAliasFilePath();
     const destFilePath = process.cwd() + '/' + 'dataexport.json';
 
     if (fs.existsSync(aliasFilePath)) {
@@ -34,16 +34,6 @@ class Export extends AliasBaseCommand {
 
 }
 
-// Export.flags = {
-//     format: Flags.string({
-//         char: 't',                                  // shorter flag version
-//         description: 'format to save the json in',  // help description for flag
-//         hidden: false,                              // hide from help
-//         multiple: false,                            // allow setting this flag multiple times
-//         options: ['txt', 'json', 'csv'],            // only allow the value to be from a discrete set
-//         default: 'json'             
-//       })
-// };
 
 Export.id = 'alias:Export'
 Export.description = 'export aliases';

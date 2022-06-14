@@ -1,10 +1,6 @@
-const os = require('os');
-const { flags } = require('@oclif/command');
+const { args, flags } = require('@oclif/command');
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
-const AliasObject = require('../../utilities/AliasObject')
-const findAlias = require('../../utilities/findAlias')
-const insertInFile = require('../../utilities/insertInFile')
-const fs = require('fs');
+const FileUtil = require('../../utilities/FileUtility.js');
 
 class Add extends AliasBaseCommand {
 
@@ -19,59 +15,20 @@ class Add extends AliasBaseCommand {
 
     //Parse the aruguments and pass validations
     if (this.validateArguments(args)) {
-
-      //Check for flags
-      const hasFlag = this.validateFlags(flags);
-      const userCommand = args["command"];
-      const userAlias = args["name"];
-
-      const aliasFilePath = this.getAliasFilePath()["aliasFilePath"];
-
-      if (fs.existsSync(aliasFilePath)) {
-        this.addAlias(userAlias, userCommand, hasFlag, aliasFilePath);
-      }
-
-      else {
-        console.log('please run alias:Setup command first to initiate the plugin setup')
-      }
+      
+      this.addAlias(args["name"], args["command"], this.validateFlags(flags));
+    
     }
 
   }
 
-  addAlias(userAlias, userCommand, hasFlag, aliasFilePath) {
-
-    //We have valid arguments and the aliasFilePath exists
-    const file_data = fs.readFileSync(aliasFilePath, 'utf-8');
-
-    try {
-      const json_data = JSON.parse(file_data);
-      const aliasObj = new AliasObject(userAlias, userCommand);
-      const exist_util = findAlias(userAlias, json_data);
-      const alias_exists = exist_util["exist"];
-      const alias_at = exist_util["index"];
-
-
-      if (!alias_exists) {
-        json_data["aliases"].push(aliasObj);
-      }
-
-      else {
-        if (hasFlag) {
-          json_data["aliases"][alias_at]["command"] = userCommand;
-        }
-        else {
-          console.log('alias already exists. Consider adding -f for overwriting');
-        }
-      }
-
-      insertInFile(aliasFilePath, json_data);
-
-    } catch (err) {
-      console.log(err);
-      console.log('unable to parse');
-    }
-
+  addAlias(userAlias, userCommand, hasFlag){
+    
+    const updateFile= new FileUtil(this).updateData(userAlias, userCommand, hasFlag, this.id);
+    console.log(updateFile);
   }
+
+  
 
 
   validateFlags(flags) {
@@ -128,7 +85,9 @@ class Add extends AliasBaseCommand {
 
 }
 
-Add.description = 'create a new alias in oclif';
+Add.id = 'alias:Add';
+Add.description = 'create a new alias to access Twilio CLI commands';
+
 
 Add.flags = {
   force: flags.boolean({ char: 'f', description: 'Force overwrite the alias if it already exists' })
@@ -145,6 +104,5 @@ Add.args = [
   },
 ];
 
-Add.aliases = ['add'];
 module.exports = Add;
 

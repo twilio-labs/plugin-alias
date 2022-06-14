@@ -1,8 +1,8 @@
-const os = require('os');
 const { args, flags } = require('@oclif/command');
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
+const FileUtil = require('../../utilities/FileUtility.js');
 const fs = require('fs');
-const { cli } = require('cli-ux');
+
 
 class List extends AliasBaseCommand {
 
@@ -14,7 +14,7 @@ class List extends AliasBaseCommand {
     await super.run();
 
 
-    const aliasFilePath = this.getAliasFilePath()["aliasFilePath"];
+    const aliasFilePath = new FileUtil(this).getAliasFilePath();
     if (fs.existsSync(aliasFilePath)) {
       this.viewAlias(aliasFilePath);
     }
@@ -25,7 +25,10 @@ class List extends AliasBaseCommand {
 
   }
 
+
+
   viewAlias(aliasFilePath) {
+  
     const file_data = fs.readFileSync(aliasFilePath, 'utf-8');
 
     try {
@@ -38,7 +41,6 @@ class List extends AliasBaseCommand {
     }
 
     catch (err) {
-      console.log(err);
       console.log('unable to parse');
     }
 
@@ -46,7 +48,8 @@ class List extends AliasBaseCommand {
 
 }
 
-List.description = 'view aliases';
-List.id = "alias:List";
+List.description = 'view twilio aliases';
+List.id = 'alias:List';
+
 module.exports = List;
 

@@ -1,5 +1,5 @@
-const os = require('os');
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
+const FileUtil = require('../../utilities/FileUtility.js');
 const fs = require('fs');
 
 class Setup extends AliasBaseCommand {
@@ -15,8 +15,9 @@ class Setup extends AliasBaseCommand {
       This data.json file has a semi-structured format of key-value pairs 
     */
 
-    const aliasFolderPath = this.getAliasFilePath()["aliasFolderPath"]
-    const aliasFilePath = this.getAliasFilePath()["aliasFilePath"]
+    
+    const aliasFilePath = new FileUtil(this).getAliasFilePath();
+    const aliasFolderPath = aliassFilePath.splice(0,-10);
 
     //console.log(aliasFolderPath)
 
@@ -49,9 +50,16 @@ class Setup extends AliasBaseCommand {
     } catch (err) {
       console.error(err);
     }
+
+
   }
+
+
 
 }
 
-Setup.description = 'set up aliases for your favorite commands';
+
+Setup.id = 'alias:Setup'
+Setup.description = 'set up aliases for your favorite Twilio commands';
+
 module.exports = Setup;
