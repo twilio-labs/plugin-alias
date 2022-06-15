@@ -86,14 +86,15 @@ class FileUtility {
                         db[userAlias] = userCommand;
                     }
                     else {
-                        console.log('alias already exists. Consider adding -f for overwriting');
+                        console.log(`alias already exists for command "${db[userAlias]}". Consider adding -f for overwriting`);
                     }
                         
                         
                 }
                 else if(operation == 'alias:Delete'){
+                    
+                    delete db[userAlias];
 
-                        db[userAlias] = 'null';
                 }
                 
               }
@@ -104,7 +105,7 @@ class FileUtility {
               
       
           } catch (err) {
-            
+            console.log(err);
             console.log('unable to load file');
 
           }
