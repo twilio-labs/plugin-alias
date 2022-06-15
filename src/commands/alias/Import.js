@@ -24,7 +24,7 @@ class Import extends AliasBaseCommand {
         //Copy file from destFile to aliasFilePath
         fs.copyFile(destFile, aliasFilePath, (err) => {
           if (err) {
-            console.log(err);
+            // console.log(err);
           }
           else {
             console.log('import completed');
@@ -55,7 +55,8 @@ class Import extends AliasBaseCommand {
 
     if (userPath == undefined) {
       console.log('please add the path of the alias.json file');
-      isValid = false;
+      return false;
+     
     }
 
     fs.access(userPath, fs.R_OK, (err) => {
