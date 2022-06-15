@@ -1,6 +1,7 @@
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const FileUtil = require('../../utilities/FileUtility.js');
 const fs = require('fs');
+const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
 
 class Setup extends AliasBaseCommand {
   constructor(argv, config) {
@@ -15,45 +16,29 @@ class Setup extends AliasBaseCommand {
       This data.json file has a semi-structured format of key-value pairs 
     */
       
-      const dataDirectory = this.config.dataDir;
-      const aliasFolderName = 'alias';
-      const aliasFolderPath = dataDirectory + '/' + aliasFolderName;
-      const aliasFileName = 'data.json';
-      const aliasFilePath = aliasFolderPath + '/' + aliasFileName;
-    
-    /* Create a new folder in datadirectory folder so as to mainatin the aliases plugin */
+    const mPath = String(new FileUtil(this).getAliasFilePath())
+    const aliasFolderPath = mPath.substr(0, mPath.length-10);  
+    const aliasFilePath = new FileUtil(this).getAliasFilePath();
 
-    try{
-      if(!fs.existsSync(aliasFolderPath)){
-        fs.mkdirSync(aliasFolderPath, { recursive: true })
+      try{
+        if(!fs.existsSync(aliasFolderPath)){
+          fs.mkdirSync(aliasFolderPath, { recursive: true })
+        }
       }
-    }
-    catch(err){
-      return console.log(err);
-    }
-    
-
-    
-    // /** Create a file in the alias folder */
-    try {
-
-      if (!fs.existsSync(aliasFilePath)) {
-        fs.appendFileSync(aliasFilePath,
-          '{\"aliases\":[]}',
-          { encoding: "utf8", flag: "w" }
-        );
-
+      catch(err){
+        return console.log(err);
       }
 
-      else {
-        console.log('data file already exists');
+      try{
+        const db = await Setup.storage.load(aliasFilePath);
+  	   	await Setup.storage.save(db, aliasFilePath);
+        console.log('setup complete');
+
+      } catch(err){
+        
+        console.log('setup incomplete');
       }
-
-    } catch (err) {
-      console.error(err);
-    }
-
-
+      
   }
 
 
@@ -63,5 +48,5 @@ class Setup extends AliasBaseCommand {
 
 Setup.id = 'alias:Setup'
 Setup.description = 'set up aliases for your favorite Twilio commands';
-
+Setup.storage = new FilesystemStorage();
 module.exports = Setup;

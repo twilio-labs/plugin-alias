@@ -15,7 +15,7 @@ class Add extends AliasBaseCommand {
 
     //Parse the aruguments and pass validations
     if (this.validateArguments(args)) {
-      
+  
       this.addAlias(args["name"], args["command"], this.validateFlags(flags));
     
     }
@@ -25,7 +25,8 @@ class Add extends AliasBaseCommand {
   addAlias(userAlias, userCommand, hasFlag){
     
     const updateFile= new FileUtil(this).updateData(userAlias, userCommand, hasFlag, this.id);
-    console.log(updateFile);
+    
+    
   }
 
   
@@ -103,6 +104,8 @@ Add.args = [
     description: 'command to be aliased',
   },
 ];
+
+
 
 module.exports = Add;
 
