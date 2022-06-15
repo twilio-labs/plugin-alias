@@ -94,8 +94,9 @@ class FileUtility {
                         
                 }
                 else if(operation == 'alias:Delete'){
+                    
+                    delete db[userAlias];
 
-                        db[userAlias] = 'null';
                 }
                 
               }
@@ -105,7 +106,7 @@ class FileUtility {
               
       
           } catch (err) {
-            
+            console.log(err);
             console.log('unable to load file');
 
           }
