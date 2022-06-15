@@ -1,6 +1,5 @@
 const { expect, test } = require('@oclif/test')
 const MemoryStorage = require('./../../src/utilities/FileSnapshot/MemoryStorage.js')
-const AliasObject = require('../../src/utilities/AliasObject')
 
 const Add= require('../../src/commands/alias/Add')
 const Delete = require('../../src/commands/alias/Delete')
@@ -27,7 +26,7 @@ const List = require('../../src/commands/alias/List')
           
           aliases: {
             'hello': {
-              command: 'world';
+              command: 'world'
             },
           },
         })
