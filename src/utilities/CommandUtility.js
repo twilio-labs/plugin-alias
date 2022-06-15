@@ -1,4 +1,3 @@
-const AliasObject = require('./AliasObject')
 
 class CommandUtility{
 

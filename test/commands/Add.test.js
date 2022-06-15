@@ -1,8 +1,7 @@
 const { expect, test } = require('@oclif/test')
 const MemoryStorage = require('./../../src/utilities/FileSnapshot/MemoryStorage.js')
-const AliasObject = require('../../src/utilities/AliasObject')
 const FileUtil = require('../../src/utilities/FileUtility')
-const lsTest = require('./List.test');
+
 
 const Add = require('../../src/commands/alias/Add')
 const Delete = require('../../src/commands/alias/Delete')
@@ -19,7 +18,7 @@ const List = require('../../src/commands/alias/List')
  * Step 3, add that alias again with flag
  */
 
-describe('add-alias', () => {
+  describe('add-alias', () => {
 
 
 
