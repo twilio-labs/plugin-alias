@@ -104,7 +104,7 @@ class FileUtility {
               
       
           } catch (err) {
-            console.log(err);
+            
             console.log('unable to load file');
 
           }
