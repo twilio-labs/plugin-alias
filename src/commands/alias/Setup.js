@@ -24,10 +24,16 @@ class Setup extends AliasBaseCommand {
       if (!fs.existsSync(aliasFolderPath)) {
         fs.mkdirSync(aliasFolderPath, { recursive: true })
       }
+      else {
+        console.log('setup already complete');
+        return;
+
+      }
     }
     catch (err) {
       return console.log(err);
     }
+
 
     try {
       const db = await Setup.storage.load(aliasFilePath);
