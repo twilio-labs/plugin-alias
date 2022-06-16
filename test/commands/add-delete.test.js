@@ -19,7 +19,6 @@ const Delete = require('../../src/commands/alias/Delete')
 
 describe('add-alias', () => {
 
-  //console.log('p1');
 
   //Setup
   test
@@ -31,8 +30,6 @@ describe('add-alias', () => {
       })
       expect(ctx.stdout).to.contain('setup already complete');
     })
-
-  //console.log('p2');
 
   //Add an alias which does not exists
   test
@@ -57,7 +54,7 @@ describe('add-alias', () => {
       expect(ctx.stdout).to.contain('alias already exists for command "world". Consider adding -f for overwriting')
     })
 
-  //console.log('p4');
+  console.log('p4');
 
   //Add an alias with flags
   test
@@ -94,4 +91,3 @@ describe('add-alias', () => {
 
 
 })
-
