@@ -1,5 +1,5 @@
 const { expect, test } = require('@oclif/test')
-const MemoryStorage = require('./../../src/utilities/FileSnapshot/MemoryStorage.js')
+const MemoryStorage = require('../../src/utilities/FileSnapshot/MemoryStorage.js')
 const Add = require('../../src/commands/alias/Add')
 
 
@@ -10,7 +10,7 @@ const Add = require('../../src/commands/alias/Add')
  * Step 3, add that alias again with flag
  */
 
-  describe('add-alias', () => {
+describe('add-alias', () => {
 
 
 
