@@ -1,6 +1,8 @@
 const { args, flags } = require('@oclif/command');
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const FileUtil = require('../../utilities/FileUtility.js');
+const fs = require('fs');
+const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
 
 
 class Delete extends AliasBaseCommand {
@@ -16,16 +18,24 @@ class Delete extends AliasBaseCommand {
 
     if (this.validateArguments(args)) {
 
-      this.removeAlias(args["name"], '', false);
+      //this.removeAlias(args["name"], '', false);
+
+      const aliasFilePath = new FileUtil(this).getAliasFilePath();
+      if (fs.existsSync(aliasFilePath)) {
+        
+        const db = await Delete.storage.load(aliasFilePath);
+        const updateFile = new FileUtil(this).updateData(args["name"], '', false, this.id, db, aliasFilePath);
+        await Delete.storage.save(db, aliasFilePath);
+          
+      }
+
+      else {
+        new FileUtil(this).setupIncompleteWarning();
+      }
+
     }
 
   }
-
-  removeAlias(userAlias, userCommand, hasFlag){
-    const updateFile= new FileUtil(this).updateData(userAlias, userCommand, hasFlag, this.id);
-   
-  }
-
 
   validateArguments(args) {
 
@@ -61,5 +71,7 @@ Delete.args = [
     description: 'alias name to delete',
   }
 ];
+
+Delete.storage = new FilesystemStorage();
 
 module.exports = Delete;

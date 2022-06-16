@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.94% </span>
+                <span class="strong">31.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/19</span>
+                <span class='fraction'>6/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.94% </span>
+                <span class="strong">31.57% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/19</span>
+                <span class='fraction'>6/19</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -113,21 +113,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -139,7 +139,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,22 +155,22 @@ const FileUtil = require('../../utilities/FileUtility.js');
 &nbsp;
 &nbsp;
 class Export extends AliasBaseCommand {
-  constructor(argv, config) {
-    super(argv, config);
+<span class="fstat-no" title="function not covered" >  co</span>nstructor(argv, config) {
+<span class="cstat-no" title="statement not covered" >    super(argv, config);</span>
   }
 &nbsp;
-  async run() {
-    await super.run();
+<span class="fstat-no" title="function not covered" >  as</span>ync run() {
+<span class="cstat-no" title="statement not covered" >    await super.run();</span>
 &nbsp;
-    if (this.argv.length &gt; 0) {
-      console.log('invalid arguments provided');
-      return;
+<span class="cstat-no" title="statement not covered" >    if (this.argv.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      console.log('invalid arguments provided');</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
     }
     //Store the aliases file in the current directory
-    const aliasFilePath = new FileUtil(this).getAliasFilePath();
-    const destFilePath = process.cwd() + '/' + 'dataexport.json';
+    const aliasFilePath = <span class="cstat-no" title="statement not covered" >new FileUtil(this).getAliasFilePath();</span>
+    const destFilePath = <span class="cstat-no" title="statement not covered" >process.cwd() + '/' + 'dataexport.json';</span>
 &nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (fs.existsSync(aliasFilePath)) {
+<span class="cstat-no" title="statement not covered" >    if (fs.existsSync(aliasFilePath)) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      try {</span>
 <span class="cstat-no" title="statement not covered" >        fs.copyFileSync(aliasFilePath, destFilePath);</span>
@@ -182,7 +182,7 @@ class Export extends AliasBaseCommand {
     }
 &nbsp;
     else {
-      new FileUtil(this).setupIncompleteWarning();
+<span class="cstat-no" title="statement not covered" >      new FileUtil(this).setupIncompleteWarning();</span>
     }
 &nbsp;
   }
@@ -199,7 +199,7 @@ module.exports = Export;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu Jun 16 2022 15:38:22 GMT+0530 (India Standard Time)
+                at Thu Jun 16 2022 20:50:50 GMT+0530 (India Standard Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
