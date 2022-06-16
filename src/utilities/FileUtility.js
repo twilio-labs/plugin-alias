@@ -34,7 +34,7 @@ class FileUtility {
     }
 
 
-    parseData(userAlias, aliasFilePath,db) {
+    parseData(userAlias, aliasFilePath, db) {
 
         if(db[userAlias]){
             return { "command": db[userAlias], "index": 0 };
@@ -46,15 +46,14 @@ class FileUtility {
     }
 
 
-    async updateData(userAlias, userCommand, hasFlag, operation){
+    async updateData(userAlias, userCommand, hasFlag, operation, db, aliasFilePath) {
 
         
         try {
-            const aliasFilePath =  this.getAliasFilePath();
-            const db = await FileUtility.storage.load(aliasFilePath);
+            // const aliasFilePath =  this.getAliasFilePath();
+            // const db = await FileUtility.storage.load(aliasFilePath);
             const exist_util = this.extractAlias(userAlias, aliasFilePath,db);
             const aliasIndex = exist_util["index"];
-            
 
             //This will never run for snapshot based memory reference
             if(aliasIndex == -2){
@@ -98,8 +97,8 @@ class FileUtility {
                 
               }
           
-              await FileUtility.storage.save(db, aliasFilePath);
-              
+              //await FileUtility.storage.save(db, aliasFilePath);
+              return db;
                 
               
       

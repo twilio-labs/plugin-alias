@@ -1,6 +1,9 @@
 const { args, flags } = require('@oclif/command');
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const FileUtil = require('../../utilities/FileUtility.js');
+const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
+const fs = require('fs');
+
 
 class Add extends AliasBaseCommand {
 
@@ -16,21 +19,24 @@ class Add extends AliasBaseCommand {
     //Parse the aruguments and pass validations
     if (this.validateArguments(args)) {
 
-      this.addAlias(args["name"], args["command"], this.validateFlags(flags));
+      //this.addAlias(args["name"], args["command"], this.validateFlags(flags));
+
+      const aliasFilePath = new FileUtil(this).getAliasFilePath();
+      if (fs.existsSync(aliasFilePath)) {
+        
+        const db = await Add.storage.load(aliasFilePath);
+        const updateFile = new FileUtil(this).updateData(args["name"], args["command"], this.validateFlags(flags), this.id, db, aliasFilePath);
+        await Add.storage.save(db, aliasFilePath);
+          
+      }
+
+      else {
+        new FileUtil(this).setupIncompleteWarning();
+      }
 
     }
 
   }
-
-  addAlias(userAlias, userCommand, hasFlag) {
-
-    const updateFile = new FileUtil(this).updateData(userAlias, userCommand, hasFlag, this.id);
-
-
-  }
-
-
-
 
   validateFlags(flags) {
     var hasFlag = true;
@@ -105,7 +111,7 @@ Add.args = [
   },
 ];
 
-
+Add.storage = new FilesystemStorage();
 
 module.exports = Add;
 
