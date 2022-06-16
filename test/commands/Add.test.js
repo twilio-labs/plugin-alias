@@ -10,7 +10,7 @@ const Add = require('../../src/commands/alias/Add')
  * Step 3, add that alias again with flag
  */
 
-describe('add-alias', () => {
+  describe('add-alias', () => {
 
 
 

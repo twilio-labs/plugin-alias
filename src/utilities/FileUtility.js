@@ -1,5 +1,4 @@
 const fs = require('fs');
-const AliasObject = require('./AliasObject')
 const FilesystemStorage = require('./FileSnapshot/FilesystemStorage');
 const chalk = require('chalk');
 
