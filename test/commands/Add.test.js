@@ -1,14 +1,6 @@
 const { expect, test } = require('@oclif/test')
 const MemoryStorage = require('./../../src/utilities/FileSnapshot/MemoryStorage.js')
-const FileUtil = require('../../src/utilities/FileUtility')
-
-
 const Add = require('../../src/commands/alias/Add')
-const Delete = require('../../src/commands/alias/Delete')
-const Export = require('../../src/commands/alias/Export')
-const Import = require('../../src/commands/alias/Import')
-const Use = require('../../src/commands/alias/Use')
-const List = require('../../src/commands/alias/List')
 
 
 

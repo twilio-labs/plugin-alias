@@ -1,7 +1,5 @@
 const { expect, test } = require('@oclif/test')
 const MemoryStorage = require('./../../src/utilities/FileSnapshot/MemoryStorage.js')
-const AliasObject = require('../../src/utilities/AliasObject')
-const FileUtil = require('../../src/utilities/FileUtility')
 const Delete = require('../../src/commands/alias/Delete')
 
 describe('delete-non-existing-alias', () => {
