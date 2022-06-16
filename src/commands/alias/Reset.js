@@ -13,24 +13,29 @@ class Reset extends AliasBaseCommand {
 
     //Store the aliases file in the current directory
     const mPath = String(new FileUtil(this).getAliasFilePath())
-    const aliasFolderPath = mPath.substr(0, mPath.length-10);
-    
-    try{
-        if(fs.existsSync(aliasFolderPath)){
-            const dir = aliasFolderPath;
-            fs.rm(dir, { recursive: true }, (err) => {
-                if (err) {
-                    throw err;
-                }
-            
-                console.log(`${dir} is deleted!`);
-            });   }
+    const aliasFolderPath = mPath.substr(0, mPath.length - 10);
+
+    try {
+      if (fs.existsSync(aliasFolderPath)) {
+        const dir = aliasFolderPath;
+        fs.rm(dir, { recursive: true }, (err) => {
+          if (err) {
+            throw err;
+          }
+
+
+        });
+
       }
-      catch(err){
-        return console.log(err);
-      }
-     
-    
+
+      console.log('reset complete');
+
+    }
+    catch (err) {
+      return console.log(err);
+    }
+
+
 
 
   }

@@ -15,21 +15,21 @@ class Add extends AliasBaseCommand {
 
     //Parse the aruguments and pass validations
     if (this.validateArguments(args)) {
-  
+
       this.addAlias(args["name"], args["command"], this.validateFlags(flags));
-    
+
     }
 
   }
 
-  addAlias(userAlias, userCommand, hasFlag){
-    
-    const updateFile= new FileUtil(this).updateData(userAlias, userCommand, hasFlag, this.id);
-    
-    
+  addAlias(userAlias, userCommand, hasFlag) {
+
+    const updateFile = new FileUtil(this).updateData(userAlias, userCommand, hasFlag, this.id);
+
+
   }
 
-  
+
 
 
   validateFlags(flags) {
