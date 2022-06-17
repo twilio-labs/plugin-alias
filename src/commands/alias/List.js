@@ -19,8 +19,13 @@ class List extends AliasBaseCommand {
     if (fs.existsSync(aliasFilePath)) {
       
       const db = await List.storage.load(aliasFilePath);
-      console.log(db);
-
+      var output = "Alias\tCommand"
+      //console.log(db);
+      for (let alias in db) {
+        output += `\n${alias}\t${db[alias]}`;
+      }
+      
+      console.log(output)
   	   	
     }
 

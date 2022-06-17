@@ -13,6 +13,7 @@ class Use extends AliasBaseCommand {
     await super.run();
 
     if (this.argv.length <= 0) {
+      console.log('Please insert an alias argument');
       return;
     }
 

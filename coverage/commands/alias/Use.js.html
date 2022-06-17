@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.78% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/23</span>
+                <span class='fraction'>22/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.78% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/23</span>
+                <span class='fraction'>22/24</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -113,7 +113,8 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -121,34 +122,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,35 +172,36 @@ const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorag
 &nbsp;
 class Use extends AliasBaseCommand {
 &nbsp;
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(argv, config) {
-<span class="cstat-no" title="statement not covered" >    super(argv, config);</span>
+  constructor(argv, config) {
+    super(argv, config);
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  as</span>ync run() {
-<span class="cstat-no" title="statement not covered" >    await super.run();</span>
+  async run() {
+    await super.run();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (this.argv.length &lt;= 0) {</span>
-<span class="cstat-no" title="statement not covered" >      return;</span>
+    if (this.argv.length &lt;= 0) {
+      console.log('Please insert an alias argument');
+      return;
     }
 &nbsp;
-    const supposedAlias = <span class="cstat-no" title="statement not covered" >this.argv.shift();</span>
-    const aliasFilePath = <span class="cstat-no" title="statement not covered" >new FileUtil(this).getAliasFilePath();</span>
-    const db = <span class="cstat-no" title="statement not covered" >await Use.storage.load(aliasFilePath);</span>
-    const exist_util = <span class="cstat-no" title="statement not covered" >new FileUtil(this).extractAlias(supposedAlias, aliasFilePath, db);</span>
+    const supposedAlias = this.argv.shift();
+    const aliasFilePath = new FileUtil(this).getAliasFilePath();
+    const db = await Use.storage.load(aliasFilePath);
+    const exist_util = new FileUtil(this).extractAlias(supposedAlias, aliasFilePath, db);
     
-    var commandToRun = <span class="cstat-no" title="statement not covered" >supposedAlias;</span>
+    var commandToRun = supposedAlias;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (exist_util["index"] == -2) {</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (exist_util["index"] == -2) {
       //Setup incomplete
 <span class="cstat-no" title="statement not covered" >      new FileUtil(this).setupIncompleteWarning();</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
     
-    else <span class="cstat-no" title="statement not covered" >if (exist_util["index"] &gt;= 0) {</span>
-<span class="cstat-no" title="statement not covered" >        commandToRun = exist_util["command"] </span>//+ this.argv
+    else if (exist_util["index"] &gt;= 0) {
+        commandToRun = exist_util["command"] //+ this.argv
      }
     
-<span class="cstat-no" title="statement not covered" >    new CommandUtil(this).runCommand(commandToRun, this.argv);</span>
+    new CommandUtil(this).runCommand(commandToRun, this.argv);
 &nbsp;
   }
 &nbsp;
@@ -220,7 +223,7 @@ module.exports = Use;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu Jun 16 2022 20:50:50 GMT+0530 (India Standard Time)
+                at Fri Jun 17 2022 12:38:09 GMT+0530 (India Standard Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

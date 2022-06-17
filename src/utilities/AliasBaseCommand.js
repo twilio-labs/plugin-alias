@@ -10,16 +10,6 @@ class AliasBaseCommand extends Command {
 
       }
 
-      getAliasFilePath() {
-        const dataDirectory = this.config.dataDir;
-        //console.log(dataDirectory)
-        const aliasFolderName = 'alias';
-        const aliasFolderPath =  dataDirectory + '/' + aliasFolderName;
-        const aliasFileName = 'data.json';
-        const aliasFilePath = aliasFolderPath + '/' + aliasFileName;
-        return {"aliasFolderPath":aliasFolderPath, "aliasFilePath":aliasFilePath};
-      }
-
     validateFlags(flags) {
 
     }
