@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/15</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -107,35 +107,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,36 +145,36 @@
 class CommandUtility{
 &nbsp;
 &nbsp;
-<span class="fstat-no" title="function not covered" >    co</span>nstructor(context) {
-<span class="cstat-no" title="statement not covered" >        this.ctx = context</span>
+    constructor(context) {
+        this.ctx = context
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    fi</span>ndCommand(id, opts = <span class="branch-0 cbranch-no" title="branch not covered" >{})</span> {
-        const command = <span class="cstat-no" title="statement not covered" >this.ctx.config.commands.find(<span class="fstat-no" title="function not covered" >c </span>=&gt; <span class="cstat-no" title="statement not covered" >c.id === id || c.aliases.includes(id))</span>;</span>
+    findCommand(id, opts = {}) {
+        const command = this.ctx.config.commands.find(c =&gt; c.id === id || c.aliases.includes(id));
         
-<span class="cstat-no" title="statement not covered" >        if (command){</span>
-<span class="cstat-no" title="statement not covered" >          return command;</span>
+        if (command){
+          return command;
         }
             
         else{
-<span class="cstat-no" title="statement not covered" >          return '{}';</span>
+          return '{}';
           
         }
       }
   
   
 &nbsp;
-<span class="fstat-no" title="function not covered" >    as</span>ync runCommand(id, argv = <span class="branch-0 cbranch-no" title="branch not covered" >[])</span> {
-        const c = <span class="cstat-no" title="statement not covered" >this.findCommand(id);</span>
-<span class="cstat-no" title="statement not covered" >        if (c == '{}') {</span>
-<span class="cstat-no" title="statement not covered" >            await this.ctx.config.runHook('command_not_found', { id });</span>
-<span class="cstat-no" title="statement not covered" >            console.log(`command ${id} is not found`);</span>
+    async runCommand(id, argv = <span class="branch-0 cbranch-no" title="branch not covered" >[])</span> {
+        const c = this.findCommand(id);
+        if (c == '{}') {
+            await this.ctx.config.runHook('command_not_found', { id });
+            console.log(`command ${id} is not found`);
         }
         else{
-          const command = <span class="cstat-no" title="statement not covered" >c.load();</span>
-<span class="cstat-no" title="statement not covered" >          await this.ctx.config.runHook('prerun', { Command: command, argv });</span>
-          const result = <span class="cstat-no" title="statement not covered" >await command.run(argv, this.ctx.config);</span>
-<span class="cstat-no" title="statement not covered" >          await this.ctx.config.runHook('postrun', { Command: command, result: result, argv });</span>
+          const command = c.load();
+          await this.ctx.config.runHook('prerun', { Command: command, argv });
+          const result = await command.run(argv, this.ctx.config);
+          await this.ctx.config.runHook('postrun', { Command: command, result: result, argv });
         }
         
       }
@@ -187,7 +187,7 @@ module.exports = CommandUtility;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu Jun 16 2022 20:50:50 GMT+0530 (India Standard Time)
+                at Fri Jun 17 2022 12:38:09 GMT+0530 (India Standard Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

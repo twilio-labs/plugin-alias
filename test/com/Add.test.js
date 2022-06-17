@@ -1,6 +1,8 @@
 const { expect, test } = require('@oclif/test')
 const MemoryStorage = require('../../src/utilities/FileSnapshot/MemoryStorage.js')
 const Add = require('../../src/commands/alias/Add.js')
+const chalk = require('chalk');
+
 
 describe('Add alias tests', () => {
 
@@ -14,7 +16,7 @@ describe('Add alias tests', () => {
                 hello: "world"
               })
         })
-
+        
     // Adding an alias which already exists without flag
     test
     .stdout()
