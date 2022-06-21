@@ -4,7 +4,6 @@ const FileUtil = require('../../utilities/FileUtility.js');
 const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
 const fs = require('fs');
 
-
 class Add extends AliasBaseCommand {
 
   constructor(argv, config) {
@@ -112,6 +111,5 @@ Add.args = [
 ];
 
 Add.storage = new FilesystemStorage();
-
 module.exports = Add;
 

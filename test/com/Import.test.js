@@ -12,26 +12,9 @@ describe('import-alias', () => {
     before(async function () {
 
         await SetupImport.run();
-
         // runs before all tests in this file regardless where this line is defined.
-        test
-            .stdout()
-            .command(['alias:Setup'])
-            .it('allow setup', async ctx => {
-                expect(await Setup.storage.load())
-                expect(ctx.stdout).to.contain("complete");
-            })
-
-
 
         await Export.run();
-        test
-            .stdout()
-            .command(['alias:Export'])
-            .it('allow export', async ctx => {
-                expect(await Setup.storage.load())
-                expect(ctx.stdout).to.contain("data.json");
-            })
 
 
 
@@ -92,7 +75,6 @@ describe('import-alias', () => {
 
 
 });
-
 
 
 

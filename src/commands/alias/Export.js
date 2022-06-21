@@ -1,6 +1,7 @@
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const fs = require('fs');
 const FileUtil = require('../../utilities/FileUtility.js');
+const { args } = require('./Add');
 
 
 class Export extends AliasBaseCommand {
@@ -11,10 +12,7 @@ class Export extends AliasBaseCommand {
   async run() {
     await super.run();
 
-    if (this.argv.length > 0) {
-      console.log('invalid arguments provided');
-      return;
-    }
+
     //Store the aliases file in the current directory
     const aliasFilePath = new FileUtil(this).getAliasFilePath();
     const destFilePath = process.cwd() + '/' + 'dataexport.json';
