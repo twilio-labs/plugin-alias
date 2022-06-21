@@ -1,19 +1,19 @@
 const fs = require('fs/promises')
-const FileUtil = require('../FileUtility');
+
 
 class FilesystemStorage {
   constructor(initialData = {}) {
     this.data = initialData;
-    
+
   }
 
-  load(aliasFilePath) {
-      return fs.readFile(aliasFilePath).then(file => {
-        return JSON.parse(file.toString('utf-8'))
-    }).catch(() => {
-      // If reading the file results in an error then assume that the file didn't exist and return an empty object
-      return Promise.resolve(this.data)
-    })
+  async load(aliasFilePath) {
+    try {
+      const file = await fs.readFile(aliasFilePath);
+      return JSON.parse(file.toString('utf-8'));
+    } catch {
+      return await Promise.resolve(this.data);
+    }
   }
 
   save(data, aliasFilePath) {

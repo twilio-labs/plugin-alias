@@ -41,7 +41,7 @@ class Reset extends AliasBaseCommand {
   }
 
 }
-
+Reset.hidden = true;
 Reset.id = 'alias:reset'
 Reset.description = 'reset to empty';
 module.exports = Reset;
