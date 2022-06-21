@@ -23,7 +23,7 @@ class Export extends AliasBaseCommand {
 
       try {
         fs.copyFileSync(aliasFilePath, destFilePath);
-        console.log(destFilePath);
+        console.log('export completed');
       } catch (err) {
         console.log(err);
       }

@@ -17,11 +17,12 @@ class Use extends AliasBaseCommand {
       return;
     }
 
+
     const supposedAlias = this.argv.shift();
     const aliasFilePath = new FileUtil(this).getAliasFilePath();
     const db = await Use.storage.load(aliasFilePath);
     const exist_util = new FileUtil(this).extractAlias(supposedAlias, aliasFilePath, db);
-    
+
     var commandToRun = supposedAlias;
 
     if (exist_util["index"] == -2) {
@@ -29,11 +30,11 @@ class Use extends AliasBaseCommand {
       new FileUtil(this).setupIncompleteWarning();
       return;
     }
-    
+
     else if (exist_util["index"] >= 0) {
-        commandToRun = exist_util["command"] //+ this.argv
-     }
-    
+      commandToRun = exist_util["command"] //+ this.argv
+    }
+
     new CommandUtil(this).runCommand(commandToRun, this.argv);
 
   }

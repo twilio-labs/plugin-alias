@@ -23,11 +23,11 @@ class Add extends AliasBaseCommand {
 
       const aliasFilePath = new FileUtil(this).getAliasFilePath();
       if (fs.existsSync(aliasFilePath)) {
-        
+
         const db = await Add.storage.load(aliasFilePath);
         const updateFile = new FileUtil(this).updateData(args["name"], args["command"], this.validateFlags(flags), this.id, db, aliasFilePath);
         await Add.storage.save(db, aliasFilePath);
-          
+
       }
 
       else {
@@ -46,7 +46,7 @@ class Add extends AliasBaseCommand {
       userFlag = flags["force"];
     }
     catch (err) {
-      console.log(err)
+      console.log('invalid flags. See ./bin/run alias:Add --help');
     }
 
     if (userFlag == undefined) {
@@ -65,14 +65,14 @@ class Add extends AliasBaseCommand {
     try {
       userAlias = args["name"];
     } catch (err) {
-      console.log(err);
+      console.log('invalid arguments. See ./bin/run alias:Add --help');
 
     }
 
     try {
       userCommand = args["command"];
     } catch (err) {
-      console.log(err);
+      console.log('invalid arguments. See ./bin/run alias:Add --help');
     }
 
 

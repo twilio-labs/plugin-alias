@@ -2,21 +2,22 @@ const { Command } = require('@oclif/command');
 const fs = require('fs');
 
 class AliasBaseCommand extends Command {
-    constructor(argv, config) {
-        super(argv, config);
-      }
+  constructor(argv, config) {
+    super(argv, config);
+  }
 
-      async run() {
+  async run() {
 
-      }
+  }
 
-    validateFlags(flags) {
+  validateFlags(flags) {
 
-    }
+  }
 
-    validateArguments(args) {
+  validateArguments(args) {
 
-    }
+  }
+
 
 }
 
