@@ -1,7 +1,6 @@
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
-const fs = require('fs');
 const FileUtil = require('../../utilities/FileUtility.js');
-
+const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
 
 class Export extends AliasBaseCommand {
   constructor(argv, config) {
@@ -11,19 +10,26 @@ class Export extends AliasBaseCommand {
   async run() {
     await super.run();
 
+    if (this.argv.length > 0) {
+
+      var args = "";
+      for(var arg in this.argv)
+      {
+        args += "'"+this.argv[arg] + "' ";
+      }
+      console.log(`Invalid argument ${args}provided`);
+      return;
+    }
 
     //Store the aliases file in the current directory
     const aliasFilePath = new FileUtil(this).getAliasFilePath();
     const destFilePath = process.cwd() + '/' + 'dataexport.json';
 
-    if (fs.existsSync(aliasFilePath)) {
+    if (new FileUtil(this).pathExists(aliasFilePath)) {
 
-      try {
-        fs.copyFileSync(aliasFilePath, destFilePath);
-        console.log('export completed');
-      } catch (err) {
-        console.log(err);
-      }
+      const ans = new FileUtil(this).copyFileToDestination(aliasFilePath, destFilePath, "export");
+      if(ans)
+        console.log("Export Completed")
 
     }
 
@@ -38,4 +44,5 @@ class Export extends AliasBaseCommand {
 
 Export.id = 'alias:Export'
 Export.description = 'export aliases';
+Export.storage = new FilesystemStorage();
 module.exports = Export;

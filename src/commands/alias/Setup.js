@@ -1,6 +1,5 @@
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const FileUtil = require('../../utilities/FileUtility.js');
-const fs = require('fs');
 const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
 
 class Setup extends AliasBaseCommand {
@@ -20,20 +19,11 @@ class Setup extends AliasBaseCommand {
     const aliasFolderPath = mPath.substr(0, mPath.length - 10);
     const aliasFilePath = new FileUtil(this).getAliasFilePath();
 
-    try {
-      if (!fs.existsSync(aliasFolderPath)) {
-        fs.mkdirSync(aliasFolderPath, { recursive: true })
-      }
-      else {
-        console.log('setup already complete');
-        return;
-
-      }
-    }
-    catch (err) {
-      return console.log(err);
-    }
-
+    let proceed = {move:true};
+    new FileUtil(this).createFolderIfDoesNotExists(aliasFolderPath, proceed);
+    //console.log(proceed)
+    if(!proceed.move)
+      return;
 
     try {
       const db = await Setup.storage.load(aliasFilePath);

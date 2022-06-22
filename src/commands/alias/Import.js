@@ -1,6 +1,6 @@
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
-const fs = require('fs');
 const FileUtil = require('../../utilities/FileUtility.js');
+const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
 
 class Import extends AliasBaseCommand {
 
@@ -17,20 +17,13 @@ class Import extends AliasBaseCommand {
     if (this.validateArguments(args)) {
 
       const aliasFilePath = new FileUtil(this).getAliasFilePath();
-      if (fs.existsSync(aliasFilePath)) {
+      
+      if (new FileUtil(this).pathExists(aliasFilePath)) {
         const destFile = args["dest"];
-
-
-
-        //Copy file from destFile to aliasFilePath
-        fs.copyFile(destFile, aliasFilePath, (err) => {
-          if (err) {
-            // console.log(err);
-          }
-          else {
-            console.log('import completed');
-          }
-        });
+        const ans = new FileUtil(this).copyFileToDestination(destFile, aliasFilePath, "import");
+        
+        if(ans)
+          console.log("Import Completed")
       }
 
       else {
@@ -48,23 +41,22 @@ class Import extends AliasBaseCommand {
 
     try {
       userPath = args["dest"];
+
     } catch (err) {
       console.log(err);
     }
-
-
+    
     if (userPath == undefined) {
       console.log('please add the path of the alias.json file');
       return false;
-
     }
 
-    fs.access(userPath, fs.R_OK, (err) => {
-      if (err) {
-        console.log("alias file does not exist at the specified path");
-        isValid = false;
-      }
-    });
+    const success = new FileUtil(this).importPathExists(userPath);
+
+    if (!(success)) {
+      console.log("alias file does not exist at the specified path");
+      isValid = false;
+    }
 
     return isValid;
   }
@@ -84,4 +76,5 @@ Import.args = [
 
 
 Import.description = 'import aliases';
+Import.storage = new FilesystemStorage();
 module.exports = Import;

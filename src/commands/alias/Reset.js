@@ -1,5 +1,4 @@
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
-const fs = require('fs');
 const FileUtil = require('../../utilities/FileUtility.js');
 
 
@@ -16,15 +15,8 @@ class Reset extends AliasBaseCommand {
     const aliasFolderPath = mPath.substr(0, mPath.length - 10);
 
     try {
-      if (fs.existsSync(aliasFolderPath)) {
-        const dir = aliasFolderPath;
-        fs.rm(dir, { recursive: true }, (err) => {
-          if (err) {
-            throw err;
-          }
-
-
-        });
+      if (new FileUtil(this).pathExists(aliasFolderPath)) {
+        new FileUtil(this).removeDirectory(aliasFolderPath)
 
       }
 

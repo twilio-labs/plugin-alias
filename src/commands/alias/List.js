@@ -1,7 +1,6 @@
 const { args, flags } = require('@oclif/command');
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const FileUtil = require('../../utilities/FileUtility.js');
-const fs = require('fs');
 const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
 
 
@@ -14,13 +13,24 @@ class List extends AliasBaseCommand {
   async run() {
     await super.run();
 
+    if (this.argv.length > 0) {
+
+      var args = "";
+      for(var arg in this.argv)
+      {
+        args += "'"+this.argv[arg] + "' ";
+      }
+      console.log(`Invalid argument ${args}provided`);
+      return;
+    }
+
 
     const aliasFilePath = new FileUtil(this).getAliasFilePath();
-    if (fs.existsSync(aliasFilePath)) {
+    if (new FileUtil(this).pathExists(aliasFilePath)) {
       
       const db = await List.storage.load(aliasFilePath);
       var output = "Alias\tCommand"
-      //console.log(db);
+
       for (let alias in db) {
         output += `\n${alias}\t${db[alias]}`;
       }

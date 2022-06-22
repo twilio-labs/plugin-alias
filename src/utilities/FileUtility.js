@@ -1,4 +1,4 @@
-const fs = require('fs');
+/*eslint-env es6*/
 const FilesystemStorage = require('./FileSnapshot/FilesystemStorage');
 const chalk = require('chalk');
 
@@ -10,7 +10,7 @@ class FileUtility {
 
     extractAlias(userAlias, aliasFilePath,db) {
         
-        if (fs.existsSync(aliasFilePath)) {
+        if (this.pathExists(aliasFilePath)) {
     
             return this.parseData(userAlias, aliasFilePath,db);
 
@@ -24,13 +24,8 @@ class FileUtility {
 
     }
 
-    getAliasFilePath() {
-        const dataDirectory = this.ctx.config.dataDir;
-        const aliasFolderName = 'alias';
-        const aliasFolderPath = dataDirectory + '/' + aliasFolderName;
-        const aliasFileName = 'data.json';
-        const aliasFilePath = aliasFolderPath + '/' + aliasFileName;
-        return aliasFilePath;
+    getAliasFilePath(config = this.ctx.config) {
+        return FileUtility.storage.path(config);
     }
 
 
@@ -114,6 +109,45 @@ class FileUtility {
       const AUTOCOMLETE_ALERT = `If you are running alias command for the first time, please run the following setup command to initiate the plugin setup: \n 
       '${chalk.bold('oclif-example alias:Setup')}'`;
       return console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
+    }
+
+    pathExists(path) {
+        return FileUtility.storage.pathExists(path);
+    }
+
+    importPathExists(path) {
+        return FileUtility.storage.importPathExists(path);
+    }
+
+    createFolderIfDoesNotExists(folderPath, proceed) {
+        try {
+            if (!this.pathExists(folderPath)) {
+              FileUtility.storage.makeDirectory(folderPath);
+              proceed.move = true;
+            }
+            else {
+              console.log('setup already complete');
+              proceed.move = false;
+            }
+          }
+          catch (err) {
+            console.log(err);
+            proceed.move = false;
+          }
+    }
+
+    copyFileToDestination(sourcePath, destPath, mode) {
+        try {
+             FileUtility.storage.copyFile(sourcePath, destPath, mode);
+             return true;
+          } catch (err) {
+            console.log(err);
+            return false;
+          }
+    }
+
+    removeDirectory(dir) {
+        FileUtility.storage.removeDirectory(dir);
     }
 
 }
