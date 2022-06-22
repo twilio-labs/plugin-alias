@@ -3,7 +3,7 @@
   "description": "Plugin to manage alias for oclif",
   "version": "1.0.0",
   "author": "Twilio",
-  "bugs": "https://github.com/kavya-24/cli-plugin/issues",
+  "bugs": "https://github.com/kavya-24/plugin-alias/issues",
   "dependencies": {
     "@oclif/command": "^1.5.20",
     "@oclif/config": "^1.15.1",
@@ -29,7 +29,7 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://github.com/kavya-24/cli-plugin",
+  "homepage": "https://github.com/kavya-24/plugin-alias",
   "keywords": [
     "oclif-plugin"
   ],
@@ -50,10 +50,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kavya-24/cli-plugin"
+    "url": "https://github.com/kavya-24/plugin-alias"
   },
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint --ignore-path .gitignore . && npm audit",
     "prepack": "oclif-dev manifest && oclif-dev readme",
     "test": "nyc --check-coverage --lines 90 --reporter=html --reporter=text mocha --forbid-only \"test/com/**.test.js\"",
     "version": "oclif-dev readme && git add README.md"
