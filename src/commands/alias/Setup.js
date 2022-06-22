@@ -10,13 +10,24 @@ class Setup extends AliasBaseCommand {
   async run() {
     await super.run();
 
+    if (this.argv.length > 0) {
+
+      var args = "";
+      for(var arg in this.argv)
+      {
+        args += "'"+this.argv[arg] + "' ";
+      }
+      console.log(`Invalid argument ${args}provided`);
+      return;
+    }
+
     /*  
       Whenever setup of Plugin is initiated, find the main directory where CLI is installed and create a data.json file
       This data.json file has a semi-structured format of key-value pairs 
     */
 
     const mPath = String(new FileUtil(this).getAliasFilePath())
-    const aliasFolderPath = mPath.substr(0, mPath.length - 10);
+    const aliasFolderPath = (mPath.length > 10 ? mPath.substr(0, mPath.length - 10) : "");
     const aliasFilePath = new FileUtil(this).getAliasFilePath();
 
     let proceed = {move:true};
