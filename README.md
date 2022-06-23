@@ -1,4 +1,4 @@
-# @oclif/plugin-alias
+# plugin-alias
 
 Access, store and use your favorite oclif-example aliases with this plugin
 
