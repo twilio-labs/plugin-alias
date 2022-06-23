@@ -58,7 +58,7 @@
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint --ignore-path .gitignore . && npm audit",
     "prepack": "oclif-dev manifest && oclif-dev readme",
-    "test": "nyc --check-coverage --lines 90 --reporter=html --reporter=text mocha --forbid-only \"test/commands/**.test.js\"",
+    "test": "nyc --check-coverage --lines 90 --reporter=html --reporter=text mocha --forbid-only \"test/**/**.test.js\"",
     "version": "oclif-dev readme && git add README.md",
     "semantic-release": "semantic-release --branches main"
   }

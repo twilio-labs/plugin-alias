@@ -56,6 +56,20 @@ describe('Test for FilesystemStorage', function () {
     })
 
 
+    describe('test for path validity', async function () {
+
+        it('load context path', async function () {
+            const c = await ContextUtil.run();
+            const aliasFilePath = new FileUtil(c).getAliasFilePath();
+            const fileStorage = new FilesystemStorage();
+            expect(fileStorage.pathExists(aliasFilePath)).to.be.a('boolean');
+        })
+
+
+    })
+
+
+
     after(async function () {
 
         fs.unlink(path, err => {
