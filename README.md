@@ -55,7 +55,7 @@ DESCRIPTION
 	This command is used to run Setup
 ```
 
-_See code: [src/commands/alias/Setup.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Setup.js)_
+_See code: [src/commands/alias/Setup.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/Setup.js)_
 <br>
 
 <!-- Add Command -->
@@ -82,7 +82,7 @@ DESCRIPTION
 	This command is used to add favorite aliases
 ```
 
-_See code: [src/commands/alias/Add.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Add.js)_
+_See code: [src/commands/alias/Add.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/Add.js)_
 
   <br>
 
@@ -105,7 +105,7 @@ DESCRIPTION
 	This command is used to delete favorite aliases
 ```
 
-_See code: [src/commands/alias/Delete.js](https://gitshub.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Delete.js)_
+_See code: [src/commands/alias/Delete.js](https://gitshub.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/Delete.js)_
 
   <br>
   
@@ -125,7 +125,7 @@ DESCRIPTION
 	This command is used to use an alias shorthand
 ```
 
-_See code: [src/commands/alias/Use.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Use.js)_
+_See code: [src/commands/alias/Use.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/Use.js)_
 
 <br>
 
@@ -144,7 +144,7 @@ DESCRIPTION
 	This command is used to list all the aliases
 ```
 
-_See code: [src/commands/alias/List.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/List.js)_
+_See code: [src/commands/alias/List.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/List.js)_
 
 <!-- Import Command -->
 
@@ -160,7 +160,7 @@ DESCRIPTION
 	This command is used to import an alias file
 ```
 
-_See code: [src/commands/alias/Import.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Import.js)_
+_See code: [src/commands/alias/Import.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/Import.js)_
 <br>
 
 <!-- Export Command -->
@@ -177,7 +177,7 @@ DESCRIPTION
 	This command is used to export aliases
 ```
 
-_See code: [src/commands/alias/Export.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Export.js)_
+_See code: [src/commands/alias/Export.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/Export.js)_
 <br>
 
 <!-- commandsstop -->
