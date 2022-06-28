@@ -87,35 +87,35 @@ describe('Tests for using alias', () => {
         })
     })
 
-    describe('Use an alias which does not exist', () => {
-      test
-        .stdout()
-        .stub(Use, 'storage', new MemoryStorage({}))
-        .stub(List, 'storage', new MemoryStorage({}))
-        .stub(FileUtil, 'storage', new MemoryStorage({}))
-        .command(['alias:Use', 'alist'])
-        .it('should return command not found from empty', async ctx => {
-          expect(await Use.storage.load()).to.eql({
-          })
-          expect(ctx.stdout).to.contain("command alist is not found");
-        })
-    })
+    // describe('Use an alias which does not exist', () => {
+    //   test
+    //     .stdout()
+    //     .stub(Use, 'storage', new MemoryStorage({}))
+    //     .stub(List, 'storage', new MemoryStorage({}))
+    //     .stub(FileUtil, 'storage', new MemoryStorage({}))
+    //     .command(['alias:Use', 'alist'])
+    //     .it('should return command not found from empty', async ctx => {
+    //       expect(await Use.storage.load()).to.eql({
+    //       })
+    //       expect(ctx.stdout).to.contain("command alist is not found");
+    //     })
+    // })
 
 
-    describe('Use an alias which does not exist', () => {
-      test
-        .stdout()
-        .stub(Use, 'storage', new MemoryStorage({ alist: "alias:List", alist2: "alias:List", alist3: "alia:List" }))
-        .stub(List, 'storage', new MemoryStorage({ alist: "alias:List", alist2: "alias:List", alist3: "alia:List" }))
-        .stub(FileUtil, 'storage', new MemoryStorage({ alist: "alias:List", alist2: "alias:List", alist3: "alia:List" }))
-        .command(['alias:Use', 'ali'])
-        .it('should show some suggestions', async ctx => {
-          expect(await Use.storage.load())
-          // .to.eql({
-          // })
-          // expect(ctx.stdout).to.contain("command alist is not found");
-        })
-    })
+    // describe('Use an alias which does not exist', () => {
+    //   test
+    //     .stdout()
+    //     .stub(Use, 'storage', new MemoryStorage({ alist: "alias:List", alist2: "alias:List", alist3: "alia:List" }))
+    //     .stub(List, 'storage', new MemoryStorage({ alist: "alias:List", alist2: "alias:List", alist3: "alia:List" }))
+    //     .stub(FileUtil, 'storage', new MemoryStorage({ alist: "alias:List", alist2: "alias:List", alist3: "alia:List" }))
+    //     .command(['alias:Use', 'ali'])
+    //     .it('should show some suggestions', async ctx => {
+    //       expect(await Use.storage.load())
+    //       // .to.eql({
+    //       // })
+    //       // expect(ctx.stdout).to.contain("command alist is not found");
+    //     })
+    // })
 
 
 
