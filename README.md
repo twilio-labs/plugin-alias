@@ -45,10 +45,12 @@ The following step will install the plugin from a local directory. Use this opti
 $ twilio plugins:link /path/to/plugin-alias
 ```
 
-# Setup
+### Setup the local alias directory
+The following step will create a directory named "alias" in the local data directory of the user. Use this command before running any other alias command to setup the necessary directory structure.
 
-1. Link the plugin to your CLI 
-2. Run `twilio alias:setup`
+```sh-session
+$ twilio alias:setup
+```
 
 # Usage
 
