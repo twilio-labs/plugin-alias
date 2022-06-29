@@ -75,14 +75,15 @@ USAGE
 
 ## `twilio alias:setup`
 
-Setup aliases plugin
+Setup local directory for storing aliases
 
 ```
 USAGE
-	$ twilio alias:setup
+  $ twilio alias:setup
 
-DESCRIPTION
-	This command is used to run Setup
+EXAMPLE
+  $ twilio alias:setup
+  Setup complete
 ```
 
 _See code: [src/commands/alias/setup.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/setup.js)_
@@ -92,29 +93,25 @@ _See code: [src/commands/alias/setup.js](https://github.com/Kavya-24/plugin-alia
 
 ## `twilio alias:add`
 
-Add aliases
+Create a new alias to access Twilio CLI commands
 
 ```
 USAGE
-	$ twilio alias:add
-
+  $ twilio alias:add
 
 ARGUMENTS
-	name : Name of the alias shorthand
-	command : Command we want to shorthand
+  name  						   Name of the alias shorthand
+  command            			   Command to shorthand
 
+OPTIONS
+  -f, --force           			Overwrite already present alias
 
-FLAGS
-	-f : Flag for overwriting
-
-
-DESCRIPTION
-	This command is used to add favorite aliases
+EXAMPLE
+  $ twilio alias:add plist profiles:list
+  Successfully created alias plist for profiles:list
 ```
 
 _See code: [src/commands/alias/add.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/add.js)_
-
-  <br>
 
 <!-- Delete Command -->
 

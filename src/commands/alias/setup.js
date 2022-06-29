@@ -38,11 +38,11 @@ class Setup extends AliasBaseCommand {
     try {
       const db = await Setup.storage.load(aliasFilePath);
       await Setup.storage.save(db, aliasFilePath);
-      console.log('setup complete');
+      console.log('Setup complete');
 
     } catch (err) {
 
-      console.log('setup incomplete');
+      console.log('Setup incomplete');
       return;
     }
 

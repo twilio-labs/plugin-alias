@@ -137,7 +137,7 @@ class FileUtility {
                 proceed.move = true;
             }
             else {
-                console.log('setup already complete');
+                console.log('Setup already complete');
                 proceed.move = false;
             }
         }

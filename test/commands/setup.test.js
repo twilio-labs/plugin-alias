@@ -16,7 +16,7 @@ describe('Tests for setup', () => {
             .it('should setup and initialize the empty data', async ctx => {
                 expect(await Setup.storage.load()).to.eql({
                 })
-                expect(ctx.stdout).to.contain('setup complete');
+                expect(ctx.stdout).to.contain('Setup complete');
             })
     })
 
@@ -30,7 +30,7 @@ describe('Tests for setup', () => {
             .it('should throw setup already complete warning', async ctx => {
                 expect(await Setup.storage.load()).to.eql({
                 })
-                expect(ctx.stdout).to.contain('setup already complete');
+                expect(ctx.stdout).to.contain('Setup already complete');
             })
     })
 
