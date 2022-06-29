@@ -12,62 +12,43 @@ describe('Test for FilesystemStorage', function () {
     const path = process.cwd() + '/' + filename;
 
 
-    describe('check for folder operations', async function () {
 
-        it('create folder', async function () {
 
+    before(async function () {
+
+        fs.open(path, 'w', err => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+        });
+    });
+
+
+    describe('test for path validity', async function () {
+
+        it('load context path', async function () {
+            const c = await ContextUtil.run();
+            const aliasFilePath = new FileUtil(c).getAliasFilePath();
             const fileStorage = new FilesystemStorage();
-            expect(fileStorage.makeDirectory(path))
-
+            expect(fileStorage.pathExists(aliasFilePath)).to.be.a('boolean');
         })
 
-
-        it('delete folder', async function () {
-
-            const fileStorage = new FilesystemStorage();
-            expect(fileStorage.removeDirectory(path))
-
+        it('load path from config', async function () {
+            const c = await ContextUtil.run();
+            const aliasFilePath = new FilesystemStorage().path(c);
+            expect(new FilesystemStorage().pathExists(aliasFilePath)).to.be.a('boolean');
         })
 
-
-        describe('test for path validity', async function () {
-
-            it('load context path', async function () {
-                const c = await ContextUtil.run();
-                const aliasFilePath = new FileUtil(c).getAliasFilePath();
-                const fileStorage = new FilesystemStorage();
-                expect(fileStorage.pathExists(aliasFilePath)).to.be.a('boolean');
-            })
-
-            it('load path from config', async function () {
-                const c = await ContextUtil.run();
-                const aliasFilePath = new FilesystemStorage().path(c);
-                expect(new FilesystemStorage().pathExists(aliasFilePath)).to.be.a('boolean');
-            })
-
-            it('load path from config', async function () {
-                expect(new FilesystemStorage().importPathExists(path)).to.be.a('boolean');
-            })
-
+        it('load path from config', async function () {
+            expect(new FilesystemStorage().importPathExists(path)).to.be.a('boolean');
         })
-
-
 
     })
 
+
     describe('check for database load/store', async function () {
 
-
-
-        before(async function () {
-
-            fs.open(path, 'w', err => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-            });
-        });
 
         it('save data', async function () {
             const fileStorage = new FilesystemStorage();
@@ -95,20 +76,20 @@ describe('Test for FilesystemStorage', function () {
 
         })
 
-        after(async function () {
 
-            fs.unlink(path, err => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-            });
-        });
 
     })
 
 
+    after(async function () {
 
+        fs.unlink(path, err => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+        });
+    });
 
 
 
