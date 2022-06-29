@@ -63,12 +63,12 @@ class FileUtility {
             else if (aliasIndex == -1) {
 
                 //no alias exists. Add is operation is Add, else show error for delete
-                if (operation == 'alias:Add') {
+                if (operation == 'alias:add') {
 
                     db[userAlias] = userCommand;
 
                 }
-                else if (operation == 'alias:Delete') {
+                else if (operation == 'alias:delete') {
                     const exit_message = 'Continue without deleting'
                     const result = await new InquirerPrompts(this.ctx, exit_message, userAlias, db).findSuggestions();
 
@@ -84,7 +84,7 @@ class FileUtility {
             } else {
 
 
-                if (operation == 'alias:Add') {
+                if (operation == 'alias:add') {
 
 
                     if (db[userAlias] === 'null' || hasFlag) {
@@ -96,7 +96,7 @@ class FileUtility {
 
 
                 }
-                else if (operation == 'alias:Delete') {
+                else if (operation == 'alias:delete') {
 
                     delete db[userAlias];
 
@@ -118,7 +118,7 @@ class FileUtility {
 
     setupIncompleteWarning() {
         const AUTOCOMLETE_ALERT = `If you are running alias command for the first time, please run the following setup command to initiate the plugin setup: \n 
-      '${chalk.bold('oclif-example alias:Setup')}'`;
+      '${chalk.bold('oclif-example alias:setup')}'`;
         return console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
     }
 

@@ -48,7 +48,7 @@ $ twilio plugins:link /path/to/plugin-alias
 # Setup
 
 1. Link the plugin to your CLI 
-2. Run `oclif-example alias:Setup`
+2. Run `oclif-example alias:setup`
 
 # Usage
 
@@ -61,47 +61,47 @@ $ oclif-example alias
 
 <!-- commands -->
 
-- [`oclif-example alias:Setup`](#oclif-example-aliasSetup)
+- [`oclif-example alias:setup`](#oclif-example-aliasSetup)
 
-- [`oclif-example alias:Add`](#oclif-example-aliasAdd)
+- [`oclif-example alias:add`](#oclif-example-aliasAdd)
 
-- [`oclif-example alias:Delete`](#oclif-example-aliasDelete)
+- [`oclif-example alias:delete`](#oclif-example-aliasDelete)
 
-- [`oclif-example alias:Use`](#oclif-example-aliasUse)
+- [`oclif-example alias:use`](#oclif-example-aliasUse)
 
-- [`oclif-example alias:List`](#oclif-example-aliasList)
+- [`oclif-example alias:list`](#oclif-example-aliasList)
 
-- [`oclif-example alias:Import`](#oclif-example-aliasImport)
+- [`oclif-example alias:import`](#oclif-example-aliasImport)
 
-- [`oclif-example alias:Export`](#oclif-example-aliasExport)
+- [`oclif-example alias:export`](#oclif-example-aliasExport)
 
   <br>
 <!-- Setup Command -->
 
-## `oclif-example alias:Setup`
+## `oclif-example alias:setup`
 
 Setup aliases plugin
 
 ```
 USAGE
-	$ oclif-example alias:Setup
+	$ oclif-example alias:setup
 
 DESCRIPTION
 	This command is used to run Setup
 ```
 
-_See code: [src/commands/alias/Setup.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Setup.js)_
+_See code: [src/commands/alias/setup.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/setup.js)_
 <br>
 
 <!-- Add Command -->
 
-## `oclif-example alias:Add`
+## `oclif-example alias:add`
 
 Add aliases
 
 ```
 USAGE
-	$ oclif-example alias:Add
+	$ oclif-example alias:add
 
 
 ARGUMENTS
@@ -117,19 +117,19 @@ DESCRIPTION
 	This command is used to add favorite aliases
 ```
 
-_See code: [src/commands/alias/Add.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Add.js)_
+_See code: [src/commands/alias/add.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/add.js)_
 
   <br>
 
 <!-- Delete Command -->
 
-## `oclif-example alias:Delete`
+## `oclif-example alias:delete`
 
 Delete aliases
 
 ```
 USAGE
-	$ oclif-example alias:Delete
+	$ oclif-example alias:delete
 
 
 ARGUMENTS
@@ -140,17 +140,17 @@ DESCRIPTION
 	This command is used to delete favorite aliases
 ```
 
-_See code: [src/commands/alias/Delete.js](https://gitshub.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Delete.js)_
+_See code: [src/commands/alias/delete.js](https://gitshub.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/delete.js)_
 
   <br>
   
 <!-- Use Command -->
-## `oclif-example alias:Use`
+## `oclif-example alias:use`
 Use aliases
 
 ```
 USAGE
-	$ oclif-example alias:Use
+	$ oclif-example alias:use
 
 
 ARGUMENTS
@@ -160,59 +160,59 @@ DESCRIPTION
 	This command is used to use an alias shorthand
 ```
 
-_See code: [src/commands/alias/Use.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Use.js)_
+_See code: [src/commands/alias/use.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/use.js)_
 
 <br>
 
 <!-- List Command -->
 
-## `oclif-example alias:List`
+## `oclif-example alias:list`
 
 List aliases
 
 ```
 USAGE
-	$ oclif-example alias:List
+	$ oclif-example alias:list
 
 
 DESCRIPTION
 	This command is used to list all the aliases
 ```
 
-_See code: [src/commands/alias/List.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/List.js)_
+_See code: [src/commands/alias/list.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/list.js)_
 
 <!-- Import Command -->
 
-## `oclif-example alias:Import`
+## `oclif-example alias:import`
 
 Import an alias file
 
 ```
 USAGE
-	$ oclif-example alias:Import
+	$ oclif-example alias:import
 
 DESCRIPTION
 	This command is used to import an alias file
 ```
 
-_See code: [src/commands/alias/Import.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Import.js)_
+_See code: [src/commands/alias/import.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/import.js)_
 <br>
 
 <!-- Export Command -->
 
-## `oclif-example alias:Export`
+## `oclif-example alias:export`
 
 Export the aliases
 
 ```
 USAGE
-	$ oclif-example alias:Export
+	$ oclif-example alias:export
 
 DESCRIPTION
 	This command is used to export aliases
 ```
 
-_See code: [src/commands/alias/Export.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/Export.js)_
+_See code: [src/commands/alias/export.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/export.js)_
 <br>
 
 <!-- commandsstop -->

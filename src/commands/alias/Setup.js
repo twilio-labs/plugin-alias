@@ -13,9 +13,8 @@ class Setup extends AliasBaseCommand {
     if (this.argv.length > 0) {
 
       var args = "";
-      for(var arg in this.argv)
-      {
-        args += "'"+this.argv[arg] + "' ";
+      for (var arg in this.argv) {
+        args += "'" + this.argv[arg] + "' ";
       }
       console.log(`Invalid argument ${args}provided`);
       return;
@@ -30,10 +29,10 @@ class Setup extends AliasBaseCommand {
     const aliasFolderPath = (mPath.length > 10 ? mPath.substr(0, mPath.length - 10) : "");
     const aliasFilePath = new FileUtil(this).getAliasFilePath();
 
-    let proceed = {move:true};
+    let proceed = { move: true };
     new FileUtil(this).createFolderIfDoesNotExists(aliasFolderPath, proceed);
     //console.log(proceed)
-    if(!proceed.move)
+    if (!proceed.move)
       return;
 
     try {
@@ -54,7 +53,7 @@ class Setup extends AliasBaseCommand {
 }
 
 
-Setup.id = 'alias:Setup'
+Setup.id = 'alias:setup'
 Setup.description = 'set up aliases for your favorite Twilio commands';
 Setup.storage = new FilesystemStorage();
 module.exports = Setup;

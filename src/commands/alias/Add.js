@@ -44,7 +44,7 @@ class Add extends AliasBaseCommand {
       userFlag = flags["force"];
     }
     catch (err) {
-      console.log('invalid flags. See ./bin/run alias:Add --help');
+      console.log('invalid flags. See ./bin/run alias:add --help');
     }
 
     if (userFlag == undefined) {
@@ -63,14 +63,14 @@ class Add extends AliasBaseCommand {
     try {
       userAlias = args["name"];
     } catch (err) {
-      console.log('invalid arguments. See ./bin/run alias:Add --help');
+      console.log('invalid arguments. See ./bin/run alias:add --help');
 
     }
 
     try {
       userCommand = args["command"];
     } catch (err) {
-      console.log('invalid arguments. See ./bin/run alias:Add --help');
+      console.log('invalid arguments. See ./bin/run alias:add --help');
     }
 
 
@@ -90,7 +90,7 @@ class Add extends AliasBaseCommand {
 
 }
 
-Add.id = 'alias:Add';
+Add.id = 'alias:add';
 Add.description = 'create a new alias to access Twilio CLI commands';
 
 

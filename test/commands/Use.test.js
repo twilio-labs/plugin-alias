@@ -1,9 +1,9 @@
 const { expect, test } = require('@oclif/test')
 const MemoryStorage = require('../../src/utilities/FileSnapshot/MemoryStorage.js')
 const InquirerPrompts = require('../../src/utilities/InquirerPrompts')
-const Delete = require('../../src/commands/alias/Delete.js')
-const List = require('../../src/commands/alias/List.js')
-const Use = require('../../src/commands/alias/Use.js')
+const Delete = require('../../src/commands/alias/delete.js')
+const List = require('../../src/commands/alias/list.js')
+const Use = require('../../src/commands/alias/use.js')
 const FileUtil = require('../../src/utilities/FileUtility')
 const inquirer = require('inquirer');
 const ContextUtil = require('../../src/utilities/ContextUtility')
@@ -22,7 +22,7 @@ describe('Tests for using alias', () => {
         .stub(Use, 'storage', new MemoryStorage({}, false))
         .stub(List, 'storage', new MemoryStorage({}, false))
         .stub(FileUtil, 'storage', new MemoryStorage({}, false))
-        .command(['alias:Use', 'alist'])
+        .command(['alias:use', 'alist'])
         .it('should throw the chalk error', async ctx => {
           expect(await Use.storage.load()).to.eql({
           })
@@ -35,7 +35,7 @@ describe('Tests for using alias', () => {
         .stub(Use, 'storage', new MemoryStorage({}, false))
         .stub(List, 'storage', new MemoryStorage({}, false))
         .stub(FileUtil, 'storage', new MemoryStorage({}, false))
-        .command(['alias:Use'])
+        .command(['alias:use'])
         .it('should give warning that alias name not provided', async ctx => {
           expect(await Use.storage.load()).to.eql({
 
@@ -64,18 +64,18 @@ describe('Tests for using alias', () => {
 
   describe('After Setup', () => {
 
-    describe('Use an existing alias with alias:Use', () => {
+    describe('Use an existing alias with alias:use', () => {
       test
         .stdout()
-        .stub(Use, 'storage', new MemoryStorage({ alist: "alias:List" }))
-        .stub(List, 'storage', new MemoryStorage({ alist: "alias:List" }))
-        .stub(FileUtil, 'storage', new MemoryStorage({ alist: "alias:List" }))
-        .command(['alias:Use', 'alist'])
+        .stub(Use, 'storage', new MemoryStorage({ alist: "alias:list" }))
+        .stub(List, 'storage', new MemoryStorage({ alist: "alias:list" }))
+        .stub(FileUtil, 'storage', new MemoryStorage({ alist: "alias:list" }))
+        .command(['alias:use', 'alist'])
         .it('should use the alias to list aliases', async ctx => {
           expect(await Use.storage.load()).to.eql({
-            alist: "alias:List"
+            alist: "alias:list"
           })
-          expect(ctx.stdout).to.contain("Alias\tCommand\nalist\talias:List");
+          expect(ctx.stdout).to.contain("Alias\tCommand\nalist\talias:list");
         })
     })
 
@@ -83,15 +83,15 @@ describe('Tests for using alias', () => {
     describe('Use an existing alias with "use"', () => {
       test
         .stdout()
-        .stub(Use, 'storage', new MemoryStorage({ alist: "alias:List" }))
-        .stub(List, 'storage', new MemoryStorage({ alist: "alias:List" }))
-        .stub(FileUtil, 'storage', new MemoryStorage({ alist: "alias:List" }))
+        .stub(Use, 'storage', new MemoryStorage({ alist: "alias:list" }))
+        .stub(List, 'storage', new MemoryStorage({ alist: "alias:list" }))
+        .stub(FileUtil, 'storage', new MemoryStorage({ alist: "alias:list" }))
         .command(['use', 'alist'])
         .it('should use "use" to list aliases', async ctx => {
           expect(await Use.storage.load()).to.eql({
-            alist: "alias:List"
+            alist: "alias:list"
           })
-          expect(ctx.stdout).to.contain("Alias\tCommand\nalist\talias:List");
+          expect(ctx.stdout).to.contain("Alias\tCommand\nalist\talias:list");
         })
     })
 
@@ -347,13 +347,13 @@ describe('Tests for using alias', () => {
     describe('Use an alias without name', () => {
       test
         .stdout()
-        .stub(Use, 'storage', new MemoryStorage({ alist: "alias:List" }))
-        .stub(List, 'storage', new MemoryStorage({ alist: "alias:List" }))
-        .stub(FileUtil, 'storage', new MemoryStorage({ alist: "alias:List" }))
-        .command(['alias:Use'])
+        .stub(Use, 'storage', new MemoryStorage({ alist: "alias:list" }))
+        .stub(List, 'storage', new MemoryStorage({ alist: "alias:list" }))
+        .stub(FileUtil, 'storage', new MemoryStorage({ alist: "alias:list" }))
+        .command(['alias:use'])
         .it('should give warning that alias name not provided', async ctx => {
           expect(await Use.storage.load()).to.eql({
-            alist: "alias:List"
+            alist: "alias:list"
           })
           expect(ctx.stdout).to.contain("Please insert an alias argument");
         })
@@ -362,13 +362,13 @@ describe('Tests for using alias', () => {
     describe('Use an alias with "use" without name', () => {
       test
         .stdout()
-        .stub(Use, 'storage', new MemoryStorage({ alist: "alias:List" }))
-        .stub(List, 'storage', new MemoryStorage({ alist: "alias:List" }))
-        .stub(FileUtil, 'storage', new MemoryStorage({ alist: "alias:List" }))
+        .stub(Use, 'storage', new MemoryStorage({ alist: "alias:list" }))
+        .stub(List, 'storage', new MemoryStorage({ alist: "alias:list" }))
+        .stub(FileUtil, 'storage', new MemoryStorage({ alist: "alias:list" }))
         .command(['use'])
         .it('should give warning that alias name not provided', async ctx => {
           expect(await Use.storage.load()).to.eql({
-            alist: "alias:List"
+            alist: "alias:list"
           })
           expect(ctx.stdout).to.contain("Please insert an alias argument");
         })
