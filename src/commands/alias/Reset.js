@@ -13,9 +13,8 @@ class Reset extends AliasBaseCommand {
     if (this.argv.length > 0) {
 
       var args = "";
-      for(var arg in this.argv)
-      {
-        args += "'"+this.argv[arg] + "' ";
+      for (var arg in this.argv) {
+        args += "'" + this.argv[arg] + "' ";
       }
       console.log(`Invalid argument ${args}provided`);
       return;

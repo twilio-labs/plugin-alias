@@ -1,7 +1,7 @@
 const { expect, test } = require('@oclif/test')
 const MemoryStorage = require('../../src/utilities/FileSnapshot/MemoryStorage.js')
 const InquirerPrompts = require('../../src/utilities/InquirerPrompts')
-const Delete = require('../../src/commands/alias/Delete.js')
+const Delete = require('../../src/commands/alias/delete')
 const FileUtil = require('../../src/utilities/FileUtility')
 const inquirer = require('inquirer');
 const ContextUtil = require('../../src/utilities/ContextUtility')
@@ -20,7 +20,7 @@ describe('Tests for deleting alias', () => {
                 .stdout()
                 .stub(Delete, 'storage', new MemoryStorage({}, false))
                 .stub(FileUtil, 'storage', new MemoryStorage({}, false))
-                .command(['alias:Delete', 'hello'])
+                .command(['alias:delete', 'hello'])
                 .it('should throw the chalk error', async ctx => {
                     expect(await Delete.storage.load()).to.eql({
 
@@ -34,7 +34,7 @@ describe('Tests for deleting alias', () => {
                 .stdout()
                 .stub(Delete, 'storage', new MemoryStorage({}, false))
                 .stub(FileUtil, 'storage', new MemoryStorage({}, false))
-                .command(['alias:Delete'])
+                .command(['alias:delete'])
                 .it('should show the error that name is not provided', async ctx => {
                     expect(await Delete.storage.load()).to.eql({
 
@@ -53,7 +53,7 @@ describe('Tests for deleting alias', () => {
                 .stdout()
                 .stub(Delete, 'storage', new MemoryStorage({ hello: "world", hello2: "world2" }))
                 .stub(FileUtil, 'storage', new MemoryStorage({ hello: "world", hello2: "world2" }))
-                .command(['alias:Delete', 'hello'])
+                .command(['alias:delete', 'hello'])
                 .it('should delete the alias', async ctx => {
                     expect(await Delete.storage.load()).to.eql({
                         hello2: "world2"
@@ -301,7 +301,7 @@ describe('Tests for deleting alias', () => {
                 .stdout()
                 .stub(Delete, 'storage', new MemoryStorage({}))
                 .stub(FileUtil, 'storage', new MemoryStorage({}))
-                .command(['alias:Delete'])
+                .command(['alias:delete'])
                 .it('should show the error that name is not provided', async ctx => {
                     expect(await Delete.storage.load()).to.eql({
 

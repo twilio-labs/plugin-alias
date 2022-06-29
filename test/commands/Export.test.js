@@ -1,6 +1,6 @@
 const { expect, test, assert } = require('@oclif/test')
 const MemoryStorage = require('../../src/utilities/FileSnapshot/MemoryStorage.js')
-const Export = require('../../src/commands/alias/Export')
+const Export = require('../../src/commands/alias/export')
 const FileUtil = require('../../src/utilities/FileUtility')
 const fs = require('fs');
 const FilesystemStorage = require('../../src/utilities/FileSnapshot/FilesystemStorage')
@@ -16,7 +16,7 @@ describe('Tests for exporting alias', () => {
                 .stdout()
                 .stub(Export, 'storage', new MemoryStorage({}, false))
                 .stub(FileUtil, 'storage', new MemoryStorage({}, false))
-                .command(['alias:Export'])
+                .command(['alias:export'])
                 .it('should throw chalk error', async ctx => {
                     expect(await FileUtil.storage.load()).to.eql({
 
@@ -29,7 +29,7 @@ describe('Tests for exporting alias', () => {
                 .stdout()
                 .stub(Export, 'storage', new MemoryStorage({}, false))
                 .stub(FileUtil, 'storage', new MemoryStorage({}, false))
-                .command(['alias:Export', 'alist'])
+                .command(['alias:export', 'alist'])
                 .it('extra arguments passed for export', async ctx => {
                     expect(await FileUtil.storage.load()).to.eql({
 
@@ -62,7 +62,7 @@ describe('Tests for exporting alias', () => {
                 .stdout()
                 .stub(Export, 'storage', new MemoryStorage({}))
                 .stub(FileUtil, 'storage', new MemoryStorage({}))
-                .command(['alias:Export'])
+                .command(['alias:export'])
                 .it('export empty file', async ctx => {
                     expect(await FileUtil.storage.load()).to.eql({
 
@@ -106,7 +106,7 @@ describe('Tests for exporting alias', () => {
                 .stdout()
                 .stub(Export, 'storage', new MemoryStorage({ hello: "world", hello1: "world2" }))
                 .stub(FileUtil, 'storage', new MemoryStorage({ hello: "world", hello1: "world2" }))
-                .command(['alias:Export'])
+                .command(['alias:export'])
                 .it('export filled file', async ctx => {
                     expect(await FileUtil.storage.load()).to.eql({
                         hello: "world",
@@ -139,7 +139,7 @@ describe('Tests for exporting alias', () => {
                 .stdout()
                 .stub(Export, 'storage', new MemoryStorage({}))
                 .stub(FileUtil, 'storage', new MemoryStorage({}))
-                .command(['alias:Export', 'alist'])
+                .command(['alias:export', 'alist'])
                 .it('extra arguments passed for export', async ctx => {
                     expect(await FileUtil.storage.load()).to.eql({
 
