@@ -1,5 +1,5 @@
 {
-  "name": "plugin-alias",
+  "name": "@twilio-labs/plugin-alias",
   "description": "Plugin to manage alias for oclif",
   "version": "0.0.0-development",
   "author": "Twilio",
