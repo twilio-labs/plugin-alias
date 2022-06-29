@@ -96,251 +96,251 @@ describe('Tests for using alias', () => {
     })
 
 
-    describe('Use an alias which does not exist', function () {
+    // describe('Use an alias which does not exist', function () {
 
-      const filename = 'usedata.json';
-      const path = process.cwd() + '/' + filename;
-      let c, exit_message, result, db, fileStorage, original;
+    //   const filename = 'usedata.json';
+    //   const path = process.cwd() + '/' + filename;
+    //   let c, exit_message, result, db, fileStorage, original;
 
-      before(async function () {
+    //   before(async function () {
 
-        c = await ContextUtil.run();
-        exit_message = 'Testing use prompts';
-        fs.open(path, 'w', err => {
-          if (err) {
-            console.log(err);
-            return;
-          }
-        });
-        fileStorage = new FilesystemStorage();
-        db = await fileStorage.load(path);
+    //     c = await ContextUtil.run();
+    //     exit_message = 'Testing use prompts';
+    //     fs.open(path, 'w', err => {
+    //       if (err) {
+    //         console.log(err);
+    //         return;
+    //       }
+    //     });
+    //     fileStorage = new FilesystemStorage();
+    //     db = await fileStorage.load(path);
 
 
 
-      })
+    //   })
 
 
 
 
-      describe('empty list suggestions', async function () {
+    //   describe('empty list suggestions', async function () {
 
 
-        it('empty list suggestions, options = None', async function () {
-          original = Object.entries(db).length;
-          result = new InquirerPrompts(c, exit_message, 'he', db).constructSuggestions('he');
-          expect(result.length).to.equal(0);
+    //     it('empty list suggestions, options = None', async function () {
+    //       original = Object.entries(db).length;
+    //       result = new InquirerPrompts(c, exit_message, 'he', db).constructSuggestions('he');
+    //       expect(result.length).to.equal(0);
 
 
-          createPrompts(result, 'Did you mean?', 0);
-          expect(await prompt([
-            {
-              name: 'promptAnswer',
-              message: 'Did you mean?',
-              type: 'list',
-              choices: [
-                { name: 'Continue without using', value: 'Continue without using' }
-              ]
-            }
-          ])).to.contain('inquirer was mocked and used without pending assertions')
-          expect(original).to.eql(Object.entries(db).length);
-        });
+    //       createPrompts(result, 'Did you mean?', 0);
+    //       expect(await prompt([
+    //         {
+    //           name: 'promptAnswer',
+    //           message: 'Did you mean?',
+    //           type: 'list',
+    //           choices: [
+    //             { name: 'Continue without using', value: 'Continue without using' }
+    //           ]
+    //         }
+    //       ])).to.contain('inquirer was mocked and used without pending assertions')
+    //       expect(original).to.eql(Object.entries(db).length);
+    //     });
 
 
-        it('empty list suggestions, options = "he" prefix', async function () {
+    //     it('empty list suggestions, options = "he" prefix', async function () {
 
-          original = Object.entries(db).length;
+    //       original = Object.entries(db).length;
 
-          result = new InquirerPrompts(c, exit_message, 'he', db).constructSuggestions('he');
-          expect(result.length).to.equal(0);
+    //       result = new InquirerPrompts(c, exit_message, 'he', db).constructSuggestions('he');
+    //       expect(result.length).to.equal(0);
 
-          createPrompts(result, 'Did you mean?', 0);
-          expect(await prompt([
-            {
-              name: 'promptAnswer',
-              message: 'Did you mean?',
-              type: 'list',
-              choices: [
-                { name: 'hello2', value: 'hello2' },
-                { name: 'hello1', value: 'hello1' },
-                { name: 'hello', value: 'hello' },
-                { name: 'Continue without using', value: 'Continue without using' }
-              ]
-            }
-          ])).to.contain('inquirer was mocked and used without pending assertions')
+    //       createPrompts(result, 'Did you mean?', 0);
+    //       expect(await prompt([
+    //         {
+    //           name: 'promptAnswer',
+    //           message: 'Did you mean?',
+    //           type: 'list',
+    //           choices: [
+    //             { name: 'hello2', value: 'hello2' },
+    //             { name: 'hello1', value: 'hello1' },
+    //             { name: 'hello', value: 'hello' },
+    //             { name: 'Continue without using', value: 'Continue without using' }
+    //           ]
+    //         }
+    //       ])).to.contain('inquirer was mocked and used without pending assertions')
 
-          expect(original).to.eql(Object.entries(db).length);
-        });
-      })
+    //       expect(original).to.eql(Object.entries(db).length);
+    //     });
+    //   })
 
 
 
-      describe('check with non-empty list, sugesstions exists', async function () {
+    //   describe('check with non-empty list, sugesstions exists', async function () {
 
 
-        it('testing with prefix "he", value = yes', async function () {
+    //     it('testing with prefix "he", value = yes', async function () {
 
-          db['hello'] = 'world';
-          db['hello1'] = 'world1';
-          db['hello2'] = 'world2';
-          db['aelong'] = 'eworld1';
-          db['aetong'] = 'eworld2';
+    //       db['hello'] = 'world';
+    //       db['hello1'] = 'world1';
+    //       db['hello2'] = 'world2';
+    //       db['aelong'] = 'eworld1';
+    //       db['aetong'] = 'eworld2';
 
-          original = Object.entries(db).length;
+    //       original = Object.entries(db).length;
 
-          result = new InquirerPrompts(c, exit_message, 'he', db).constructSuggestions('he');
-          expect(result.length).to.equal(3);
+    //       result = new InquirerPrompts(c, exit_message, 'he', db).constructSuggestions('he');
+    //       expect(result.length).to.equal(3);
 
-          createPrompts(result, 'Did you mean?', 0);
+    //       createPrompts(result, 'Did you mean?', 0);
 
-          const answers = await prompt([
-            {
-              name: 'promptAnswer',
-              message: 'Did you mean?',
-              type: 'list',
-              choices: [
-                { name: 'hello2', value: 'hello2' },
-                { name: 'hello1', value: 'hello1' },
-                { name: 'hello', value: 'hello' },
-                { name: 'Continue without using', value: 'Continue without using' }
-              ]
-            }
-          ])
+    //       const answers = await prompt([
+    //         {
+    //           name: 'promptAnswer',
+    //           message: 'Did you mean?',
+    //           type: 'list',
+    //           choices: [
+    //             { name: 'hello2', value: 'hello2' },
+    //             { name: 'hello1', value: 'hello1' },
+    //             { name: 'hello', value: 'hello' },
+    //             { name: 'Continue without using', value: 'Continue without using' }
+    //           ]
+    //         }
+    //       ])
 
-          expect(Object.entries(answers)[0][1]).to.equal('hello2')
+    //       expect(Object.entries(answers)[0][1]).to.equal('hello2')
 
-          expect(original).to.eql(Object.entries(db).length);
-          expect(Object.entries(db)[2][0]).to.contain('hello2');
-          expect(await fileStorage.save(db, path));
+    //       expect(original).to.eql(Object.entries(db).length);
+    //       expect(Object.entries(db)[2][0]).to.contain('hello2');
+    //       expect(await fileStorage.save(db, path));
 
-        })
+    //     })
 
 
 
-        it('testing with prefix "he", value = no ', async function () {
+    //     it('testing with prefix "he", value = no ', async function () {
 
-          result = new InquirerPrompts(c, exit_message, 'he', db).constructSuggestions('he');
-          expect(result.length).to.equal(3);
-          original = Object.entries(db).length;
-          createPrompts(result, 'Did you mean?', 2);
+    //       result = new InquirerPrompts(c, exit_message, 'he', db).constructSuggestions('he');
+    //       expect(result.length).to.equal(3);
+    //       original = Object.entries(db).length;
+    //       createPrompts(result, 'Did you mean?', 2);
 
-          const answers = await prompt([
-            {
-              name: 'promptAnswer',
-              message: 'Did you mean?',
-              type: 'list',
-              choices: [
-                { name: 'hello2', value: 'hello2' },
-                { name: 'hello1', value: 'hello1' },
-                { name: 'hello', value: 'hello' },
-                { name: 'Continue without using', value: 'Continue without using' }
-              ]
-            }
-          ])
+    //       const answers = await prompt([
+    //         {
+    //           name: 'promptAnswer',
+    //           message: 'Did you mean?',
+    //           type: 'list',
+    //           choices: [
+    //             { name: 'hello2', value: 'hello2' },
+    //             { name: 'hello1', value: 'hello1' },
+    //             { name: 'hello', value: 'hello' },
+    //             { name: 'Continue without using', value: 'Continue without using' }
+    //           ]
+    //         }
+    //       ])
 
-          expect(original).to.eql(Object.entries(db).length);
+    //       expect(original).to.eql(Object.entries(db).length);
 
-        })
+    //     })
 
 
-        it('testing with prefix "ae", value = yes ', async function () {
+    //     it('testing with prefix "ae", value = yes ', async function () {
 
-          original = Object.entries(db).length;
+    //       original = Object.entries(db).length;
 
-          result = new InquirerPrompts(c, exit_message, 'ae', db).constructSuggestions('ae');
-          expect(result.length).to.equal(2);
+    //       result = new InquirerPrompts(c, exit_message, 'ae', db).constructSuggestions('ae');
+    //       expect(result.length).to.equal(2);
 
-          createPrompts(result, 'Did you mean?', 1);
+    //       createPrompts(result, 'Did you mean?', 1);
 
-          const answers = await prompt([
-            {
-              name: 'promptAnswer',
-              message: 'Did you mean?',
-              type: 'list',
-              choices: [
+    //       const answers = await prompt([
+    //         {
+    //           name: 'promptAnswer',
+    //           message: 'Did you mean?',
+    //           type: 'list',
+    //           choices: [
 
-                { name: 'aetong', value: 'aetong' },
-                { name: 'aelong', value: 'aelong' },
-                { name: 'Continue without using', value: 'Continue without using' }
-              ]
-            }
-          ])
+    //             { name: 'aetong', value: 'aetong' },
+    //             { name: 'aelong', value: 'aelong' },
+    //             { name: 'Continue without using', value: 'Continue without using' }
+    //           ]
+    //         }
+    //       ])
 
-          expect(Object.entries(answers)[0][1]).to.equal('aelong')
+    //       expect(Object.entries(answers)[0][1]).to.equal('aelong')
 
 
 
-          expect(original).to.eql(Object.entries(db).length);
-          expect(Object.entries(db)[3][0]).to.contain('aelong');
-          expect(await fileStorage.save(db, path));
+    //       expect(original).to.eql(Object.entries(db).length);
+    //       expect(Object.entries(db)[3][0]).to.contain('aelong');
+    //       expect(await fileStorage.save(db, path));
 
-        })
+    //     })
 
 
-        it('testing with prefix "yu", value = no ', async function () {
+    //     it('testing with prefix "yu", value = no ', async function () {
 
-          original = Object.entries(db).length;
+    //       original = Object.entries(db).length;
 
-          result = new InquirerPrompts(c, exit_message, 'yu', db).constructSuggestions('yu');
-          expect(result.length).to.equal(0);
+    //       result = new InquirerPrompts(c, exit_message, 'yu', db).constructSuggestions('yu');
+    //       expect(result.length).to.equal(0);
 
-          createPrompts(result, 'Did you mean?', 3);
+    //       createPrompts(result, 'Did you mean?', 3);
 
-          expect(await prompt([
-            {
-              name: 'promptAnswer',
-              message: 'Did you mean?',
-              type: 'list',
-              choices: [
-                { name: 'Continue without using', value: 'Continue without using' }
-              ]
-            }
-          ])).to.contain('inquirer was mocked and used without pending assertions')
+    //       expect(await prompt([
+    //         {
+    //           name: 'promptAnswer',
+    //           message: 'Did you mean?',
+    //           type: 'list',
+    //           choices: [
+    //             { name: 'Continue without using', value: 'Continue without using' }
+    //           ]
+    //         }
+    //       ])).to.contain('inquirer was mocked and used without pending assertions')
 
 
-          expect(original).to.eql(Object.entries(db).length);
-          expect(await fileStorage.save(db, path));
-        })
+    //       expect(original).to.eql(Object.entries(db).length);
+    //       expect(await fileStorage.save(db, path));
+    //     })
 
 
-      })
+    //   })
 
 
 
 
 
-      after(async function () {
+    //   after(async function () {
 
-        fs.unlink(path, err => {
-          if (err) {
-            console.log(err);
-            return;
-          }
-        });
-      });
+    //     fs.unlink(path, err => {
+    //       if (err) {
+    //         console.log(err);
+    //         return;
+    //       }
+    //     });
+    //   });
 
 
 
-      function createPrompts(suggestions, message, index) {
+    //   function createPrompts(suggestions, message, index) {
 
-        if (suggestions.length == 0) {
-          return 'Continue without using';
-        }
+    //     if (suggestions.length == 0) {
+    //       return 'Continue without using';
+    //     }
 
-        suggestions.push('Continue without using');
-        expectPrompts([
+    //     suggestions.push('Continue without using');
+    //     expectPrompts([
 
-          {
-            message: message,
-            choices: suggestions,
-            choose: index
-          }
-        ])
+    //       {
+    //         message: message,
+    //         choices: suggestions,
+    //         choose: index
+    //       }
+    //     ])
 
-        return suggestions[index];
+    //     return suggestions[index];
 
-      }
+    //   }
 
-    })
+    // })
 
 
     describe('Use an alias without name', () => {

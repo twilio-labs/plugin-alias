@@ -150,12 +150,14 @@ describe('Tests for deleting alias', () => {
                     db['hello'] = 'world';
                     db['hello1'] = 'world1';
                     db['hello2'] = 'world2';
+                    db['jello'] = 'world';
                     db['aelong'] = 'eworld1';
                     db['aetong'] = 'eworld2';
 
                     original = Object.entries(db).length;
 
                     result = new InquirerPrompts(c, exit_message, 'he', db).constructSuggestions('he');
+
                     expect(result.length).to.equal(3);
 
                     createPrompts(result, 'Did you mean?', 0);
@@ -166,19 +168,19 @@ describe('Tests for deleting alias', () => {
                             message: 'Did you mean?',
                             type: 'list',
                             choices: [
-                                { name: 'hello2', value: 'hello2' },
-                                { name: 'hello1', value: 'hello1' },
                                 { name: 'hello', value: 'hello' },
+                                { name: 'hello1', value: 'hello1' },
+                                { name: 'hello2', value: 'hello2' },
                                 { name: 'Continue without deleting', value: 'Continue without deleting' }
                             ]
                         }
                     ])
 
-                    expect(Object.entries(answers)[0][1]).to.equal('hello2')
+                    expect(Object.entries(answers)[0][1]).to.equal('hello')
 
-                    delete db['hello2'];
+                    delete db['hello'];
                     expect(original - 1).to.eql(Object.entries(db).length);
-                    expect(Object.entries(db)).to.not.contain('hello2');
+                    expect(Object.entries(db)).to.not.contain('hello');
                     expect(await fileStorage.save(db, path));
                 })
 
@@ -187,9 +189,10 @@ describe('Tests for deleting alias', () => {
                 it('testing with prefix "he", value = no ', async function () {
 
                     result = new InquirerPrompts(c, exit_message, 'he', db).constructSuggestions('he');
-                    expect(result.length).to.equal(2);
+                    expect(result.length).to.equal(3);
+
                     original = Object.entries(db).length;
-                    createPrompts(result, 'Did you mean?', 2);
+                    createPrompts(result, 'Did you mean?', 3);
 
                     const answers = await prompt([
                         {
@@ -198,11 +201,13 @@ describe('Tests for deleting alias', () => {
                             type: 'list',
                             choices: [
                                 { name: 'hello1', value: 'hello1' },
-                                { name: 'hello', value: 'hello' },
+                                { name: 'hello2', value: 'hello2' },
+                                { name: 'jello', value: 'jello' },
                                 { name: 'Continue without deleting', value: 'Continue without deleting' }
                             ]
                         }
                     ])
+
 
                     expect(original).to.eql(Object.entries(db).length);
                     expect(Object.entries(answers)[0][1]).to.equal('Continue without deleting')
@@ -215,7 +220,7 @@ describe('Tests for deleting alias', () => {
                     original = Object.entries(db).length;
 
                     result = new InquirerPrompts(c, exit_message, 'ae', db).constructSuggestions('ae');
-                    expect(result.length).to.equal(2);
+                    expect(result.length).to.equal(3);
 
                     createPrompts(result, 'Did you mean?', 1);
 
@@ -226,48 +231,25 @@ describe('Tests for deleting alias', () => {
                             type: 'list',
                             choices: [
 
-                                { name: 'aetong', value: 'aetong' },
                                 { name: 'aelong', value: 'aelong' },
+                                { name: 'aetong', value: 'aetong' },
+                                { name: 'jello', value: 'jello' },
                                 { name: 'Continue without deleting', value: 'Continue without deleting' }
                             ]
                         }
                     ])
 
-                    expect(Object.entries(answers)[0][1]).to.equal('aelong')
+                    expect(Object.entries(answers)[0][1]).to.equal('aetong')
 
 
-                    delete db['aelong'];
+                    delete db['aetong'];
                     expect(original - 1).to.eql(Object.entries(db).length);
-                    expect(Object.entries(db)).to.not.contain('aelong');
+                    expect(Object.entries(db)).to.not.contain('aetong');
                     expect(await fileStorage.save(db, path));
 
                 })
 
 
-                it('testing with prefix "yu", value = no ', async function () {
-
-                    original = Object.entries(db).length;
-
-                    result = new InquirerPrompts(c, exit_message, 'yu', db).constructSuggestions('yu');
-                    expect(result.length).to.equal(0);
-
-                    createPrompts(result, 'Did you mean?', 3);
-
-                    expect(await prompt([
-                        {
-                            name: 'promptAnswer',
-                            message: 'Did you mean?',
-                            type: 'list',
-                            choices: [
-                                { name: 'Continue without deleting', value: 'Continue without deleting' }
-                            ]
-                        }
-                    ])).to.contain('inquirer was mocked and used without pending assertions')
-
-
-                    expect(original).to.eql(Object.entries(db).length);
-                    expect(await fileStorage.save(db, path));
-                })
 
 
             })

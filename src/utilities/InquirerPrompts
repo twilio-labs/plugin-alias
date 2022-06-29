@@ -1,6 +1,9 @@
 
 const Trie = require('./TrieClass/Trie');
+var distance = require('jaro-winkler');
 const inquirer = require('inquirer');
+const num_of_suggestions = 3
+
 class InquirerPrompts {
     constructor(context, exit_message, userAlias, db) {
         this.ctx = context;
@@ -13,7 +16,7 @@ class InquirerPrompts {
 
     async findSuggestions() {
         const commandIDs = Object.keys(this.db)
-        console.log('hello use');
+
 
         if (commandIDs.length === 0)
             return this.exit_message;
@@ -47,14 +50,32 @@ class InquirerPrompts {
 
     constructSuggestions(userAlias) {
 
+        const commandIDs = Object.keys(this.db)
 
-        let trie = new Trie();
+        // let trie = new Trie();
 
-        for (let alias in this.db) {
-            trie.insert(alias);
-        }
-        const suggestions = trie.find(userAlias);
-        return suggestions
+        // for (let alias in this.db) {
+        //     trie.insert(alias);
+        // }
+        // const suggestions = trie.find(userAlias);
+        // return suggestions
+
+        commandIDs.sort(function distance_comparator(cmd1, cmd2) {
+
+            const dist_cmd1 = distance(userAlias, cmd1);
+            const dist_cmd2 = distance(userAlias, cmd2);
+            if (dist_cmd1 < dist_cmd2)
+                return 1;
+            else if (dist_cmd1 > dist_cmd2)
+                return -1;
+            else
+                return 0;
+        });
+
+
+        const suggestions = commandIDs.slice(0, num_of_suggestions);
+
+        return suggestions;
     }
 
 }

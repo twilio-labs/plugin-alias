@@ -9,6 +9,7 @@
     "@oclif/config": "^1.15.1",
     "@oclif/core": "1.9.0",
     "inquirer": "8.2.4",
+    "jaro-winkler": "0.2.8",
     "omelette": "0.4.17"
   },
   "devDependencies": {
