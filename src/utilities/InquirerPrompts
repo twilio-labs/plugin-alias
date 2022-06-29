@@ -47,14 +47,13 @@ class InquirerPrompts {
 
     constructSuggestions(userAlias) {
 
+
         let trie = new Trie();
 
         for (let alias in this.db) {
             trie.insert(alias);
         }
-
         const suggestions = trie.find(userAlias);
-
         return suggestions
     }
 
