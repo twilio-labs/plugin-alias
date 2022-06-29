@@ -5,31 +5,26 @@ const inquirer = require('inquirer');
 const num_of_suggestions = 3
 
 class InquirerPrompts {
-    constructor(context, exit_message, userAlias, db) {
-        this.ctx = context;
-        this.userAlias = userAlias;
-        this.exit_message = exit_message;
-        this.db = db;
-
+    constructor() {
+        
     }
 
 
-    async findSuggestions() {
-        const commandIDs = Object.keys(this.db)
-
+    async findSuggestions(exit_message, userAlias, db) {
+        const commandIDs = Object.keys(db)
 
         if (commandIDs.length === 0)
-            return this.exit_message;
+            return exit_message;
 
 
-        const suggestions = this.constructSuggestions(this.userAlias);
+        const suggestions = this.constructSuggestions(userAlias, db);
 
         if (suggestions.length === 0) {
-            return this.exit_message;
+            return exit_message;
         }
 
-        suggestions.push(this.exit_message);
-        let result = this.exit_message;
+        suggestions.push(exit_message);
+        let result = exit_message;
         await inquirer
             .prompt([
                 {
@@ -37,7 +32,7 @@ class InquirerPrompts {
                     name: 'promptAnswer',
                     message: 'Did you mean?',
                     choices: suggestions,
-                    default: this.exit_message
+                    default: exit_message
                 },
             ])
             .then(answers => {
@@ -48,18 +43,9 @@ class InquirerPrompts {
         return result;
     }
 
-    constructSuggestions(userAlias) {
+    constructSuggestions(userAlias, db) {
 
-        const commandIDs = Object.keys(this.db)
-
-        // let trie = new Trie();
-        // change in comment
-
-        // for (let alias in this.db) {
-        //     trie.insert(alias);
-        // }
-        // const suggestions = trie.find(userAlias);
-        // return suggestions
+        const commandIDs = Object.keys(db)
 
         commandIDs.sort(function distance_comparator(cmd1, cmd2) {
 
