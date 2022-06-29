@@ -63,13 +63,13 @@ USAGE
 
 # Commands
 <!-- commands -->
-* [`twilio alias:setup`](#twilio-aliasSetup)
-* [`twilio alias:add`](#twilio-aliasAdd)
-* [`twilio alias:delete`](#twilio-aliasDelete)
-* [`twilio alias:use`](#twilio-aliasUse)
-* [`twilio alias:list`](#twilio-aliasList)
-* [`twilio alias:import`](#twilio-aliasImport)
-* [`twilio alias:export`](#twilio-aliasExport)
+* [`twilio alias:setup`](#twilio-aliassetup)
+* [`twilio alias:add`](#twilio-aliasadd)
+* [`twilio alias:delete`](#twilio-aliasdelete)
+* [`twilio alias:use`](#twilio-aliasuse)
+* [`twilio alias:list`](#twilio-aliaslist)
+* [`twilio alias:import`](#twilio-aliasimport)
+* [`twilio alias:export`](#twilio-aliasexport)
 
 <!-- Setup Command -->
 
@@ -97,14 +97,14 @@ Create a new alias to access Twilio CLI commands
 
 ```
 USAGE
-  $ twilio alias:add
+  $ twilio alias:add [name] [command]
 
 ARGUMENTS
-  name  						   Name of the alias shorthand
+  name  				   Name of the alias shorthand
   command            			   Command to shorthand
 
 OPTIONS
-  -f, --force           			Overwrite already present alias
+  -f, --force           		   Overwrite already present alias
 
 EXAMPLE
   $ twilio alias:add plist profiles:list
@@ -117,58 +117,57 @@ _See code: [src/commands/alias/add.js](https://github.com/Kavya-24/plugin-alias/
 
 ## `twilio alias:delete`
 
-Delete aliases
-
+Delete an alias
 ```
 USAGE
-	$ twilio alias:delete
-
+  $ twilio alias:delete [name]
 
 ARGUMENTS
-	name : Name of the alias shorthand
+  name  				   Name of the alias shorthand
 
-
-DESCRIPTION
-	This command is used to delete favorite aliases
+EXAMPLE
+  $ twilio alias:delete plist
+  Successfully deleted alias plist
 ```
 
 _See code: [src/commands/alias/delete.js](https://gitshub.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/delete.js)_
 
-  <br>
-  
 <!-- Use Command -->
+
 ## `twilio alias:use`
-Use aliases
+Use an alias for a Twilio CLI command
 
 ```
 USAGE
-	$ twilio alias:use
+  $ twilio alias:use [name]
 
+ALIAS
+  $ twilio use [name]
 
 ARGUMENTS
-	name : Name of the alias shorthand to use
+  name  				   Name of the alias shorthand
 
-DESCRIPTION
-	This command is used to use an alias shorthand
+EXAMPLE
+  $ twilio alias:use plist
+  Using the command profiles:list from alias plist
+  <Output of profiles:list>
 ```
 
 _See code: [src/commands/alias/use.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/use.js)_
-
-<br>
 
 <!-- List Command -->
 
 ## `twilio alias:list`
 
-List aliases
+View the aliases
 
 ```
 USAGE
-	$ twilio alias:list
+  $ twilio alias:list
 
-
-DESCRIPTION
-	This command is used to list all the aliases
+EXAMPLE
+  $ twilio alias:list
+  <Lists all the aliases stored>
 ```
 
 _See code: [src/commands/alias/list.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/list.js)_
@@ -177,14 +176,17 @@ _See code: [src/commands/alias/list.js](https://github.com/Kavya-24/plugin-alias
 
 ## `twilio alias:import`
 
-Import an alias file
-
+Import aliases from a file
 ```
 USAGE
-	$ twilio alias:import
+  $ twilio alias:import [filepath]
 
-DESCRIPTION
-	This command is used to import an alias file
+ARGUMENTS
+  filepath  				   Path of the alias file
+
+EXAMPLE
+  $ twilio alias:import ./aliasfile.json
+  Successfully imported aliases from file ./aliasfile.json
 ```
 
 _See code: [src/commands/alias/import.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/import.js)_
@@ -198,13 +200,12 @@ Export the aliases
 
 ```
 USAGE
-	$ twilio alias:export
+  $ twilio alias:export
 
-DESCRIPTION
-	This command is used to export aliases
+EXAMPLE
+  $ twilio alias:export
+  Successfully exported aliases to file ./dataexport.json
 ```
-
 _See code: [src/commands/alias/export.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/export.js)_
-<br>
 
 <!-- commandsstop -->
