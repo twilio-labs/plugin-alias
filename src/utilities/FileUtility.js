@@ -118,7 +118,7 @@ class FileUtility {
 
     setupIncompleteWarning() {
         const AUTOCOMLETE_ALERT = `If you are running alias command for the first time, please run the following setup command to initiate the plugin setup: \n 
-      '${chalk.bold('oclif-example alias:setup')}'`;
+      '${chalk.bold('twilio alias:setup')}'`;
         return console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
     }
 
@@ -137,7 +137,7 @@ class FileUtility {
                 proceed.move = true;
             }
             else {
-                console.log('setup already complete');
+                console.log('Setup already complete');
                 proceed.move = false;
             }
         }

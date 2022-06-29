@@ -75,6 +75,6 @@ Import.args = [
 ];
 
 
-Import.description = 'import aliases';
+Import.description = 'Import aliases from a file';
 Import.storage = new FilesystemStorage();
 module.exports = Import;

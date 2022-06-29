@@ -55,7 +55,7 @@ class Use extends AliasBaseCommand {
 
 }
 
-Use.description = 'use an alias in working';
+Use.description = 'Use an alias for a Twilio CLI command';
 Use.storage = new FilesystemStorage();
 Use.aliases = ['use'];
 

@@ -38,11 +38,11 @@ class Setup extends AliasBaseCommand {
     try {
       const db = await Setup.storage.load(aliasFilePath);
       await Setup.storage.save(db, aliasFilePath);
-      console.log('setup complete');
+      console.log('Setup complete');
 
     } catch (err) {
 
-      console.log('setup incomplete');
+      console.log('Setup incomplete');
       return;
     }
 
@@ -54,6 +54,6 @@ class Setup extends AliasBaseCommand {
 
 
 Setup.id = 'alias:setup'
-Setup.description = 'set up aliases for your favorite Twilio commands';
+Setup.description = 'Setup local directory for storing aliases';
 Setup.storage = new FilesystemStorage();
 module.exports = Setup;
