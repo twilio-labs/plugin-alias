@@ -64,12 +64,19 @@ class InquirerPrompts {
 
             const dist_cmd1 = distance(userAlias, cmd1);
             const dist_cmd2 = distance(userAlias, cmd2);
-            if (dist_cmd1 < dist_cmd2)
-                return 1;
-            else if (dist_cmd1 > dist_cmd2)
+            if (dist_cmd1 > dist_cmd2)
                 return -1;
+            else if (dist_cmd1 < dist_cmd2)
+                return 1;
             else
-                return 0;
+            {
+                if (cmd1.length < cmd2.length)
+                    return -1;
+                else if (cmd1.length > cmd2.length)
+                    return 1;
+                else
+                    return 0;
+            }
         });
 
 
