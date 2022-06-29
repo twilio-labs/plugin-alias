@@ -34,7 +34,7 @@ See the [Twilio CLI documentation](https://www.twilio.com/docs/twilio-cli/quicks
 The following step will install the plugin from [NPM](https://www.npmjs.com/package/@twilio-labs/plugin-alias) and is recommended if you are interested in trying out the [commands](#commands) in the latest release.
 
 ```sh-session
-$ twilio plugins:install @twilio-labs/plugin-rtc
+$ twilio plugins:install @twilio-labs/plugin-alias
 ```
 
 ### Install the plugin for local development
