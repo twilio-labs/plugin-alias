@@ -62,24 +62,15 @@ USAGE
 ```
 
 # Commands
-
 <!-- commands -->
+* [`twilio alias:setup`](#twilio-aliasSetup)
+* [`twilio alias:add`](#twilio-aliasAdd)
+* [`twilio alias:delete`](#twilio-aliasDelete)
+* [`twilio alias:use`](#twilio-aliasUse)
+* [`twilio alias:list`](#twilio-aliasList)
+* [`twilio alias:import`](#twilio-aliasImport)
+* [`twilio alias:export`](#twilio-aliasExport)
 
-- [`twilio alias:setup`](#twilio-aliasSetup)
-
-- [`twilio alias:add`](#twilio-aliasAdd)
-
-- [`twilio alias:delete`](#twilio-aliasDelete)
-
-- [`twilio alias:use`](#twilio-aliasUse)
-
-- [`twilio alias:list`](#twilio-aliasList)
-
-- [`twilio alias:import`](#twilio-aliasImport)
-
-- [`twilio alias:export`](#twilio-aliasExport)
-
-  <br>
 <!-- Setup Command -->
 
 ## `twilio alias:setup`
