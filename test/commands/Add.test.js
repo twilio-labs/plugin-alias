@@ -1,6 +1,6 @@
 const { expect, test } = require('@oclif/test')
 const MemoryStorage = require('../../src/utilities/FileSnapshot/MemoryStorage.js')
-const Add = require('../../src/commands/alias/add')
+const Add = require('../../src/commands/alias/add.js')
 const FileUtil = require('../../src/utilities/FileUtility')
 
 describe('Tests for adding alias', () => {

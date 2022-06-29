@@ -1,6 +1,6 @@
 const { expect, test, assert } = require('@oclif/test')
 const MemoryStorage = require('../../src/utilities/FileSnapshot/MemoryStorage.js')
-const Export = require('../../src/commands/alias/export')
+const Export = require('../../src/commands/alias/export.js')
 const FileUtil = require('../../src/utilities/FileUtility')
 const fs = require('fs');
 const FilesystemStorage = require('../../src/utilities/FileSnapshot/FilesystemStorage')

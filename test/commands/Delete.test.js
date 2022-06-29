@@ -1,7 +1,7 @@
 const { expect, test } = require('@oclif/test')
 const MemoryStorage = require('../../src/utilities/FileSnapshot/MemoryStorage.js')
 const InquirerPrompts = require('../../src/utilities/InquirerPrompts')
-const Delete = require('../../src/commands/alias/delete')
+const Delete = require('../../src/commands/alias/delete.js')
 const FileUtil = require('../../src/utilities/FileUtility')
 const inquirer = require('inquirer');
 const ContextUtil = require('../../src/utilities/ContextUtility')
