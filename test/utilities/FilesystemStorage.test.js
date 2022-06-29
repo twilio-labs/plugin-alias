@@ -6,7 +6,6 @@ const FileUtil = require('../../src/utilities/FileUtility')
 const fs = require('fs');
 
 
-
 describe('Test for FilesystemStorage', function () {
 
     const filename = 'testdata.json';
