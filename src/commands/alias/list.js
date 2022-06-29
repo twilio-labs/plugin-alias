@@ -16,9 +16,8 @@ class List extends AliasBaseCommand {
     if (this.argv.length > 0) {
 
       var args = "";
-      for(var arg in this.argv)
-      {
-        args += "'"+this.argv[arg] + "' ";
+      for (var arg in this.argv) {
+        args += "'" + this.argv[arg] + "' ";
       }
       console.log(`Invalid argument ${args}provided`);
       return;
@@ -27,16 +26,16 @@ class List extends AliasBaseCommand {
 
     const aliasFilePath = new FileUtil(this).getAliasFilePath();
     if (new FileUtil(this).pathExists(aliasFilePath)) {
-      
+
       const db = await List.storage.load(aliasFilePath);
       var output = "Alias\tCommand"
 
       for (let alias in db) {
         output += `\n${alias}\t${db[alias]}`;
       }
-      
+
       console.log(output)
-  	   	
+
     }
 
     else {
@@ -51,7 +50,7 @@ class List extends AliasBaseCommand {
 }
 
 List.description = 'view twilio aliases';
-List.id = 'alias:List';
+List.id = 'alias:list';
 List.storage = new FilesystemStorage();
 
 module.exports = List;

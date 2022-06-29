@@ -1,6 +1,10 @@
 /*eslint-env es6*/
 const FilesystemStorage = require('./FileSnapshot/FilesystemStorage');
 const chalk = require('chalk');
+const InquirerPrompts = require('./InquirerPrompts');
+
+
+
 
 class FileUtility {
 
@@ -8,11 +12,11 @@ class FileUtility {
         this.ctx = context
     }
 
-    extractAlias(userAlias, aliasFilePath,db) {
-        
+    extractAlias(userAlias, aliasFilePath, db) {
+
         if (this.pathExists(aliasFilePath)) {
-    
-            return this.parseData(userAlias, aliasFilePath,db);
+
+            return this.parseData(userAlias, aliasFilePath, db);
 
         }
 
@@ -31,10 +35,10 @@ class FileUtility {
 
     parseData(userAlias, aliasFilePath, db) {
 
-        if(db[userAlias]){
+        if (db[userAlias]) {
             return { "command": db[userAlias], "index": 0 };
         }
-        else{
+        else {
             return { "command": 'no-alias', "index": -1 };
         }
 
@@ -43,72 +47,79 @@ class FileUtility {
 
     async updateData(userAlias, userCommand, hasFlag, operation, db, aliasFilePath) {
 
-        
+
         try {
-            // const aliasFilePath =  this.getAliasFilePath();
-            // const db = await FileUtility.storage.load(aliasFilePath);
-            const exist_util = this.extractAlias(userAlias, aliasFilePath,db);
+
+            const exist_util = this.extractAlias(userAlias, aliasFilePath, db);
             const aliasIndex = exist_util["index"];
 
             //This will never run for snapshot based memory reference
-            if(aliasIndex == -2){
-               return this.setupIncompleteWarning();
+            if (aliasIndex == -2) {
+                return this.setupIncompleteWarning();
             }
 
-            
-            
+
+
             else if (aliasIndex == -1) {
-          
+
                 //no alias exists. Add is operation is Add, else show error for delete
-                if(operation == 'alias:Add'){
-                    
+                if (operation == 'alias:add') {
+
                     db[userAlias] = userCommand;
-                    
+
                 }
-                else if(operation == 'alias:Delete'){
-                    console.log('alias does not exist');
+                else if (operation == 'alias:delete') {
+                    const exit_message = 'Continue without deleting'
+                    const result = await new InquirerPrompts(this.ctx, exit_message, userAlias, db).findSuggestions();
+
+                    if (result === exit_message) {
+                        console.warn(`${userAlias} is not a ${this.ctx.config.bin} command.`);
+                    }
+                    else {
+                        delete db[result];
+                    }
+
                 }
 
-             }else {
-                
-                
-                if(operation == 'alias:Add'){
+            } else {
 
-                    
-                    if(db[userAlias] === 'null' || hasFlag){
+
+                if (operation == 'alias:add') {
+
+
+                    if (db[userAlias] === 'null' || hasFlag) {
                         db[userAlias] = userCommand;
                     }
                     else {
                         console.log(`alias already exists for command "${db[userAlias]}". Consider adding -f for overwriting`);
                     }
-                        
-                        
+
+
                 }
-                else if(operation == 'alias:Delete'){
-                    
+                else if (operation == 'alias:delete') {
+
                     delete db[userAlias];
 
                 }
-                
-              }
-          
-              //await FileUtility.storage.save(db, aliasFilePath);
-              return db;
-                
-              
-      
-          } catch (err) {
-            
+
+            }
+
+            return db;
+
+
+
+        } catch (err) {
+            console.log(err);
             console.log('unable to load file');
 
-          }
+        }
 
     }
 
     setupIncompleteWarning() {
-      const AUTOCOMLETE_ALERT = `If you are running alias command for the first time, please run the following setup command to initiate the plugin setup: \n 
-      '${chalk.bold('oclif-example alias:Setup')}'`;
-      return console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
+        const AUTOCOMLETE_ALERT = `If you are running alias command for the first time, please run the following setup command to initiate the plugin setup: \n 
+      '${chalk.bold('oclif-example alias:setup')}'`;
+        return console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
     }
 
     pathExists(path) {
@@ -122,33 +133,35 @@ class FileUtility {
     createFolderIfDoesNotExists(folderPath, proceed) {
         try {
             if (!this.pathExists(folderPath)) {
-              FileUtility.storage.makeDirectory(folderPath);
-              proceed.move = true;
+                FileUtility.storage.makeDirectory(folderPath);
+                proceed.move = true;
             }
             else {
-              console.log('setup already complete');
-              proceed.move = false;
+                console.log('setup already complete');
+                proceed.move = false;
             }
-          }
-          catch (err) {
+        }
+        catch (err) {
             console.log(err);
             proceed.move = false;
-          }
+        }
     }
 
     copyFileToDestination(sourcePath, destPath, mode) {
         try {
-             FileUtility.storage.copyFile(sourcePath, destPath, mode);
-             return true;
-          } catch (err) {
+            FileUtility.storage.copyFile(sourcePath, destPath, mode);
+            return true;
+        } catch (err) {
             console.log(err);
             return false;
-          }
+        }
     }
 
     removeDirectory(dir) {
         FileUtility.storage.removeDirectory(dir);
     }
+
+
 
 }
 

@@ -2,6 +2,7 @@ const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const FileUtil = require('../../utilities/FileUtility.js');
 const CommandUtil = require('../../utilities/CommandUtility.js');
 const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
+const InquirerPrompts = require('../../utilities/InquirerPrompts')
 
 class Use extends AliasBaseCommand {
 
@@ -29,6 +30,17 @@ class Use extends AliasBaseCommand {
       //Setup incomplete
       new FileUtil(this).setupIncompleteWarning();
       return;
+    }
+    else if (exist_util["index"] == -1) {
+      const exit_message = 'Continue without using'
+      const result = await new InquirerPrompts(this, exit_message, supposedAlias, db).findSuggestions();
+
+      if (result === exit_message) {
+        // console.warn(`${userAlias} is not a ${this.ctx.config.bin} command.`);
+      }
+      else {
+        commandToRun = db[result];
+      }
     }
 
     else if (exist_util["index"] >= 0) {

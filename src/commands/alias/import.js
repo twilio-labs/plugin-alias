@@ -17,12 +17,12 @@ class Import extends AliasBaseCommand {
     if (this.validateArguments(args)) {
 
       const aliasFilePath = new FileUtil(this).getAliasFilePath();
-      
+
       if (new FileUtil(this).pathExists(aliasFilePath)) {
         const destFile = args["dest"];
         const ans = new FileUtil(this).copyFileToDestination(destFile, aliasFilePath, "import");
-        
-        if(ans)
+
+        if (ans)
           console.log("Import Completed")
       }
 
@@ -45,7 +45,7 @@ class Import extends AliasBaseCommand {
     } catch (err) {
       console.log(err);
     }
-    
+
     if (userPath == undefined) {
       console.log('please add the path of the alias.json file');
       return false;
@@ -64,7 +64,7 @@ class Import extends AliasBaseCommand {
 
 }
 
-Import.id = 'alias:Import'
+Import.id = 'alias:import'
 
 
 Import.args = [

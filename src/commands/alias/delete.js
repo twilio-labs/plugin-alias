@@ -2,6 +2,7 @@ const { args, flags } = require('@oclif/command');
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
 const FileUtil = require('../../utilities/FileUtility.js');
 const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
+const { up } = require('inquirer/lib/utils/readline');
 
 
 class Delete extends AliasBaseCommand {
@@ -21,11 +22,11 @@ class Delete extends AliasBaseCommand {
 
       const aliasFilePath = new FileUtil(this).getAliasFilePath();
       if (new FileUtil(this).pathExists(aliasFilePath)) {
-        
+
         const db = await Delete.storage.load(aliasFilePath);
-        const updateFile = new FileUtil(this).updateData(args["name"], '', false, this.id, db, aliasFilePath);
-        await Delete.storage.save(db, aliasFilePath);
-          
+        const updateFile = await new FileUtil(this).updateData(args["name"], '', false, this.id, db, aliasFilePath);
+        await Delete.storage.save(updateFile, aliasFilePath);
+
       }
 
       else {
@@ -60,7 +61,7 @@ class Delete extends AliasBaseCommand {
 }
 
 Delete.description = 'delete a twilio alias';
-Delete.id = 'alias:Delete';
+Delete.id = 'alias:delete';
 
 
 Delete.args = [

@@ -13,9 +13,8 @@ class Export extends AliasBaseCommand {
     if (this.argv.length > 0) {
 
       var args = "";
-      for(var arg in this.argv)
-      {
-        args += "'"+this.argv[arg] + "' ";
+      for (var arg in this.argv) {
+        args += "'" + this.argv[arg] + "' ";
       }
       console.log(`Invalid argument ${args}provided`);
       return;
@@ -28,7 +27,7 @@ class Export extends AliasBaseCommand {
     if (new FileUtil(this).pathExists(aliasFilePath)) {
 
       const ans = new FileUtil(this).copyFileToDestination(aliasFilePath, destFilePath, "export");
-      if(ans)
+      if (ans)
         console.log("Export Completed")
 
     }
@@ -42,7 +41,7 @@ class Export extends AliasBaseCommand {
 }
 
 
-Export.id = 'alias:Export'
+Export.id = 'alias:export'
 Export.description = 'export aliases';
 Export.storage = new FilesystemStorage();
 module.exports = Export;
