@@ -14,15 +14,20 @@
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.2",
     "@oclif/test": "^1.2.5",
+    "@types/fast-levenshtein": "0.0.2",
     "@types/node": "17.0.41",
     "babel-eslint": "10.1.0",
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-oclif": "3.1.0",
     "globby": "^11.0.0",
+    "inquirer-test": "2.0.1",
+    "jest": "28.1.1",
     "mocha": "^7.1.2",
+    "mock-inquirer": "1.0.3",
     "nyc": "^15.0.1",
-    "semantic-release": "^19.0.3"
+    "semantic-release": "^19.0.3",
+    "sinon": "14.0.0"
   },
   "engines": {
     "node": ">=10.0.0"

@@ -1,0 +1,61 @@
+
+const Trie = require('./TrieClass/Trie');
+const inquirer = require('inquirer');
+class InquirerPrompts {
+    constructor(context, exit_message, userAlias, db) {
+        this.ctx = context;
+        this.userAlias = userAlias;
+        this.exit_message = exit_message;
+        this.db = db;
+
+    }
+
+
+    async findSuggestions() {
+        const commandIDs = Object.keys(this.db)
+        console.log('hello use');
+
+        if (commandIDs.length === 0)
+            return this.exit_message;
+
+
+        const suggestions = this.constructSuggestions(this.userAlias);
+
+        if (suggestions.length === 0) {
+            return this.exit_message;
+        }
+
+        suggestions.push(this.exit_message);
+        let result = this.exit_message;
+        await inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    name: 'promptAnswer',
+                    message: 'Did you mean?',
+                    choices: suggestions,
+                    default: this.exit_message
+                },
+            ])
+            .then(answers => {
+                result = answers.promptAnswer;
+
+            });
+
+        return result;
+    }
+
+    constructSuggestions(userAlias) {
+
+
+        let trie = new Trie();
+
+        for (let alias in this.db) {
+            trie.insert(alias);
+        }
+        const suggestions = trie.find(userAlias);
+        return suggestions
+    }
+
+}
+module.exports = InquirerPrompts;
