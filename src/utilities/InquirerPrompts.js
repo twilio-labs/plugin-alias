@@ -53,6 +53,7 @@ class InquirerPrompts {
         const commandIDs = Object.keys(this.db)
 
         // let trie = new Trie();
+        // change in comment
 
         // for (let alias in this.db) {
         //     trie.insert(alias);
