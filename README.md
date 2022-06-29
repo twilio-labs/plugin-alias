@@ -56,7 +56,9 @@ $ twilio alias:setup
 
 ```sh-session
 $ twilio --help alias
-$ twilio alias
+USAGE
+  $ twilio alias
+...
 ```
 
 # Commands
