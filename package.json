@@ -45,7 +45,7 @@
   "oclif": {
     "name": "alias",
     "commands": "./src/commands",
-    "bin": "oclif-example",
+    "bin": "twilio",
     "repositoryPrefix": "<%- repo %>/blob/<%- version %>/<%- commandPath %>",
     "devPlugins": [
       "@oclif/plugin-help"

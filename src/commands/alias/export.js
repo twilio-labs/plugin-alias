@@ -42,6 +42,6 @@ class Export extends AliasBaseCommand {
 
 
 Export.id = 'alias:export'
-Export.description = 'export aliases';
+Export.description = 'Export the aliases';
 Export.storage = new FilesystemStorage();
 module.exports = Export;

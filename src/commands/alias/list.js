@@ -49,7 +49,7 @@ class List extends AliasBaseCommand {
 
 }
 
-List.description = 'view twilio aliases';
+List.description = 'View the aliases';
 List.id = 'alias:list';
 List.storage = new FilesystemStorage();
 

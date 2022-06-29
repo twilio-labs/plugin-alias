@@ -54,6 +54,6 @@ class Setup extends AliasBaseCommand {
 
 
 Setup.id = 'alias:setup'
-Setup.description = 'set up aliases for your favorite Twilio commands';
+Setup.description = 'Setup local directory for storing aliases';
 Setup.storage = new FilesystemStorage();
 module.exports = Setup;
