@@ -66,6 +66,7 @@
     "prepack": "oclif-dev manifest && oclif-dev readme",
     "test": "nyc --check-coverage --lines 90 --reporter=html --reporter=text mocha --forbid-only \"test/**/**.test.js\"",
     "version": "oclif-dev readme && git add README.md",
-    "semantic-release": "semantic-release --branches main"
+    "semantic-release": "semantic-release --branches main",
+    "lint": "eslint --fix --ext .js,.jsx ."
   }
 }
