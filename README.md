@@ -1,6 +1,6 @@
 # @twilio-labs/plugin-alias
 
-Access, store and use your favorite oclif-example aliases with this plugin
+Access, store and use your favorite twilio aliases with this plugin
 
 <!-- toc -->
 
@@ -45,49 +45,45 @@ The following step will install the plugin from a local directory. Use this opti
 $ twilio plugins:link /path/to/plugin-alias
 ```
 
-# Setup
+### Setup the local alias directory
+The following step will create a directory named "alias" in the local data directory of the user. Use this command before running any other alias command to setup the necessary directory structure.
 
-1. Link the plugin to your CLI 
-2. Run `oclif-example alias:setup`
+```sh-session
+$ twilio alias:setup
+```
 
 # Usage
 
 ```sh-session
-$ oclif-example --help alias
-$ oclif-example alias
+$ twilio --help alias
+USAGE
+  $ twilio alias
+...
 ```
 
 # Commands
-
 <!-- commands -->
+* [`twilio alias:setup`](#twilio-aliassetup)
+* [`twilio alias:add`](#twilio-aliasadd)
+* [`twilio alias:delete`](#twilio-aliasdelete)
+* [`twilio alias:use`](#twilio-aliasuse)
+* [`twilio alias:list`](#twilio-aliaslist)
+* [`twilio alias:import`](#twilio-aliasimport)
+* [`twilio alias:export`](#twilio-aliasexport)
 
-- [`oclif-example alias:setup`](#oclif-example-aliasSetup)
-
-- [`oclif-example alias:add`](#oclif-example-aliasAdd)
-
-- [`oclif-example alias:delete`](#oclif-example-aliasDelete)
-
-- [`oclif-example alias:use`](#oclif-example-aliasUse)
-
-- [`oclif-example alias:list`](#oclif-example-aliasList)
-
-- [`oclif-example alias:import`](#oclif-example-aliasImport)
-
-- [`oclif-example alias:export`](#oclif-example-aliasExport)
-
-  <br>
 <!-- Setup Command -->
 
-## `oclif-example alias:setup`
+## `twilio alias:setup`
 
-Setup aliases plugin
+Setup local directory for storing aliases
 
 ```
 USAGE
-	$ oclif-example alias:setup
+  $ twilio alias:setup
 
-DESCRIPTION
-	This command is used to run Setup
+EXAMPLE
+  $ twilio alias:setup
+  Setup complete
 ```
 
 _See code: [src/commands/alias/setup.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/setup.js)_
@@ -95,104 +91,102 @@ _See code: [src/commands/alias/setup.js](https://github.com/Kavya-24/plugin-alia
 
 <!-- Add Command -->
 
-## `oclif-example alias:add`
+## `twilio alias:add`
 
-Add aliases
+Create a new alias to access Twilio CLI commands
 
 ```
 USAGE
-	$ oclif-example alias:add
-
+  $ twilio alias:add [name] [command]
 
 ARGUMENTS
-	name : Name of the alias shorthand
-	command : Command we want to shorthand
+  name  				   Name of the alias shorthand
+  command            			   Command to shorthand
 
+OPTIONS
+  -f, --force           		   Overwrite already present alias
 
-FLAGS
-	-f : Flag for overwriting
-
-
-DESCRIPTION
-	This command is used to add favorite aliases
+EXAMPLE
+  $ twilio alias:add plist profiles:list
+  Successfully created alias plist for profiles:list
 ```
 
 _See code: [src/commands/alias/add.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/add.js)_
 
-  <br>
-
 <!-- Delete Command -->
 
-## `oclif-example alias:delete`
+## `twilio alias:delete`
 
-Delete aliases
-
+Delete an alias
 ```
 USAGE
-	$ oclif-example alias:delete
-
+  $ twilio alias:delete [name]
 
 ARGUMENTS
-	name : Name of the alias shorthand
+  name  				   Name of the alias shorthand
 
-
-DESCRIPTION
-	This command is used to delete favorite aliases
+EXAMPLE
+  $ twilio alias:delete plist
+  Successfully deleted alias plist
 ```
 
 _See code: [src/commands/alias/delete.js](https://gitshub.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/delete.js)_
 
-  <br>
-  
 <!-- Use Command -->
-## `oclif-example alias:use`
-Use aliases
+
+## `twilio alias:use`
+Use an alias for a Twilio CLI command
 
 ```
 USAGE
-	$ oclif-example alias:use
+  $ twilio alias:use [name]
 
+ALIAS
+  $ twilio use [name]
 
 ARGUMENTS
-	name : Name of the alias shorthand to use
+  name  				   Name of the alias shorthand
 
-DESCRIPTION
-	This command is used to use an alias shorthand
+EXAMPLE
+  $ twilio alias:use plist
+  Using the command profiles:list from alias plist
+  <Output of profiles:list>
 ```
 
 _See code: [src/commands/alias/use.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/use.js)_
 
-<br>
-
 <!-- List Command -->
 
-## `oclif-example alias:list`
+## `twilio alias:list`
 
-List aliases
+View the aliases
 
 ```
 USAGE
-	$ oclif-example alias:list
+  $ twilio alias:list
 
-
-DESCRIPTION
-	This command is used to list all the aliases
+EXAMPLE
+  $ twilio alias:list
+  <Lists all the aliases stored>
 ```
 
 _See code: [src/commands/alias/list.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/list.js)_
 
 <!-- Import Command -->
 
-## `oclif-example alias:import`
+## `twilio alias:import`
 
-Import an alias file
-
+Import aliases from a file
 ```
 USAGE
-	$ oclif-example alias:import
+  $ twilio alias:import [filepath]
 
-DESCRIPTION
-	This command is used to import an alias file
+ARGUMENTS
+  filepath  				   Path of the alias file
+
+EXAMPLE
+  $ twilio alias:import ./aliasfile.json
+  Successfully imported aliases from file ./aliasfile.json
 ```
 
 _See code: [src/commands/alias/import.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/import.js)_
@@ -200,19 +194,18 @@ _See code: [src/commands/alias/import.js](https://github.com/Kavya-24/plugin-ali
 
 <!-- Export Command -->
 
-## `oclif-example alias:export`
+## `twilio alias:export`
 
 Export the aliases
 
 ```
 USAGE
-	$ oclif-example alias:export
+  $ twilio alias:export
 
-DESCRIPTION
-	This command is used to export aliases
+EXAMPLE
+  $ twilio alias:export
+  Successfully exported aliases to file ./dataexport.json
 ```
-
 _See code: [src/commands/alias/export.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/export.js)_
-<br>
 
 <!-- commandsstop -->

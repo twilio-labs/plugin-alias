@@ -4,8 +4,6 @@ const chalk = require('chalk');
 const InquirerPrompts = require('./InquirerPrompts');
 
 
-
-
 class FileUtility {
 
     constructor(context) {
@@ -70,10 +68,10 @@ class FileUtility {
                 }
                 else if (operation == 'alias:delete') {
                     const exit_message = 'Continue without deleting'
-                    const result = await new InquirerPrompts(this.ctx, exit_message, userAlias, db).findSuggestions();
+                    const result = await FileUtility.prompt.findSuggestions(exit_message, userAlias, db);
 
                     if (result === exit_message) {
-                        console.warn(`${userAlias} is not a ${this.ctx.config.bin} command.`);
+                        console.log(`${userAlias} is not a ${this.ctx.config.bin} command.`);
                     }
                     else {
                         delete db[result];
@@ -118,7 +116,7 @@ class FileUtility {
 
     setupIncompleteWarning() {
         const AUTOCOMLETE_ALERT = `If you are running alias command for the first time, please run the following setup command to initiate the plugin setup: \n 
-      '${chalk.bold('oclif-example alias:setup')}'`;
+      '${chalk.bold('twilio alias:setup')}'`;
         return console.warn(chalk.yellowBright(` » ${AUTOCOMLETE_ALERT}`));
     }
 
@@ -137,7 +135,7 @@ class FileUtility {
                 proceed.move = true;
             }
             else {
-                console.log('setup already complete');
+                console.log('Setup already complete');
                 proceed.move = false;
             }
         }
@@ -161,9 +159,8 @@ class FileUtility {
         FileUtility.storage.removeDirectory(dir);
     }
 
-
-
 }
 
 FileUtility.storage = new FilesystemStorage();
+FileUtility.prompt = new InquirerPrompts();
 module.exports = FileUtility;

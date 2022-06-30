@@ -33,7 +33,7 @@ class Use extends AliasBaseCommand {
     }
     else if (exist_util["index"] == -1) {
       const exit_message = 'Continue without using'
-      const result = await new InquirerPrompts(this, exit_message, supposedAlias, db).findSuggestions();
+      const result = await Use.prompt.findSuggestions(exit_message, supposedAlias, db);
 
       if (result === exit_message) {
         // console.warn(`${userAlias} is not a ${this.ctx.config.bin} command.`);
@@ -55,8 +55,9 @@ class Use extends AliasBaseCommand {
 
 }
 
-Use.description = 'use an alias in working';
+Use.description = 'Use an alias for a Twilio CLI command';
 Use.storage = new FilesystemStorage();
+Use.prompt = new InquirerPrompts();
 Use.aliases = ['use'];
 
 module.exports = Use;

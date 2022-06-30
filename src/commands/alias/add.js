@@ -91,7 +91,7 @@ class Add extends AliasBaseCommand {
 }
 
 Add.id = 'alias:add';
-Add.description = 'create a new alias to access Twilio CLI commands';
+Add.description = 'Create a new alias to access Twilio CLI commands';
 
 
 Add.flags = {
