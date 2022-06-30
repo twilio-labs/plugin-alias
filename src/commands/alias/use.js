@@ -1,65 +1,49 @@
-const AliasBaseCommand = require('../../utilities/AliasBaseCommand');
-const FileUtil = require('../../utilities/FileUtility.js');
-const CommandUtil = require('../../utilities/CommandUtility.js');
-const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage');
+const AliasBaseCommand = require('../../utilities/AliasBaseCommand')
+const FileUtil = require('../../utilities/FileUtility.js')
+const CommandUtil = require('../../utilities/CommandUtility.js')
+const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage')
 const InquirerPrompts = require('../../utilities/InquirerPrompts')
 
 class Use extends AliasBaseCommand {
-
-  constructor(argv, config) {
-    super(argv, config);
-  }
-
-  async run() {
-    await super.run();
+  async run () {
+    await super.run()
 
     if (this.argv.length <= 0) {
-      console.log('Please insert an alias argument');
-      return;
+      console.log('Please insert an alias argument')
+      return
     }
 
+    const supposedAlias = this.argv.shift()
+    const aliasFilePath = new FileUtil(this).getAliasFilePath()
+    const db = await Use.storage.load(aliasFilePath)
+    const existUtil = new FileUtil(this).extractAlias(supposedAlias, aliasFilePath, db)
 
-    const supposedAlias = this.argv.shift();
-    const aliasFilePath = new FileUtil(this).getAliasFilePath();
-    const db = await Use.storage.load(aliasFilePath);
-    const exist_util = new FileUtil(this).extractAlias(supposedAlias, aliasFilePath, db);
+    let commandToRun = supposedAlias
 
-    var commandToRun = supposedAlias;
+    if (existUtil.index === -2) {
+      // Setup incomplete
+      new FileUtil(this).setupIncompleteWarning()
+      return
+    } else if (existUtil.index === -1) {
+      const exitMessage = 'Continue without using'
+      const result = await Use.prompt.findSuggestions(exitMessage, supposedAlias, db)
 
-    if (exist_util["index"] == -2) {
-      //Setup incomplete
-      new FileUtil(this).setupIncompleteWarning();
-      return;
-    }
-    else if (exist_util["index"] == -1) {
-      const exit_message = 'Continue without using'
-      const result = await Use.prompt.findSuggestions(exit_message, supposedAlias, db);
-
-      if (result === exit_message) {
+      if (result === exitMessage) {
         // console.warn(`${userAlias} is not a ${this.ctx.config.bin} command.`);
+      } else {
+        commandToRun = db[result]
       }
-      else {
-        commandToRun = db[result];
-      }
+    } else if (existUtil.index >= 0) {
+      commandToRun = existUtil.command // + this.argv
     }
 
-    else if (exist_util["index"] >= 0) {
-      commandToRun = exist_util["command"] //+ this.argv
-    }
-
-    new CommandUtil(this).runCommand(commandToRun, this.argv);
-
+    new CommandUtil(this).runCommand(commandToRun, this.argv)
   }
-
-
-
 }
 
-Use.description = 'Use an alias for a Twilio CLI command';
-Use.storage = new FilesystemStorage();
-Use.prompt = new InquirerPrompts();
-Use.aliases = ['use'];
+Use.description = 'Use an alias for a Twilio CLI command'
+Use.storage = new FilesystemStorage()
+Use.prompt = new InquirerPrompts()
+Use.aliases = ['use']
 
-module.exports = Use;
-
-
+module.exports = Use

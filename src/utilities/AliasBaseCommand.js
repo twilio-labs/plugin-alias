@@ -1,24 +1,17 @@
-const { Command } = require('@oclif/command');
-const fs = require('fs');
+const { Command } = require('@oclif/command')
 
 class AliasBaseCommand extends Command {
-  constructor(argv, config) {
-    super(argv, config);
-  }
-
-  async run() {
+  async run () {
 
   }
 
-  validateFlags(flags) {
+  validateFlags (flags) {
 
   }
 
-  validateArguments(args) {
+  validateArguments (args) {
 
   }
-
-
 }
 
 module.exports = AliasBaseCommand
