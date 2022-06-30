@@ -126,7 +126,7 @@ Before creating any pull request, make sure that you follow the following three 
 
 ## <a name="tests"></a> Tests
 
-This plugin uses the Unit tests built using oclif test library for testing the functionalities. Some of the utility functions are also tested using chai.js and mocha.js. You can contribute in tests as well.
+This plugin uses the Unit tests built using oclif test library for testing the functionalities. Some of the utility functions are also tested using chai.js and mocha.js. You can contribute in tests as well by creating an issue for the same.
 
 [docs-link]: http://twil.io/cli](https://github.com/twilio-labs/plugin-alias/blob/main/README.md
 [issue-link]: https://github.com/twilio-labs/plugin-alias/issues/new/choose
