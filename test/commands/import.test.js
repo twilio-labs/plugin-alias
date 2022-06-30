@@ -72,7 +72,7 @@ describe('Tests for importing alias', () => {
           expect(await FileUtil.storage.load()).to.eql({
 
           })
-          expect(ctx.stdout).to.contain('Import Completed')
+          expect(ctx.stdout).to.contain(`Successfully exported aliases to the file ${filename}`)
         })
 
       after(async function () {
@@ -111,7 +111,7 @@ describe('Tests for importing alias', () => {
             alist: 'alias:list',
             hello: 'world'
           })
-          expect(ctx.stdout).to.contain('Import Completed')
+          expect(ctx.stdout).to.contain(`Successfully exported aliases to the file ${filename}`)
         })
 
       after(async function () {

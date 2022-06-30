@@ -63,6 +63,7 @@ describe('Tests for using alias', () => {
           expect(await Use.storage.load()).to.eql({
             alist: 'alias:list'
           })
+          expect(ctx.stdout).to.contain('Using the command alias:list from alias alist')
           expect(ctx.stdout).to.contain('Alias\tCommand\nalist\talias:list')
         })
     })
@@ -78,6 +79,7 @@ describe('Tests for using alias', () => {
           expect(await Use.storage.load()).to.eql({
             alist: 'alias:list'
           })
+          expect(ctx.stdout).to.contain('Using the command alias:list from alias alist')
           expect(ctx.stdout).to.contain('Alias\tCommand\nalist\talias:list')
         })
     })
@@ -111,6 +113,7 @@ describe('Tests for using alias', () => {
               hello: 'world',
               hello2: 'world2'
             })
+            expect(ctx.stdout).to.contain('Using the command world from alias hello')
             expect(ctx.stdout).to.contain('command world is not found')
           })
       })

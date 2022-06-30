@@ -45,6 +45,7 @@ describe('Tests for deleting alias', () => {
           expect(await Delete.storage.load()).to.eql({
             hello2: 'world2'
           })
+          expect(ctx.stdout).to.contain('Successfully deleted alias hello')
         })
     })
 
@@ -76,6 +77,7 @@ describe('Tests for deleting alias', () => {
             expect(await Delete.storage.load()).to.eql({
               hello2: 'world2'
             })
+            expect(ctx.stdout).to.contain('Successfully deleted alias hello')
           })
       })
     })

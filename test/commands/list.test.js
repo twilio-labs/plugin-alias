@@ -44,6 +44,7 @@ describe('Tests for listing alias', () => {
             hello: 'world',
             alist: 'alias:list'
           })
+          expect(ctx.stdout).to.contain('List of the stored aliases\n')
           expect(ctx.stdout).to.contain('Alias\tCommand\nhello\tworld\nalist\talias:list')
         })
     })
@@ -58,6 +59,7 @@ describe('Tests for listing alias', () => {
           expect(await List.storage.load()).to.eql({
 
           })
+          expect(ctx.stdout).to.contain('List of the stored aliases\n')
           expect(ctx.stdout).to.contain('Alias\tCommand')
         })
     })

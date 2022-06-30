@@ -32,6 +32,8 @@ class FileUtility {
     try {
       const existUtil = this.extractAlias(userAlias, aliasFilePath, db)
       const aliasIndex = existUtil.index
+      let added = false
+      let deleted = false
 
       // This will never run for snapshot based memory reference
       if (aliasIndex === -2) {
@@ -40,6 +42,7 @@ class FileUtility {
         // no alias exists. Add is operation is Add, else show error for delete
         if (operation === 'alias:add') {
           db[userAlias] = userCommand
+          added = true
         } else if (operation === 'alias:delete') {
           const exitMessage = 'Continue without deleting'
           const result = await FileUtility.prompt.findSuggestions(exitMessage, userAlias, db)
@@ -47,19 +50,31 @@ class FileUtility {
           if (result === exitMessage) {
             console.log(`${userAlias} is not a ${this.ctx.config.bin} command.`)
           } else {
-            delete db[result]
+            userAlias = result
+            delete db[userAlias]
+            deleted = true
           }
         }
       } else {
         if (operation === 'alias:add') {
           if (db[userAlias] === 'null' || hasFlag) {
             db[userAlias] = userCommand
+            added = true
           } else {
             console.log(`alias already exists for command "${db[userAlias]}". Consider adding -f for overwriting`)
           }
         } else if (operation === 'alias:delete') {
           delete db[userAlias]
+          deleted = true
         }
+      }
+
+      if (added) {
+        console.log(`Successfully created alias ${userAlias} for ${userCommand}`)
+      }
+
+      if (deleted) {
+        console.log(`Successfully deleted alias ${userAlias}`)
       }
 
       return db

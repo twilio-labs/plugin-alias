@@ -16,12 +16,13 @@ class Export extends AliasBaseCommand {
     }
 
     // Store the aliases file in the current directory
+    const filename = 'dataexport.json'
     const aliasFilePath = new FileUtil(this).getAliasFilePath()
-    const destFilePath = process.cwd() + '/' + 'dataexport.json'
+    const destFilePath = process.cwd() + '/' + filename
 
     if (new FileUtil(this).pathExists(aliasFilePath)) {
       const ans = new FileUtil(this).copyFileToDestination(aliasFilePath, destFilePath, 'export')
-      if (ans) { console.log('Export Completed') }
+      if (ans) { console.log(`Successfully exported aliases to the file ${filename}`) }
     } else {
       new FileUtil(this).setupIncompleteWarning()
     }

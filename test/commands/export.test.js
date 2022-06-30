@@ -57,7 +57,7 @@ describe('Tests for exporting alias', () => {
           expect(await FileUtil.storage.load()).to.eql({
 
           })
-          expect(ctx.stdout).to.contain('Export Completed')
+          expect(ctx.stdout).to.contain('Successfully exported aliases to the file dataexport.json')
 
           const fileStorage = new FilesystemStorage()
           const db = await fileStorage.load(path)
@@ -96,7 +96,7 @@ describe('Tests for exporting alias', () => {
             hello: 'world',
             hello1: 'world2'
           })
-          expect(ctx.stdout).to.contain('Export Completed')
+          expect(ctx.stdout).to.contain('Successfully exported aliases to the file dataexport.json')
           const fileStorage = new FilesystemStorage()
           const db = await fileStorage.load(path)
           expect(db).to.be.a('object')

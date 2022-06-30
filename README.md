@@ -167,6 +167,9 @@ USAGE
 
 EXAMPLE
   $ twilio alias:list
+  List of the stored aliases
+
+  Alias   Command
   <Lists all the aliases stored>
 ```
 
@@ -186,7 +189,7 @@ ARGUMENTS
 
 EXAMPLE
   $ twilio alias:import ./aliasfile.json
-  Successfully imported aliases from file ./aliasfile.json
+  Successfully imported aliases from the file ./aliasfile.json
 ```
 
 _See code: [src/commands/alias/import.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/import.js)_
@@ -204,7 +207,7 @@ USAGE
 
 EXAMPLE
   $ twilio alias:export
-  Successfully exported aliases to file ./dataexport.json
+  Successfully exported aliases to the file dataexport.json
 ```
 _See code: [src/commands/alias/export.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/export.js)_
 

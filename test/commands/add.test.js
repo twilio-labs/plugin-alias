@@ -57,6 +57,7 @@ describe('Tests for adding alias', () => {
           expect(await Add.storage.load()).to.eql({
             hello: 'world'
           })
+          expect(ctx.stdout).to.contain('Successfully created alias hello for world')
         })
     })
 
@@ -71,6 +72,7 @@ describe('Tests for adding alias', () => {
             aliasName: 'aliasCommand',
             hello: 'world'
           })
+          expect(ctx.stdout).to.contain('Successfully created alias hello for world')
         })
     })
 
@@ -98,6 +100,7 @@ describe('Tests for adding alias', () => {
           expect(await Add.storage.load()).to.eql({
             hello: 'world'
           })
+          expect(ctx.stdout).to.contain('Successfully created alias hello for world')
         })
     })
 

@@ -18,6 +18,7 @@ class List extends AliasBaseCommand {
     const aliasFilePath = new FileUtil(this).getAliasFilePath()
     if (new FileUtil(this).pathExists(aliasFilePath)) {
       const db = await List.storage.load(aliasFilePath)
+      console.log('List of the stored aliases\n')
       let output = 'Alias\tCommand'
 
       for (const alias in db) {

@@ -13,12 +13,13 @@ class Use extends AliasBaseCommand {
       return
     }
 
-    const supposedAlias = this.argv.shift()
+    let supposedAlias = this.argv.shift()
     const aliasFilePath = new FileUtil(this).getAliasFilePath()
     const db = await Use.storage.load(aliasFilePath)
     const existUtil = new FileUtil(this).extractAlias(supposedAlias, aliasFilePath, db)
 
     let commandToRun = supposedAlias
+    let foundInSuggestions = true
 
     if (existUtil.index === -2) {
       // Setup incomplete
@@ -30,12 +31,16 @@ class Use extends AliasBaseCommand {
 
       if (result === exitMessage) {
         // console.warn(`${userAlias} is not a ${this.ctx.config.bin} command.`);
+        foundInSuggestions = false
       } else {
         commandToRun = db[result]
+        supposedAlias = result
       }
     } else if (existUtil.index >= 0) {
       commandToRun = existUtil.command // + this.argv
     }
+
+    if (foundInSuggestions) { console.log(`Using the command ${commandToRun} from alias ${supposedAlias}`) }
 
     new CommandUtil(this).runCommand(commandToRun, this.argv)
   }
