@@ -1,55 +1,54 @@
 const fs = require('fs')
 
 class FilesystemStorage {
-  constructor(initialData = {}) {
-    this.data = initialData;
+  constructor (initialData = {}) {
+    this.data = initialData
   }
 
-  async load(aliasFilePath) {
+  async load (aliasFilePath) {
     try {
-      const file = await fs.promises.readFile(aliasFilePath);
-      return JSON.parse(file.toString('utf-8'));
-    } catch {
-      return await Promise.resolve(this.data);
+      const file = await fs.promises.readFile(aliasFilePath)
+      return JSON.parse(file.toString('utf-8'))
+    } catch (err) {
+      return await Promise.resolve(this.data)
     }
   }
 
-  save(data, aliasFilePath) {
+  save (data, aliasFilePath) {
     return fs.promises.writeFile(aliasFilePath, JSON.stringify(data))
   }
 
-  path(config) {
-    const dataDirectory = config.dataDir;
-    const aliasFolderName = 'alias';
-    const aliasFolderPath = dataDirectory + '/' + aliasFolderName;
-    const aliasFileName = 'data.json';
-    const aliasFilePath = aliasFolderPath + '/' + aliasFileName;
-    return aliasFilePath;
+  path (config) {
+    const dataDirectory = config.dataDir
+    const aliasFolderName = 'alias'
+    const aliasFolderPath = dataDirectory + '/' + aliasFolderName
+    const aliasFileName = 'data.json'
+    const aliasFilePath = aliasFolderPath + '/' + aliasFileName
+    return aliasFilePath
   }
 
-  pathExists(path) {
-    return fs.existsSync(path);
+  pathExists (path) {
+    return fs.existsSync(path)
   }
 
-  importPathExists(path) {
-    return fs.existsSync(path);
+  importPathExists (path) {
+    return fs.existsSync(path)
   }
 
-  makeDirectory(folderPath) {
+  makeDirectory (folderPath) {
     fs.mkdirSync(folderPath, { recursive: true })
-    return;
   }
 
-  copyFile(sourcePath, destPath, mode) {
-    fs.copyFileSync(sourcePath, destPath);
+  copyFile (sourcePath, destPath, mode) {
+    fs.copyFileSync(sourcePath, destPath)
   }
 
-  removeDirectory(dir) {
+  removeDirectory (dir) {
     fs.rm(dir, { recursive: true }, (err) => {
       if (err) {
-        throw err;
+        throw err
       }
-    });
+    })
   }
 }
 
