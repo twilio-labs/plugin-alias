@@ -11,9 +11,6 @@ describe('Test for FilesystemStorage', function () {
     const filename = 'testdata.json';
     const path = process.cwd() + '/' + filename;
 
-
-
-
     before(async function () {
 
         fs.open(path, 'w', err => {
