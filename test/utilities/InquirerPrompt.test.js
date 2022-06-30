@@ -17,10 +17,5 @@ describe('Tests for Inquirer Prompts', () => {
         assert.isTrue(prompt.constructSuggestions("he", {hello: "world", hello2: "world2"}).length === 2);
         
     })
-    
-    it('Check find suggestions function', function(){
-        //assert.equal(prompt.findSuggestions("Continue without deleting", "he", {}), "Continue without deleting");
-        
-    })
 
 })
