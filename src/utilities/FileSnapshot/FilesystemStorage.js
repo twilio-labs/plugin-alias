@@ -23,8 +23,7 @@ class FilesystemStorage {
     const aliasFolderName = 'alias'
     const aliasFolderPath = dataDirectory + '/' + aliasFolderName
     const aliasFileName = 'data.json'
-    const aliasFilePath = aliasFolderPath + '/' + aliasFileName
-    return aliasFilePath
+    return aliasFolderPath + '/' + aliasFileName
   }
 
   pathExists (path) {
@@ -39,7 +38,7 @@ class FilesystemStorage {
     fs.mkdirSync(folderPath, { recursive: true })
   }
 
-  copyFile (sourcePath, destPath, mode) {
+  copyFile (sourcePath, destPath, _mode) {
     fs.copyFileSync(sourcePath, destPath)
   }
 
