@@ -14,7 +14,7 @@ describe('Tests for importing alias', () => {
         .stub(Import, 'storage', new MemoryStorage({}, false))
         .stub(FileUtil, 'storage', new MemoryStorage({}, false))
         .command(['alias:import', `${filename}`])
-        .it('should throw chalk error', async ctx => {
+        .it('should throw chalk error', async _ctx => {
           expect(await FileUtil.storage.load()).to.eql({
           })
         })

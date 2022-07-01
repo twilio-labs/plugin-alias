@@ -5,11 +5,11 @@ class AliasBaseCommand extends Command {
 
   }
 
-  validateFlags (flags) {
+  validateFlags (_flags) {
 
   }
 
-  validateArguments (args) {
+  validateArguments (_args) {
 
   }
 }

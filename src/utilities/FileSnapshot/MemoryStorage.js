@@ -11,24 +11,24 @@ class MemoryStorage {
     return Promise.resolve(this.data)
   }
 
-  save (data, aliasFilePath) {
+  save (data, _aliasFilePath) {
     this.data = data
     return Promise.resolve()
   }
 
-  path (config) {
+  path (_config) {
     return ''
   }
 
-  pathExists (path) {
+  pathExists (_path) {
     return this.aliasPathVar
   }
 
-  importPathExists (path) {
+  importPathExists (_path) {
     return this.importPathVar
   }
 
-  makeDirectory (folderPath) {
+  makeDirectory (_folderPath) {
     return Promise.resolve()
   }
 
@@ -41,7 +41,7 @@ class MemoryStorage {
     }
   }
 
-  removeDirectory (dir) {
+  removeDirectory (_dir) {
     return Promise.resolve()
   }
 }

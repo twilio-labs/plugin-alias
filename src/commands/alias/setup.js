@@ -21,12 +21,11 @@ class Setup extends AliasBaseCommand {
     */
 
     const mPath = String(new FileUtil(this).getAliasFilePath())
-    const aliasFolderPath = (mPath.length > 10 ? mPath.substr(0, mPath.length - 10) : '')
+    const aliasFolderPath = (mPath.length > 10 ? mPath.slice(0, mPath.length - 10) : '')
     const aliasFilePath = new FileUtil(this).getAliasFilePath()
 
     const proceed = { move: true }
     new FileUtil(this).createFolderIfDoesNotExists(aliasFolderPath, proceed)
-    // console.log(proceed)
     if (!proceed.move) { return }
 
     try {

@@ -20,7 +20,7 @@ class FileUtility {
     return FileUtility.storage.path(config)
   }
 
-  parseData (userAlias, aliasFilePath, db) {
+  parseData (userAlias, _aliasFilePath, db) {
     if (db[userAlias]) {
       return { command: db[userAlias], index: 0 }
     } else {
@@ -28,11 +28,44 @@ class FileUtility {
     }
   }
 
-  async updateData (userAlias, userCommand, hasFlag, operation, db, aliasFilePath) {
+  async updateAddData (userAlias, userCommand, hasFlag, _operation, db, aliasFilePath) {
     try {
       const existUtil = this.extractAlias(userAlias, aliasFilePath, db)
       const aliasIndex = existUtil.index
       let added = false
+
+      // This will never run for snapshot based memory reference
+      if (aliasIndex === -2) {
+        return this.setupIncompleteWarning()
+      } else if (aliasIndex === -1) {
+        // no alias exists. Add is operation is Add, else show error for delete
+        db[userAlias] = userCommand
+        added = true
+      } else {
+        if (db[userAlias] === 'null' || hasFlag) {
+          db[userAlias] = userCommand
+          added = true
+        } else {
+          console.log(`alias already exists for command "${db[userAlias]}". Consider adding -f for overwriting`)
+        }
+      }
+
+      if (added) {
+        console.log(`Successfully created alias ${userAlias} for ${userCommand}`)
+      }
+
+      return db
+    } catch (err) {
+      console.log(err)
+      console.log('unable to load file')
+    }
+  }
+
+  async updateDeleteData (userAlias, _userCommand, _hasFlag, _operation, db, aliasFilePath) {
+    try {
+      const existUtil = this.extractAlias(userAlias, aliasFilePath, db)
+      const aliasIndex = existUtil.index
+
       let deleted = false
 
       // This will never run for snapshot based memory reference
@@ -40,37 +73,19 @@ class FileUtility {
         return this.setupIncompleteWarning()
       } else if (aliasIndex === -1) {
         // no alias exists. Add is operation is Add, else show error for delete
-        if (operation === 'alias:add') {
-          db[userAlias] = userCommand
-          added = true
-        } else if (operation === 'alias:delete') {
-          const exitMessage = 'Continue without deleting'
-          const result = await FileUtility.prompt.findSuggestions(exitMessage, userAlias, db)
+        const exitMessage = 'Continue without deleting'
+        const result = await FileUtility.prompt.findSuggestions(exitMessage, userAlias, db)
 
-          if (result === exitMessage) {
-            console.log(`${userAlias} is not a ${this.ctx.config.bin} command.`)
-          } else {
-            userAlias = result
-            delete db[userAlias]
-            deleted = true
-          }
-        }
-      } else {
-        if (operation === 'alias:add') {
-          if (db[userAlias] === 'null' || hasFlag) {
-            db[userAlias] = userCommand
-            added = true
-          } else {
-            console.log(`alias already exists for command "${db[userAlias]}". Consider adding -f for overwriting`)
-          }
-        } else if (operation === 'alias:delete') {
+        if (result === exitMessage) {
+          console.log(`${userAlias} is not a ${this.ctx.config.bin} command.`)
+        } else {
+          userAlias = result
           delete db[userAlias]
           deleted = true
         }
-      }
-
-      if (added) {
-        console.log(`Successfully created alias ${userAlias} for ${userCommand}`)
+      } else {
+        delete db[userAlias]
+        deleted = true
       }
 
       if (deleted) {
