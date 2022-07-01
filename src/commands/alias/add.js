@@ -13,7 +13,7 @@ class Add extends AliasBaseCommand {
       const aliasFilePath = new FileUtil(this).getAliasFilePath()
       if (new FileUtil(this).pathExists(aliasFilePath)) {
         const db = await Add.storage.load(aliasFilePath)
-        const updateFile = await new FileUtil(this).updateData(args.name, args.command, this.validateFlags(flags), this.id, db, aliasFilePath)
+        const updateFile = await new FileUtil(this).updateAddData(args.name, args.command, this.validateFlags(flags), this.id, db, aliasFilePath)
         await Add.storage.save(updateFile, aliasFilePath)
       } else {
         new FileUtil(this).setupIncompleteWarning()

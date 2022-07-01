@@ -14,7 +14,7 @@ class Delete extends AliasBaseCommand {
       const aliasFilePath = new FileUtil(this).getAliasFilePath()
       if (new FileUtil(this).pathExists(aliasFilePath)) {
         const db = await Delete.storage.load(aliasFilePath)
-        const updateFile = await new FileUtil(this).updateData(args.name, '', false, this.id, db, aliasFilePath)
+        const updateFile = await new FileUtil(this).updateDeleteData(args.name, '', false, this.id, db, aliasFilePath)
         await Delete.storage.save(updateFile, aliasFilePath)
       } else {
         new FileUtil(this).setupIncompleteWarning()
