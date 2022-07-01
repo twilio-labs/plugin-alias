@@ -22,7 +22,6 @@ class Use extends AliasBaseCommand {
     let foundInSuggestions = true
 
     if (existUtil.index === -2) {
-      // Setup incomplete
       new FileUtil(this).setupIncompleteWarning()
       return
     } else if (existUtil.index === -1) {
@@ -30,7 +29,6 @@ class Use extends AliasBaseCommand {
       const result = await Use.prompt.findSuggestions(exitMessage, supposedAlias, db)
 
       if (result === exitMessage) {
-        // console.warn(`${userAlias} is not a ${this.ctx.config.bin} command.`);
         foundInSuggestions = false
       } else {
         commandToRun = db[result]

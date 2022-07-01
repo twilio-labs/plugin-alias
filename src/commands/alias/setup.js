@@ -26,7 +26,6 @@ class Setup extends AliasBaseCommand {
 
     const proceed = { move: true }
     new FileUtil(this).createFolderIfDoesNotExists(aliasFolderPath, proceed)
-    // console.log(proceed)
     if (!proceed.move) { return }
 
     try {
