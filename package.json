@@ -64,6 +64,12 @@
     "type": "git",
     "url": "https://github.com/twilio-labs/plugin-alias"
   },
+  "nyc": {
+    "include": [],
+    "exclude": [
+      "./src/utilities/InquirerPrompts.js"
+    ]
+  },
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint --ignore-path .gitignore . && npm audit",
