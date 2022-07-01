@@ -2,7 +2,7 @@ const { expect, test } = require('@oclif/test')
 const MemoryStorage = require('../../src/utilities/FileSnapshot/MemoryStorage.js')
 const Delete = require('../../src/commands/alias/delete.js')
 const FileUtil = require('../../src/utilities/FileUtility')
-const MockPrompts = require('../../src/utilities/mockPrompt')
+const MockPrompts = require('../../src/utilities/MockPrompts')
 
 describe('Tests for deleting alias', () => {
   describe('Before Setup', () => {

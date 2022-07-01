@@ -3,7 +3,7 @@ const MemoryStorage = require('../../src/utilities/FileSnapshot/MemoryStorage.js
 const List = require('../../src/commands/alias/list.js')
 const Use = require('../../src/commands/alias/use.js')
 const FileUtil = require('../../src/utilities/FileUtility')
-const MockPrompts = require('../../src/utilities/mockPrompt')
+const MockPrompts = require('../../src/utilities/MockPrompts')
 
 describe('Tests for using alias', () => {
   describe('Before Setup', () => {
