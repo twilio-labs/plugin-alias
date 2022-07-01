@@ -4,7 +4,7 @@ class CommandUtility {
     this.ctx = context
   }
 
-  findCommand (id, opts = {}) {
+  findCommand (id, _opts = {}) {
     const command = this.ctx.config.commands.find(c => c.id === id || c.aliases.includes(id))
 
     if (command) {

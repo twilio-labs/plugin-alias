@@ -11,7 +11,7 @@ describe('Tests for listing alias', () => {
         .stub(List, 'storage', new MemoryStorage({}, false))
         .stub(FileUtil, 'storage', new MemoryStorage({}, false))
         .command(['alias:list'])
-        .it('should throw the chalk error', async ctx => {
+        .it('should throw the chalk error', async _ctx => {
           expect(await List.storage.load()).to.eql({
 
           })

@@ -12,7 +12,7 @@ describe('Tests for deleting alias', () => {
         .stub(Delete, 'storage', new MemoryStorage({}, false))
         .stub(FileUtil, 'storage', new MemoryStorage({}, false))
         .command(['alias:delete', 'hello'])
-        .it('should throw the chalk error', async ctx => {
+        .it('should throw the chalk error', async _ctx => {
           expect(await Delete.storage.load()).to.eql({
 
           })

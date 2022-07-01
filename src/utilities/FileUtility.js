@@ -20,7 +20,7 @@ class FileUtility {
     return FileUtility.storage.path(config)
   }
 
-  parseData (userAlias, aliasFilePath, db) {
+  parseData (userAlias, _aliasFilePath, db) {
     if (db[userAlias]) {
       return { command: db[userAlias], index: 0 }
     } else {
@@ -28,7 +28,7 @@ class FileUtility {
     }
   }
 
-  async updateAddData (userAlias, userCommand, hasFlag, operation, db, aliasFilePath) {
+  async updateAddData (userAlias, userCommand, hasFlag, _operation, db, aliasFilePath) {
     try {
       const existUtil = this.extractAlias(userAlias, aliasFilePath, db)
       const aliasIndex = existUtil.index
@@ -61,7 +61,7 @@ class FileUtility {
     }
   }
 
-  async updateDeleteData (userAlias, userCommand, hasFlag, operation, db, aliasFilePath) {
+  async updateDeleteData (userAlias, _userCommand, _hasFlag, _operation, db, aliasFilePath) {
     try {
       const existUtil = this.extractAlias(userAlias, aliasFilePath, db)
       const aliasIndex = existUtil.index

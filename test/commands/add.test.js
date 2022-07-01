@@ -11,7 +11,7 @@ describe('Tests for adding alias', () => {
         .stub(Add, 'storage', new MemoryStorage({}, false))
         .stub(FileUtil, 'storage', new MemoryStorage({}, false))
         .command(['alias:add', 'hello', 'world'])
-        .it('should throw the chalk error', async ctx => {
+        .it('should throw the chalk error', async _ctx => {
           expect(await Add.storage.load()).to.eql({
           })
         })
