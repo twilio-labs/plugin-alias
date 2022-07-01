@@ -16,7 +16,7 @@ class Reset extends AliasBaseCommand {
 
     // Store the aliases file in the current directory
     const mPath = String(new FileUtil(this).getAliasFilePath())
-    const aliasFolderPath = (mPath.length > 10 ? mPath.substr(0, mPath.length - 10) : '')
+    const aliasFolderPath = (mPath.length > 10 ? mPath.slice(0, mPath.length - 10) : '')
 
     try {
       if (new FileUtil(this).pathExists(aliasFolderPath)) {

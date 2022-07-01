@@ -15,7 +15,6 @@ class Export extends AliasBaseCommand {
       return
     }
 
-    // Store the aliases file in the current directory
     const filename = 'dataexport.json'
     const aliasFilePath = new FileUtil(this).getAliasFilePath()
     const destFilePath = process.cwd() + '/' + filename
