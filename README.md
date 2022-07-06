@@ -154,7 +154,7 @@ EXAMPLE
 
 Note: Changes made after v1.1 prompt the user for inquirer when the input (alias_name) does not exist. Uses Jaro-winkler for returning best 3 matches
 
-_See code: [src/commands/alias/delete.js](https://gitshub.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/delete.js)_
+_See code: [src/commands/alias/delete.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/delete.js)_
 
 
 <!-- Use Command -->
