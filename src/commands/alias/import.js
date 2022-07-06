@@ -13,9 +13,9 @@ class Import extends AliasBaseCommand {
 
       if (new FileUtil(this).pathExists(aliasFilePath)) {
         const destFile = args.dest
-        const ans = new FileUtil(this).copyFileToDestination(destFile, aliasFilePath, 'import')
-
-        if (ans) { console.log(`Successfully exported aliases to the file ${destFile}`) }
+        if (new FileUtil(this).copyFileToDestination(destFile, aliasFilePath, 'import')) {
+          console.log(`Successfully imported aliases from the file ${destFile}`)
+        }
       } else {
         new FileUtil(this).setupIncompleteWarning()
       }

@@ -1,6 +1,6 @@
 
 class MockPrompts {
-  constructor (data = '') {
+  constructor (data) {
     this.ans = data
   }
 

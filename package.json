@@ -1,9 +1,9 @@
 {
-  "name": "@twilio-labs/plugin-alias",
+  "name": "plugin-alias",
   "description": "Plugin to manage alias for oclif",
-  "version": "0.0.0-development",
-  "author": "Twilio",
-  "bugs": "https://github.com/twilio-labs/plugin-alias/issues",
+  "version": "0.0.0-dev",
+  "author": "Kavya-24",
+  "bugs": "https://github.com/Kavya-24/plugin-alias/issues",
   "dependencies": {
     "@oclif/command": "^1.5.20",
     "@oclif/config": "^1.15.1",
@@ -15,6 +15,8 @@
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.2",
     "@oclif/test": "^1.2.5",
+    "@semantic-release/changelog": "6.0.1",
+    "@semantic-release/git": "10.0.1",
     "@types/fast-levenshtein": "0.0.2",
     "@types/node": "17.0.41",
     "babel-eslint": "10.1.0",
@@ -41,7 +43,7 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://github.com/twilio-labs/plugin-alias",
+  "homepage": "https://github.com/Kavya-24/plugin-alias",
   "keywords": [
     "oclif-plugin"
   ],
@@ -62,7 +64,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/twilio-labs/plugin-alias"
+    "url": "https://github.com/Kavya-24/plugin-alias"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   },
   "nyc": {
     "include": [],
@@ -74,7 +81,7 @@
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint --ignore-path .gitignore . && npm audit",
     "prepack": "oclif-dev manifest && oclif-dev readme",
-    "test": "nyc --check-coverage --lines 90 --reporter=html --reporter=text mocha --forbid-only \"test/**/**.test.js\"",
+    "test": "nyc --check-coverage --lines 90 --reporter=lcov --reporter=text mocha \"test/**/**.test.js\"",
     "version": "oclif-dev readme && git add README.md",
     "semantic-release": "semantic-release --branches main",
     "lint": "eslint --fix --ext .js,.jsx ."

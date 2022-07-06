@@ -47,6 +47,6 @@ class Use extends AliasBaseCommand {
 Use.description = 'Use an alias for a Twilio CLI command'
 Use.storage = new FilesystemStorage()
 Use.prompt = new InquirerPrompts()
-Use.aliases = ['use']
+Use.aliases = ['use', ':use']
 
 module.exports = Use

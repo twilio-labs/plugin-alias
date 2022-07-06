@@ -1,5 +1,7 @@
 # Contributing to `plugin-alias`
 
+All third party contributors acknowledge that any contributions they provide will be made under the same open source license that the open source project is provided under.
+
 We'd love to accept contributions to our source code and to make `plugin-alias`
 even better than it is today! For this, We'd like these guidelines to be followed:
 
