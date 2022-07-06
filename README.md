@@ -1,6 +1,6 @@
-# plugin-alias
+# @twili-labs/plugin-alias
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Kavya-24_plugin-alias&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Kavya-24_plugin-alias)
+<!-- [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Kavya-24_plugin-alias&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Kavya-24_plugin-alias) -->
 
 Access, store and use your favorite twilio aliases with this plugin
 
@@ -92,7 +92,7 @@ EXAMPLE
   Setup complete
 ```
 
-_See code: [src/commands/alias/setup.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/setup.js)_
+_See code: [src/commands/alias/setup.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/setup.js)_
 <br>
 
 <!-- Add Command -->
@@ -117,7 +117,7 @@ EXAMPLE
   Successfully created alias plist for profiles:list
 ```
 
-_See code: [src/commands/alias/add.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/add.js)_
+_See code: [src/commands/alias/add.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/add.js)_
 
 <!-- Delete Command -->
 
@@ -154,7 +154,7 @@ EXAMPLE
 
 Note: Changes made after v1.1 prompt the user for inquirer when the input (alias_name) does not exist. Uses Jaro-winkler for returning best 3 matches
 
-_See code: [src/commands/alias/delete.js](https://gitshub.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/delete.js)_
+_See code: [src/commands/alias/delete.js](https://gitshub.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/delete.js)_
 
 
 <!-- Use Command -->
@@ -210,7 +210,7 @@ EXAMPLE
 
 Note: For CLIs built over oclif, the topics can be separated by either ':' or ' '. [See More](https://oclif.io/docs/topic_separator). Support present in oclif v2, will be fixed in future releases
 
-_See code: [src/commands/alias/use.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/use.js)_
+_See code: [src/commands/alias/use.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/use.js)_
 
 <!-- List Command -->
 
@@ -227,7 +227,7 @@ EXAMPLE
   <Lists all the aliases stored>
 ```
 
-_See code: [src/commands/alias/list.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/list.js)_
+_See code: [src/commands/alias/list.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/list.js)_
 
 <!-- Import Command -->
 
@@ -246,7 +246,7 @@ EXAMPLE
   Successfully imported aliases from file ./aliasfile.json
 ```
 
-_See code: [src/commands/alias/import.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/import.js)_
+_See code: [src/commands/alias/import.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/import.js)_
 <br>
 
 <!-- Export Command -->
@@ -263,7 +263,7 @@ EXAMPLE
   $ twilio alias:export
   Successfully exported aliases to file ./dataexport.json
 ```
-_See code: [src/commands/alias/export.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/export.js)_
+_See code: [src/commands/alias/export.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/export.js)_
 
 
 <!-- Reset Command -->
@@ -280,7 +280,7 @@ EXAMPLE
   $ twilio alias:reset
   reset complete
 ```
-_See code: [src/commands/alias/reset.js](https://github.com/Kavya-24/plugin-alias/tree/main/src/commands/alias/reset.js)_
+_See code: [src/commands/alias/reset.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/reset.js)_
 
 
 <!-- commandsstop -->
@@ -295,5 +295,5 @@ Run the commands with --help
   $ twilio [COMMAND] --help
 ```
 
-If facing bugs or issues, checkout [Issues](https://github.com/Kavya-24/plugin-alias/issues) and create one
+If facing bugs or issues, checkout [Issues](https://github.com/twilio-labs/plugin-alias/issues) and create one
 
