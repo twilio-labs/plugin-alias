@@ -31,11 +31,14 @@
     "globby": "^11.0.0",
     "inquirer-test": "2.0.1",
     "jest": "28.1.1",
+    "jimp": "0.16.0",
     "mocha": "^7.1.2",
     "mock-inquirer": "1.0.3",
     "nyc": "^15.0.1",
+    "render-gif": "2.0.4",
     "semantic-release": "^19.0.3",
-    "sinon": "14.0.0"
+    "sinon": "14.0.0",
+    "terminal-image": "1.2.1"
   },
   "engines": {
     "node": ">=10.0.0"
@@ -75,7 +78,8 @@
   "nyc": {
     "include": [],
     "exclude": [
-      "./src/utilities/InquirerPrompts.js"
+      "./src/utilities/InquirerPrompts.js",
+      "./src/utilities/terminal-icons"
     ]
   },
   "scripts": {
