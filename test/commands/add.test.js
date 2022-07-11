@@ -76,17 +76,17 @@ describe('Tests for adding alias', () => {
         })
     })
 
-    describe('Adding an alias which already exists without flag', () => {
+    describe('Adding an alias which already exists', () => {
       test
         .stdout()
         .stub(Add, 'storage', new MemoryStorage({ hello: 'world' }))
         .stub(FileUtil, 'storage', new MemoryStorage({ hello: 'world' }))
-        .command(['alias:add', 'hello', 'world'])
+        .command(['alias:add', 'hello', 'person'])
         .it('should through warning that alias already exists', async ctx => {
           expect(await Add.storage.load()).to.eql({
             hello: 'world'
           })
-          expect(ctx.stdout).to.contain('alias already exists for command "world". Consider adding -f for overwriting')
+          expect(ctx.stdout).to.contain('This alias already exists for command "world". Consider adding -f for overwriting')
         })
     })
 
