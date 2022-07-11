@@ -76,6 +76,20 @@ describe('Tests for adding alias', () => {
         })
     })
 
+    describe('Adding an alias for a command which already exists', () => {
+      test
+        .stdout()
+        .stub(Add, 'storage', new MemoryStorage({ hello: 'world' }))
+        .stub(FileUtil, 'storage', new MemoryStorage({ hello: 'world' }))
+        .command(['alias:add', 'hello2', 'world'])
+        .it('should through warning that alias already exists', async ctx => {
+          expect(await Add.storage.load()).to.eql({
+            hello: 'world'
+          })
+          expect(ctx.stdout).to.contain('This command already exists for alias "hello"! Consider updating the alias')
+        })
+    })
+
     describe('Adding an alias which already exists', () => {
       test
         .stdout()
