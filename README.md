@@ -253,7 +253,10 @@ Export the aliases
 
 ```
 USAGE
-  $ twilio alias:export
+  $ twilio alias:export [filepath](optional)
+  
+ARGUMENTS
+  filepath  				   Path of the alias file
 
 EXAMPLE
   $ twilio alias:export ./abc.json
