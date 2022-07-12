@@ -104,7 +104,6 @@ terminalImage.buffer = async (buffer, { width = '100%', height = '100%', preserv
 
 terminalImage.file = async (filePath, options = {}) =>
   terminalImage.buffer(await fs.promises.readFile(filePath), options)
-  
 
 terminalImage.gifBuffer = (buffer, options = {}) => {
   options = {
