@@ -6,7 +6,7 @@ class Delete extends AliasBaseCommand {
   async run () {
     await super.run()
 
-    const { args } = this.parse(Delete)
+    const { args } = await this.parse(Delete)
 
     if (this.validateArguments(args)) {
       const aliasFilePath = new FileUtil(this).getAliasFilePath()

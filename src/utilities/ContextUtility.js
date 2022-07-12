@@ -1,4 +1,4 @@
-const { Command } = require('@oclif/command')
+const { Command } = require('@oclif/core')
 
 class ContextUtility extends Command {
   async run () {

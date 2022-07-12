@@ -8,7 +8,7 @@ class Use extends AliasBaseCommand {
   async run () {
     await super.run()
 
-    const { args } = this.parse(Use)
+    const { args } = await this.parse(Use)
 
     if (this.validateArguments(args)) {
       let supposedAlias = this.argv.shift()

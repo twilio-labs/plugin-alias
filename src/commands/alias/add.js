@@ -1,4 +1,4 @@
-const { flags } = require('@oclif/command')
+const { Flags } = require('@oclif/core')
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand')
 const FileUtil = require('../../utilities/FileUtility.js')
 const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage')
@@ -7,7 +7,7 @@ class Add extends AliasBaseCommand {
   async run () {
     await super.run()
 
-    const { args, flags } = this.parse(Add)
+    const { args, flags } = await this.parse(Add)
 
     if (this.validateArguments(args)) {
       const aliasFilePath = new FileUtil(this).getAliasFilePath()
@@ -73,7 +73,7 @@ Add.id = 'alias:add'
 Add.description = 'Create a new alias to access Twilio CLI commands'
 
 Add.flags = {
-  force: flags.boolean({ char: 'f', description: 'Force overwrite the alias if it already exists' })
+  force: Flags.boolean({ char: 'f', description: 'Force overwrite the alias if it already exists' })
 }
 
 Add.args = [
