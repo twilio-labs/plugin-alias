@@ -8,43 +8,64 @@ class Use extends AliasBaseCommand {
   async run () {
     await super.run()
 
-    if (this.argv.length <= 0) {
-      console.log('Please insert an alias argument')
-      return
-    }
+    const { args } = this.parse(Use)
 
-    let supposedAlias = this.argv.shift()
-    const aliasFilePath = new FileUtil(this).getAliasFilePath()
-    const db = await Use.storage.load(aliasFilePath)
-    const existUtil = new FileUtil(this).extractAlias(supposedAlias, aliasFilePath, db)
+    if (this.validateArguments(args)) {
+      let supposedAlias = this.argv.shift()
+      const aliasFilePath = new FileUtil(this).getAliasFilePath()
+      const db = await Use.storage.load(aliasFilePath)
+      const existUtil = new FileUtil(this).extractAlias(supposedAlias, aliasFilePath, db)
 
-    let commandToRun = supposedAlias
-    let foundInSuggestions = true
+      let commandToRun = supposedAlias
+      let foundInSuggestions = true
 
-    if (existUtil.index === -2) {
-      new FileUtil(this).setupIncompleteWarning()
-      return
-    } else if (existUtil.index === -1) {
-      const exitMessage = 'Continue without using'
-      const result = await Use.prompt.findSuggestions(exitMessage, supposedAlias, db)
+      if (existUtil.index === -2) {
+        new FileUtil(this).setupIncompleteWarning()
+        return
+      } else if (existUtil.index === -1) {
+        const exitMessage = 'Continue without using'
+        const result = await Use.prompt.findSuggestions(exitMessage, supposedAlias, db)
 
-      if (result === exitMessage) {
-        foundInSuggestions = false
-      } else {
-        commandToRun = db[result]
-        supposedAlias = result
+        if (result === exitMessage) {
+          foundInSuggestions = false
+        } else {
+          commandToRun = db[result]
+          supposedAlias = result
+        }
+      } else if (existUtil.index >= 0) {
+        commandToRun = existUtil.command
       }
-    } else if (existUtil.index >= 0) {
-      commandToRun = existUtil.command // + this.argv
+      if (foundInSuggestions) { console.log(`Using the command ${commandToRun} from alias ${supposedAlias}`) }
+      new CommandUtil(this).runCommand(commandToRun, this.argv)
+    }
+  }
+
+  validateArguments (args) {
+    let isValid = true
+    let userAlias = ''
+
+    try {
+      userAlias = args.alias
+    } catch (err) {
+      console.log(err)
     }
 
-    if (foundInSuggestions) { console.log(`Using the command ${commandToRun} from alias ${supposedAlias}`) }
+    if (userAlias === undefined) {
+      console.log('Please insert an alias argument')
+      isValid = false
+    }
 
-    new CommandUtil(this).runCommand(commandToRun, this.argv)
+    return isValid
   }
 }
 
 Use.description = 'Use an alias for a Twilio CLI command'
+Use.args = [
+  {
+    name: 'alias',
+    description: 'name of the alias to be used'
+  }
+]
 Use.storage = new FilesystemStorage()
 Use.prompt = new InquirerPrompts()
 Use.aliases = ['use', ':use']

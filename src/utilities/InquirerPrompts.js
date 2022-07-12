@@ -23,7 +23,7 @@ class InquirerPrompts {
           name: 'promptAnswer',
           message: 'Did you mean?',
           choices: suggestions,
-          default: exitMessage
+          default: suggestions[0]
         }
       ])
       .then(answers => {
