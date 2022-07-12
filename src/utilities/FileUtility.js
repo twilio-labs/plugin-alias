@@ -32,21 +32,24 @@ class FileUtility {
     try {
       const existUtil = this.extractAlias(userAlias, aliasFilePath, db)
       const aliasIndex = existUtil.index
+      const storedAliases = Object.keys(db)
+      const aliasForUserCommand = storedAliases.find(alias => db[alias] === userCommand)
       let added = false
 
-      if (aliasIndex === -1) {
-        // no alias exists. Add is operation is Add, else show error for delete
-        db[userAlias] = userCommand
-        added = true
-      } else {
-        if (db[userAlias] === 'null' || hasFlag) {
+      if (aliasForUserCommand === undefined) {
+        if (aliasIndex === -1) {
+          // no alias exists. Add is operation is Add, else show error for delete
+          db[userAlias] = userCommand
+          added = true
+        } else if (db[userAlias] === 'null' || hasFlag) {
           db[userAlias] = userCommand
           added = true
         } else {
-          console.log(`alias already exists for command "${db[userAlias]}". Consider adding -f for overwriting`)
+          console.log(`This alias already exists for command "${db[userAlias]}". Consider adding -f for overwriting`)
         }
+      } else {
+        console.log(`This command already exists for alias "${aliasForUserCommand}"! Consider updating the alias`)
       }
-
       if (added) {
         console.log(`Successfully created alias ${userAlias} for ${userCommand}`)
       }
