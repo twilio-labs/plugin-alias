@@ -147,12 +147,10 @@ ARGUMENTS
 EXAMPLE
   $ twilio alias:delete pli
   Did you mean? 
-  plist
+  >plist
   proList
-  >Continue without deleting 
+  Continue without deleting 
 ```
-
-Note: Changes made after v1.1 prompt the user for inquirer when the input (alias_name) does not exist. Uses Jaro-winkler for returning best 3 matches
 
 _See code: [src/commands/alias/delete.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/delete.js)_
 
@@ -189,13 +187,10 @@ ARGUMENTS
 EXAMPLE
   $ twilio alias:use pli
   Did you mean? 
-  plist
+  >plist
   proList
-  >Continue without using 
+  Continue without using 
 ```
-
-Note: Changes made after v1.1 prompt the user for inquirer when the input (alias_name) does not exist. Uses Jaro-winkler for returning best 3 matches
-
 
 The command `alias:use` is inherently statically aliased for further simplicity
 ```
@@ -206,7 +201,6 @@ EXAMPLE
   $ twilio :use plist                       //Works for all CLIs without any dependency on the topic separators
   <Output>
 ```
-
 
 Note: For CLIs built over oclif, the topics can be separated by either ':' or ' '. [See More](https://oclif.io/docs/topic_separator). Support present in oclif v2, will be fixed in future releases
 
@@ -224,6 +218,8 @@ USAGE
 
 EXAMPLE
   $ twilio alias:list
+  List of the stored aliases
+
   <Lists all the aliases stored>
 ```
 
@@ -260,9 +256,18 @@ USAGE
   $ twilio alias:export
 
 EXAMPLE
+  $ twilio alias:export ./abc.json
+  Successfully exported aliases to file ./abc.json
+```
+
+The command exports to a default path if path is not specified.
+```
+EXAMPLE
   $ twilio alias:export
+  Exporting to default path ...
   Successfully exported aliases to file ./dataexport.json
 ```
+
 _See code: [src/commands/alias/export.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/export.js)_
 
 
@@ -270,7 +275,7 @@ _See code: [src/commands/alias/export.js](https://github.com/twilio-labs/plugin-
 
 ## `twilio alias:reset`
 
-Reset the aliases and directory. Used for cleanup. Not visible in --help
+Reset the aliases and directory. Used for cleanup. Recommended to run before uninstalling the plugin. Not visible in --help
 
 ```
 USAGE
