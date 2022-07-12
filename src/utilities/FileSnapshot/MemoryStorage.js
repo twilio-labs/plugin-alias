@@ -32,8 +32,19 @@ class MemoryStorage {
     return Promise.resolve()
   }
 
+  createFile (path) {
+    fs.open(path, 'w', err => {
+      if (err) {
+        console.log(err)
+      }
+    })
+  }
+
   copyFile (sourcePath, destPath, mode) {
     if (mode === 'export') {
+      if (fs.existsSync(destPath)) {
+        this.createFile(destPath)
+      }
       return fs.promises.writeFile(destPath, JSON.stringify(this.data))
     } else {
       const data = JSON.parse(fs.readFileSync(sourcePath).toString())
