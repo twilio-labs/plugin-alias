@@ -72,8 +72,6 @@ describe('Tests for exporting alias', () => {
           const fileStorage = new FilesystemStorage()
           const db = await fileStorage.load(path)
           expect(db).to.be.a('object')
-          expect(Object.entries(db).length).to.not.equal(0)
-
           expect(Object.entries(db)[0].toString).to.equal(['hello', 'world'].toString)
           expect(Object.entries(db)[1].toString).to.equal(['hello1', 'world2'].toString)
         })
@@ -105,8 +103,6 @@ describe('Tests for exporting alias', () => {
           const fileStorage = new FilesystemStorage()
           const db = await fileStorage.load(path)
           expect(db).to.be.a('object')
-          expect(Object.entries(db).length).to.not.equal(0)
-
           expect(Object.entries(db)[0].toString).to.equal(['hello', 'world'].toString)
           expect(Object.entries(db)[1].toString).to.equal(['hello1', 'world2'].toString)
         })
