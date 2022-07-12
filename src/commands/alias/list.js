@@ -1,7 +1,7 @@
 const AliasBaseCommand = require('../../utilities/AliasBaseCommand')
 const FileUtil = require('../../utilities/FileUtility.js')
 const FilesystemStorage = require('../../utilities/FileSnapshot/FilesystemStorage')
-// const terminalImageWrapper = require('../../utilities/terminal-icons/terminalImageWrapper')
+// const terminalImageWrapper = require('../../utilities/terminal-image/terminalImageWrapper')
 
 class List extends AliasBaseCommand {
   async run () {
