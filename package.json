@@ -59,7 +59,7 @@
     "devPlugins": [
       "@oclif/plugin-help"
     ],
-    "topicSeparator": ":",
+    "topicSeparator": " ",
     "topics": {
       "alias": {
         "description": "Plugin to manage alias for oclif"
