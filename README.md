@@ -9,6 +9,7 @@ Access, store and use your favorite aliases for CLI commands with this plugin. I
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Commands](#commands)
+- [Cleanup](#cleanup)
 - [Troubleshooting](#troubleshooting)
 
 <!-- tocstop -->
@@ -315,9 +316,32 @@ _See code: [src/commands/alias/reset.js](https://github.com/twilio-labs/plugin-a
 <!-- commandsstop -->
 
 
+# Cleanup
+<!-- cleanup -->
+If you want to update or uninstall the plugin, then we recommend that before proceeding towards uninstalling please do the cleanup of local directory by the following command:
+
+```sh-session
+$ twilio alias:reset
+```
+
+To update the plugin, you can uninstall the older version and install the new version from npm.
+
+To uninstall the plugin use the command:
+
+For Twilio CLI:
+```sh-session
+$ twilio plugins:uninstall @twilio-labs/plugin-alias
+```
+
+If you have linked the plugin locally for development, you can unlink it with the command:
+
+For Twilio CLI:
+```sh-session
+$ twilio plugins:unlink /path/to/plugin-alias
+```
 
 # Troubleshooting
-<!-- help -->
+<!-- troubleshooting -->
 
 If you run into some issue while using the plugin, refer the help section by using the command with the flag --help 
 ```
