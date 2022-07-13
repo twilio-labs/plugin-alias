@@ -3,6 +3,7 @@
 <!-- [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Kavya-24_plugin-alias&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Kavya-24_plugin-alias) -->
 
 Access, store and use your favorite aliases for CLI commands with this plugin. It supports all the CLIs which are built over OCLIF.
+Supports OCLIF v1 and v2 both.
 
 <!-- toc -->
 
