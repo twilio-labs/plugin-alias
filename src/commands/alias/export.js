@@ -6,7 +6,7 @@ class Export extends AliasBaseCommand {
   async run () {
     await super.run()
 
-    const { args } = this.parse(Export)
+    const { args } = await this.parse(Export)
 
     if (this.validateArguments(args)) {
       const filename = args.dest ? args.dest : 'dataexport.json'

@@ -6,7 +6,7 @@ class Import extends AliasBaseCommand {
   async run () {
     await super.run()
 
-    const { args } = this.parse(Import)
+    const { args } = await this.parse(Import)
 
     if (this.validateArguments(args)) {
       const aliasFilePath = new FileUtil(this).getAliasFilePath()
