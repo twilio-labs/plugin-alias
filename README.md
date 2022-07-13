@@ -15,7 +15,7 @@ Access, store and use your favorite aliases for CLI commands with this plugin. I
 
 ## Getting Started
 
-### Install the Twilio Command Line Interface ( Or any other CLI Tool built over oclif)
+### Install the Twilio Command Line Interface (Or use with any OCLIF CLI)
 
 Via `npm` or `yarn`:
 
@@ -36,16 +36,28 @@ See the [Twilio CLI documentation](https://www.twilio.com/docs/twilio-cli/quicks
 
 The following step will install the plugin from [NPM](https://www.npmjs.com/package/plugin-alias) and is recommended if you are interested in trying out the [commands](#commands) in the latest release.
 
+For Twilio CLI:
 ```sh-session
-$ twilio plugins:install plugin-alias
+$ twilio plugins:install @twilio-labs/plugin-alias
+```
+
+For Other OCLIF CLI, say oclif-example:
+```sh-session
+$ oclif-example plugins:install @twilio-labs/plugin-alias
 ```
 
 ### Install the plugin for local development
 
 The following step will install the plugin from a local directory. Use this option if you are interested in modifying the plugin and testing it out from the Twilio CLI. 
 
+For Twilio CLI:
 ```sh-session
 $ twilio plugins:link /path/to/plugin-alias
+```
+
+For Other OCLIF CLI, say oclif-example:
+```sh-session
+$ oclif-example plugins:link /path/to/plugin-alias
 ```
 
 Prerequisites: Cloned repository locally
@@ -53,11 +65,19 @@ Prerequisites: Cloned repository locally
 ### Setup the local alias directory
 The following step will create a directory named "alias" in the local data directory of the user. Use this command before running any other alias command to setup the necessary directory structure.
 
+For Twilio CLI:
 ```sh-session
 $ twilio alias:setup
 ```
 
+For Other OCLIF CLI, say oclif-example:
+```sh-session
+$ oclif-example alias:setup
+```
+
 # Usage
+
+Here we have shown the usage with Twilio CLI. If you are using some other CLI, change "twilio" with your CLI Name, say "oclif-example".
 
 ```sh-session
 $ twilio --help alias
