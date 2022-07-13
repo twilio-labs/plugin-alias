@@ -37,11 +37,7 @@ class FileUtility {
       let added = false
 
       if (aliasForUserCommand === undefined) {
-        if (aliasIndex === -1) {
-          // no alias exists. Add is operation is Add, else show error for delete
-          db[userAlias] = userCommand
-          added = true
-        } else if (db[userAlias] === 'null' || hasFlag) {
+        if (aliasIndex === -1 || (db[userAlias] === 'null' || hasFlag)) {
           db[userAlias] = userCommand
           added = true
         } else {
