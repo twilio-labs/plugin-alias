@@ -9,7 +9,7 @@ Access, store and use your favorite aliases for CLI commands with this plugin. I
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Commands](#commands)
-- [Help](#help)
+- [Troubleshooting](#troubleshooting)
 
 <!-- tocstop -->
 
@@ -316,13 +316,11 @@ _See code: [src/commands/alias/reset.js](https://github.com/twilio-labs/plugin-a
 
 
 
-# Help
+# Troubleshooting
 <!-- help -->
 
-Run the commands with --help
+If you run into some issue while using the plugin, refer the help section by using the command with the flag --help 
 ```
   $ twilio [COMMAND] --help
 ```
-
-If facing bugs or issues, checkout [Issues](https://github.com/twilio-labs/plugin-alias/issues) and create one
-
+If facing bugs or issues, checkout the [Issues](https://github.com/twilio-labs/plugin-alias/issues) to check if this issue already exists. If it does not exists, then create a new one.
