@@ -94,30 +94,6 @@ Use.args = [
     description: 'argument 5 for the alias',
     hidden: true,
     required: false
-  },
-  {
-    name: 'arg6',
-    description: 'argument 6 for the alias',
-    hidden: true,
-    required: false
-  },
-  {
-    name: 'arg7',
-    description: 'argument 7 for the alias',
-    hidden: true,
-    required: false
-  },
-  {
-    name: 'arg8',
-    description: 'argument 8 for the alias',
-    hidden: true,
-    required: false
-  },
-  {
-    name: 'arg9',
-    description: 'argument 9 for the alias',
-    hidden: true,
-    required: false
   }
 ]
 Use.storage = new FilesystemStorage()
