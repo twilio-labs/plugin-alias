@@ -117,6 +117,7 @@ EXAMPLE
   Successfully created alias plist for profiles:list
 ```
 
+Note: Even if the CLI being used has a space topic separator, the commands must be added with colon as the topic separator only. 
 _See code: [src/commands/alias/add.js](https://github.com/twilio-labs/plugin-alias/tree/main/src/commands/alias/add.js)_
 
 <!-- Delete Command -->
