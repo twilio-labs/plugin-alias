@@ -9,7 +9,9 @@
     "@oclif/core": "1.9.0",
     "inquirer": "8.2.4",
     "jaro-winkler": "0.2.8",
-    "omelette": "0.4.17"
+    "npm": "8.14.0",
+    "omelette": "0.4.17",
+    "@oclif/plugin-version": "^1"
   },
   "devDependencies": {
     "@oclif/test": "^2",
@@ -50,9 +52,16 @@
     "name": "alias",
     "commands": "./src/commands",
     "bin": "twilio",
+    "additionalHelpFlags": [
+      "-h"
+    ],
+    "additionalVersionFlags": [
+      "-v"
+    ],
     "repositoryPrefix": "<%- repo %>/blob/<%- version %>/<%- commandPath %>",
     "devPlugins": [
-      "@oclif/plugin-help"
+      "@oclif/plugin-help",
+      "@oclif/plugin-version"
     ],
     "topicSeparator": " ",
     "topics": {
