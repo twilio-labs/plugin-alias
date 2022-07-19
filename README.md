@@ -2,7 +2,9 @@
 
 <!-- [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Kavya-24_plugin-alias&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Kavya-24_plugin-alias) -->
 
-[![NPM](https://img.shields.io/npm/v/@twilio-labs/plugin-alias.svg?label=@twilio-labs/plugin-alias)](https://www.npmjs.com/package/@twilio-labs/plugin-alias) [![Downloads/week](https://img.shields.io/npm/dw/@twilio-labs/plugin-alias.svg)](https://npmjs.org/package/@twilio-labs/plugin-alias) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://raw.githubusercontent.com/twilio-labs/plugin-alias/main/LICENSE)
+[![NPM](https://img.shields.io/npm/v/@twilio-labs/plugin-alias.svg?label=@twilio-labs/plugin-alias)](https://www.npmjs.com/package/@twilio-labs/plugin-alias)
+
+[![Downloads/week](https://img.shields.io/npm/dw/@twilio-labs/plugin-alias.svg)](https://npmjs.org/package/@twilio-labs/plugin-alias)
 
 Access, store and use your favorite aliases for CLI commands with this plugin. It supports all the CLIs which are built over OCLIF.
 Supports OCLIF v1 and v2 both.
