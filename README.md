@@ -4,8 +4,6 @@
 
 [![NPM](https://img.shields.io/npm/v/@twilio-labs/plugin-alias.svg?label=@twilio-labs/plugin-alias)](https://www.npmjs.com/package/@twilio-labs/plugin-alias)
 
-[![Downloads/week](https://img.shields.io/npm/dw/@twilio-labs/plugin-alias.svg)](https://npmjs.org/package/@twilio-labs/plugin-alias)
-
 Access, store and use your favorite aliases for CLI commands with this plugin. It supports all the CLIs which are built over OCLIF.
 Supports OCLIF v1 and v2 both.
 
