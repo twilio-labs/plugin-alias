@@ -14,7 +14,6 @@
     "omelette": "0.4.17"
   },
   "devDependencies": {
-    "@oclif/dev-cli": "1.26.10",
     "@oclif/test": "^2",
     "@semantic-release/changelog": "6.0.1",
     "@semantic-release/git": "10.0.1",
@@ -89,9 +88,9 @@
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint --ignore-path .gitignore . && npm audit",
-    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "prepack": "oclif manifest && oclif readme",
     "test": "nyc --check-coverage --lines 90 --reporter=lcov --reporter=text mocha \"test/**/**.test.js\"",
-    "version": "oclif-dev readme && git add README.md",
+    "version": "oclif readme && git add README.md",
     "semantic-release": "semantic-release --branches main",
     "lint": "eslint --fix --ext .js,.jsx ."
   }
