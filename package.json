@@ -7,13 +7,14 @@
   "bugs": "https://github.com/twilio-labs/plugin-alias/issues",
   "dependencies": {
     "@oclif/core": "1.9.0",
+    "@oclif/plugin-version": "^1",
     "inquirer": "8.2.4",
     "jaro-winkler": "0.2.8",
     "npm": "8.14.0",
-    "omelette": "0.4.17",
-    "@oclif/plugin-version": "^1"
+    "omelette": "0.4.17"
   },
   "devDependencies": {
+    "@oclif/dev-cli": "1.26.10",
     "@oclif/test": "^2",
     "@semantic-release/changelog": "6.0.1",
     "@semantic-release/git": "10.0.1",
