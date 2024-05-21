@@ -10,7 +10,7 @@
     "@oclif/plugin-version": "^1",
     "inquirer": "8.2.4",
     "jaro-winkler": "0.2.8",
-    "npm": "8.14.0",
+    "npm": "10.0.0",
     "omelette": "0.4.17"
   },
   "devDependencies": {
